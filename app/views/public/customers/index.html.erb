@@ -1,0 +1,56 @@
+<div class="col-md-3">
+  <%= attachment_image_tag(current_customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png") %>
+</div>
+<div class="col-md-6">
+  <h1>
+    <strong><%= current_customer.name %></strong>
+  </h1>
+  <div>
+    <%
+=begin%>
+ <span class="label label-info">
+      <%= current_customer.based %> 
+<%
+=end%>
+    </span>
+    <div class="form_follow">
+    <p>
+      <%= current_customer.introduction %>
+    </p>
+    <ul>
+      <li>興味のあるジャンル<li>
+    </ul>
+  </div>
+</div>
+<div class="col-md-3">
+  <div>
+    <ul>
+      <li>
+        <i class="rogo">
+        <span>獲得EXP</span>
+        <span><% current_customer.exp_point %></span>
+      </li>
+      <li>
+        <i class="rogo">
+        <span>公開中の体験</span>
+        <span><% current_customer.services.count %></span>
+      </li>
+      <li>
+        <span>フォロー</span>
+      </li>
+      <li>
+        <i class="rogo">
+        <span>フォロワー</span>
+      </li>
+      <li>
+        <i class="rogo">
+        <span>ポジティブな評価</span>
+      </li>
+      <li>
+        <i class="rogo">
+        <span>レビュー</span>
+        <span></span>
+      </li>
+    </ul>
+  </div>
+</div>
