@@ -1,4 +1,12 @@
 class Public::ServicesController < ApplicationController
+  def top
+
+  end
+
+  def about
+
+  end
+  
   def new
     @service = Service.new
   end
