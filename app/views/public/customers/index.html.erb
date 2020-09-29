@@ -8,7 +8,7 @@
   <div>
     <%
 =begin%>
- <span class="label label-info">
+<span class="label label-info">
       <%= current_customer.based %> 
 <%
 =end%>
@@ -52,5 +52,24 @@
         <span></span>
       </li>
     </ul>
+    <div class="section_title">
+      <h3>販売中のチケット</h3>
+    </div>
+    <div class="container item">
+      <div class="col-md-6">
+        <% if current_customer.services.blank? %>
+          チケットはありません
+        <% else %>
+        <% end %>
+      </div>
+    </div>
+    <div class="container comment">
+      <div class="col-md-6">
+        <% if current_customer.comments.blank? %>
+          まだコメントはありません
+        <% else %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
