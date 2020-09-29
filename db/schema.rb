@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_040806) do
     t.string "place", null: false
     t.string "catchphrase", null: false
     t.string "image_id", null: false
+    t.integer "point", null: false
     t.boolean "is_active", default: true, null: false
     t.integer "format", null: false
     t.datetime "created_at", null: false
