@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'services#top'
     get 'services/about' => 'services#about', as: 'about'
-    resources :services, only: [:index, :edit, :create, :update, :show, :destory]
-    
+    resources :services
+
     get 'customers/mypage' => 'customers#index', as: 'mypage'
     get 'customers/information' => 'customers#show', as: 'customerpage'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
