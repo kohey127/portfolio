@@ -11,5 +11,5 @@ class Service < ApplicationRecord
   validates :is_active, presence: true
   validates :point, presence: true
 
-  enum :format
+  enum format: { face_to_face: 0, online: 1, telephone: 2, message: 3 }
 end
