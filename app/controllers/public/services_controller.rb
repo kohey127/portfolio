@@ -4,6 +4,13 @@ class Public::ServicesController < ApplicationController
   end
 
   def create
-    
+    @service = Service.new(service_params)
+    if @service.save
+      flash[:notice] = "体験を登録しました"
+    else
+      render :new
+    end
   end
+
+  private
 end
