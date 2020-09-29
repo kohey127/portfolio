@@ -1,75 +1,73 @@
-<div class="col-md-3">
-  <%= attachment_image_tag(current_customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png") %>
-</div>
-<div class="col-md-6">
-  <h1>
-    <strong><%= current_customer.name %></strong>
-  </h1>
-  <div>
-    <%
-=begin%>
-<span class="label label-info">
-      <%= current_customer.based %> 
-<%
-=end%>
-    </span>
-    <div class="form_follow">
-    <p>
-      <%= current_customer.introduction %>
-    </p>
-    <ul>
-      <li>興味のあるジャンル<li>
-    </ul>
+<div class="flex-container">
+  <div class="flex-item">
+    <%= attachment_image_tag(current_customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png") %>
+  </div>
+  <div class="flex-item">
+    <h1>
+      <strong><%= current_customer.name %></strong>
+    </h1>
+    <div>
+      <span class="">
+        <%= current_customer.based %>
+      </span>
+      <div class="">
+      <p>
+        <%= current_customer.introduction %>
+      </p>
+      <ul>
+        <li>興味のあるジャンル<li>
+      </ul>
+    </div>
+  </div>
+  <div class="flex-item">
+    <div>
+      <ul>
+        <li>
+          <span>獲得EXP</span>
+          <span><% current_customer.exp_point %></span>
+        </li>
+        <li>
+          <span>公開中の体験</span>
+          <span><% current_customer.services.count %></span>
+        </li>
+        <li>
+          <span>フォロー</span>
+        </li>
+        <li>
+          <span>フォロワー</span>
+        </li>
+        <li>
+          <span>ポジティブな評価</span>
+        </li>
+        <li>
+          <span>レビュー</span>
+          <span></span>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
-<div class="col-md-3">
-  <div>
-    <ul>
-      <li>
-        <i class="rogo">
-        <span>獲得EXP</span>
-        <span><% current_customer.exp_point %></span>
-      </li>
-      <li>
-        <i class="rogo">
-        <span>公開中の体験</span>
-        <span><% current_customer.services.count %></span>
-      </li>
-      <li>
-        <span>フォロー</span>
-      </li>
-      <li>
-        <i class="rogo">
-        <span>フォロワー</span>
-      </li>
-      <li>
-        <i class="rogo">
-        <span>ポジティブな評価</span>
-      </li>
-      <li>
-        <i class="rogo">
-        <span>レビュー</span>
-        <span></span>
-      </li>
-    </ul>
-    <div class="section_title">
-      <h3>販売中のチケット</h3>
+
+<div class="section_title">
+  <h3>販売中のチケット</h3>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <% if current_customer.services.blank? %>
+        チケットはありません
+      <% else %>
+      <% end %>
     </div>
-    <div class="container item">
-      <div class="col-md-6">
-        <% if current_customer.services.blank? %>
-          チケットはありません
-        <% else %>
-        <% end %>
-      </div>
-    </div>
-    <div class="container comment">
-      <div class="col-md-6">
-        <% if current_customer.comments.blank? %>
-          まだコメントはありません
-        <% else %>
-        <% end %>
-      </div>
+  </div>
+</div>
+<div class="container comment">
+  <div class="row">
+    <div class="col-md-6">
+      <% if current_customer.comments.blank? %>
+        まだコメントはありません
+      <% else %>
+      <% end %>
     </div>
   </div>
 </div>

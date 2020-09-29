@@ -27,9 +27,8 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'
     
-    
-    get '/appointment' => 'appointments#index', as: 'appointment_path'
-    get '/chat' => 'appointment_comments#index', as: 'chat_path'
+    get 'appointment' => 'appointments#index', as: 'appointment_path'
+    get 'chat' => 'appointment_comments#index', as: 'chat_path'
 
     # get 'rooms/show' => 'room_messages#show'
   end
