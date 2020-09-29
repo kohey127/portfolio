@@ -1,10 +1,11 @@
 GIT
-  remote: https://github.com/refile/refile.git
-  revision: c4ac577c6fdad92bc079a62a0e82888319daedc8
+  remote: https://github.com/manfe/refile.git
+  revision: 46b4178654e60bb5846b1423acf6d0740cdecc25
   specs:
-    refile (0.7.0)
+    refile (0.6.2)
       mime-types
-      sinatra (>= 2.0.0, <= 3.0.0)
+      rest-client (~> 2)
+      sinatra (~> 2.0.0.beta2)
 
 GEM
   remote: https://rubygems.org/
@@ -87,6 +88,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -98,6 +101,9 @@ GEM
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    http-accept (1.7.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     io-like (0.3.1)
@@ -131,6 +137,7 @@ GEM
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.3)
+    netrc (0.11.0)
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
@@ -143,7 +150,7 @@ GEM
     public_suffix (4.0.6)
     puma (3.12.6)
     rack (2.2.3)
-    rack-protection (2.1.0)
+    rack-protection (2.0.8.1)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -185,6 +192,11 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     ruby2_keywords (0.0.2)
     ruby_dep (1.5.0)
     rubyzip (2.3.0)
@@ -202,10 +214,10 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
-    sinatra (2.1.0)
+    sinatra (2.0.8.1)
       mustermann (~> 1.0)
-      rack (~> 2.2)
-      rack-protection (= 2.1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
@@ -229,6 +241,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.7)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)

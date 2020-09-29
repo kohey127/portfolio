@@ -1,6 +1,6 @@
 <div class="flex-container">
   <div class="flex-item">
-    <%= attachment_image_tag(current_cus, :image, size: "200x180", format: "jpeg", tomerfallback: "no-image.png") %>
+    <%= attachment_image_tag(current_customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png") %>
   </div>
   <div class="flex-item">
     <h1>
@@ -26,7 +26,11 @@
       </li>
       <li>
         <span>公開中の体験</span>
-        <span><% current_customer.services.count %></span>
+        <%
+=begin%>
+ <span><% current_customer.services.count %></span> 
+<%
+=end%>
       </li>
       <li>
         <span>フォロー</span>
@@ -46,17 +50,33 @@
 
 <div class="service_item">
   <h3>公開中のサービス</h3>
-  <% if current_customer.services.blank? %>
+  <%
+=begin%>
+ <% if current_customer.services.blank? %> 
+<%
+=end%>
     公開中のサービスはありません
-  <% else %>
-  <% end %>
+  <%
+=begin%>
+ <% else %>
+  <% end %> 
+<%
+=end%>
 </div>
 <div class="button">
   <%= link_to  "サービスを追加する", new_service_path %>
 <div>
 <div class="comment">
-  <% if current_customer.comments.blank? %>
+  <%
+=begin%>
+ <% if current_customer.comments.blank? %> 
+<%
+=end%>
     まだコメントはありません
-  <% else %>
-  <% end %>
+  <%
+=begin%>
+ <% else %>
+  <% end %> 
+<%
+=end%>
 </div>
