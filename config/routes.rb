@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'services#top'
     get 'services/about' => 'services#about', as: 'about'
+    resources :services, only: [:index, :edit, :create, :update, :show, :destory]
+    
     get 'customers/mypage' => 'customers#index', as: 'mypage'
     get 'customers/information' => 'customers#show', as: 'customerpage'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
@@ -25,7 +27,6 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'
     
-    resources :services, only: [:index, :edit, :update, :show, :destory]
     
     get '/appointment' => 'appointments#index', as: 'appointment_path'
     get '/chat' => 'appointment_comments#index', as: 'chat_path'
