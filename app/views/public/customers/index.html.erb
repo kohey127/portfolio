@@ -10,7 +10,6 @@
       <span class="">
         <%= current_customer.based %>
       </span>
-      <div class="">
       <p>
         <%= current_customer.introduction %>
       </p>
@@ -20,54 +19,44 @@
     </div>
   </div>
   <div class="flex-item">
-    <div>
-      <ul>
-        <li>
-          <span>獲得EXP</span>
-          <span><% current_customer.exp_point %></span>
-        </li>
-        <li>
-          <span>公開中の体験</span>
-          <span><% current_customer.services.count %></span>
-        </li>
-        <li>
-          <span>フォロー</span>
-        </li>
-        <li>
-          <span>フォロワー</span>
-        </li>
-        <li>
-          <span>ポジティブな評価</span>
-        </li>
-        <li>
-          <span>レビュー</span>
-          <span></span>
-        </li>
-      </ul>
-    </div>
+    <ul>
+      <li>
+        <span>獲得EXP</span>
+        <span><% current_customer.exp_point %></span>
+      </li>
+      <li>
+        <span>公開中の体験</span>
+        <span><% current_customer.services.count %></span>
+      </li>
+      <li>
+        <span>フォロー</span>
+      </li>
+      <li>
+        <span>フォロワー</span>
+      </li>
+      <li>
+        <span>ポジティブな評価</span>
+      </li>
+      <li>
+        <span>レビュー</span>
+      </li>
+    </ul>
   </div>
 </div>
 
-<div class="section_title">
-  <h3>販売中のチケット</h3>
+<div class="service_item">
+  <h3>公開中のサービス</h3>
+  <% if current_customer.services.blank? %>
+    公開中のサービスはありません
+  <% else %>
+  <% end %>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <% if current_customer.services.blank? %>
-        チケットはありません
-      <% else %>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div class="container comment">
-  <div class="row">
-    <div class="col-md-6">
-      <% if current_customer.comments.blank? %>
-        まだコメントはありません
-      <% else %>
-      <% end %>
-    </div>
-  </div>
+<div class="button">
+  <%= link_to  "サービスを追加する", new_service_path %>
+<div>
+<div class="comment">
+  <% if current_customer.comments.blank? %>
+    まだコメントはありません
+  <% else %>
+  <% end %>
 </div>

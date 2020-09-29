@@ -1,3 +1,9 @@
 class Public::ServicesController < ApplicationController
-  def 
+  def new
+    @service = Service.new
+  end
+
+  def create
+    
+  end
 end

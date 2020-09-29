@@ -33,9 +33,9 @@ header {
   .header-content {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0;
     .flex {
       display: flex;
+      margin-bottom: 0;
       li {
         list-style: none;
         margin: 20px;
@@ -50,4 +50,16 @@ header {
       }
     }
   }
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.service_item .comment {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
 }
