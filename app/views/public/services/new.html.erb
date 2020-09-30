@@ -1,13 +1,14 @@
 <h1>体験新規登録</h1>
-<%= form_with(model: @service, url: services_path, method: :post) do |f| %>
+<%= form_with(model: @service, url: services_path, method: :post, local: true) do |f| %>
+<%
+=begin%>
+ <%= form_with(model: @customer, url:  owners_update_owner_costomer_path(@customer), method: :patch, local: true ) do |f| %> 
+<%
+=end%>
   <div class="flex-container">
     <div class="image_field">
       <%= f.label :image, "画像" %>
-      <%
-=begin%>
- <%= attachment_image_tag :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "item_image" %> 
-<%
-=end%>
+      <%= attachment_image_tag @servise, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "item_image", size: "300x300" %>
       <span class="btn btn-file btn-info"><%= f.attachment_field :image %>画像選択</span>
       <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
     </div>
@@ -26,20 +27,22 @@
           <td><%= f.text_field :catchphrase %></td>
         </tr>
         <tr>
-          <td><%= f.label :place, "場所" %></td>
-          <td><%= f.text_area :place, rows: 3 %></td>
+          <td><%= f.label :content, "説明" %></td>
+          <td><%= f.text_area :content, rows: 3 %></td>
         </tr>
         <tr>
-          <td><%= f.label :content, "説明" %></td>
-          <%
-=begin%>
- <td class="select_field"><%= f.collection_select :genre_id, Genre.all, :id, :name %></td> 
-<%
-=end%>
+          <td><%= f.label :place, "提供場所" %></td>
+          <td><%= f.text_field :place %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :format, "主要提供形式" %></td>
+          <td class="select_field">
+            <%= f.select :format, Service.formats.keys, :selected=>Service.formats[@service.format], include_blank: '選択してください' %>
+          </td>
         </tr>
         <tr>
           <td><%= f.label :point, "必要ポイント" %></td>
-          <td><%= f.number_field :point %> 円</td>
+          <td><%= f.number_field :point %>ポイント</td>
         </tr>
         <tr>
         </tr>

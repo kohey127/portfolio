@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2020_09_28_040806) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "customer", null: false
-    t.integer "service", null: false
+    t.integer "customer_id", null: false
+    t.integer "service_id", null: false
     t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_040806) do
   end
 
   create_table "services", force: :cascade do |t|
-    t.integer "customer", null: false
+    t.integer "customer_id", null: false
     t.string "content", null: false
     t.string "place", null: false
     t.string "catchphrase", null: false
