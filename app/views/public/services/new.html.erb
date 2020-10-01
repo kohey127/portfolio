@@ -1,10 +1,5 @@
 <h1>体験新規登録</h1>
 <%= form_with(model: @service, url: services_path, method: :post, local: true) do |f| %>
-<%
-=begin%>
- <%= form_with(model: @customer, url:  owners_update_owner_costomer_path(@customer), method: :patch, local: true ) do |f| %> 
-<%
-=end%>
   <div class="flex-container">
     <div class="image_field">
       <%= f.label :image, "画像" %>

@@ -1,1 +1,37 @@
-マイページ編集画面
+<h1>プロフィール編集</h1>
+<%= form_with(model: current_customer, url: update_information_path, local: true) do |f| %>
+  <%= render 'layouts/error_messages', resource: current_customer %>
+  <div class="profile_edit">
+    <dl>
+      <dt>
+        <%= f.label :image, "画像" %>
+      </dt>
+      <dd>
+        <%= attachment_image_tag current_customer, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "item_image", size: "200x200" %><br>
+        <span class="btn btn-file btn-info"><%= f.attachment_field :image %>画像選択</span>
+        <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
+      </dd>
+      <dt><%= f.label :name, "名前" %></dt>
+      <dd><%= f.text_field :name, :placeholder =>"#{current_customer.name}" %></dd>
+      <dt><%= f.label :email, "メールアドレス" %></dt>
+      <dd><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{current_customer.email}" %></dd>
+      <dt><%= f.label :introduction, "自己紹介" %></dt>
+      <dd><%= f.text_field :introduction, :placeholder =>"#{current_customer.introduction}" %></dd>
+      <dt><%= f.label :based, "拠点" %></dt>
+      <dd><%= f.text_field :based, :placeholder =>"#{current_customer.based}" %></dd>
+      <%
+=begin%>
+ <dt><%= f.label :based, "興味のあるジャンル" %></dt>
+      <dd>
+        <% @genres.each do |genre| %>
+          <%= f.radio_button :genre,  %>
+        <% end %>
+      </dd> 
+<%
+=end%>
+    </dl>
+    <div class="button">
+      <%= f.submit "更新", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
