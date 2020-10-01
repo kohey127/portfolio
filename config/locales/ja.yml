@@ -1,8 +1,8 @@
 ja:
-  enums:
-    format:
-      status:
-        face_to_face: "対面"
-        online: "オンライン"
-        telephone: "電話"
-        message: "メッセージ"
+  enum:
+    service:
+      format:
+        face_to_face: 対面
+        online: オンライン
+        telephone: 電話
+        message: メッセージ

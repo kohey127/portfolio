@@ -1,18 +1,15 @@
 <div class="flex-container">
   <div class="flex-item">
-    <%= attachment_image_tag(current_cus, :image, size: "200x180", format: "jpeg", tomerfallback: "no-image.png") %>
+    <%= attachment_image_tag(current_customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png") %>
+    <span><%= link_to  "マイページを編集する", edit_information_path %></span>
   </div>
   <div class="flex-item">
     <h1>
       <strong><%= current_customer.name %></strong>
     </h1>
     <div>
-      <span class="">
-        <%= current_customer.based %>
-      </span>
-      <p>
-        <%= current_customer.introduction %>
-      </p>
+      <span><%= current_customer.based %></span>
+      <span><%= current_customer.introduction %></span>
       <ul>
         <li>興味のあるジャンル<li>
       </ul>
@@ -46,8 +43,8 @@
 
 <div class="service_item">
   <h3>公開中のサービス</h3>
-  <% if current_customer.services.blank? %>
-    公開中のサービスはありません
+  <% if current_customer.services.blank? %> 
+    <p>公開中のサービスはありません</p>
   <% else %>
   <% end %>
 </div>
@@ -56,7 +53,7 @@
 <div>
 <div class="comment">
   <% if current_customer.comments.blank? %>
-    まだコメントはありません
+    <p>まだコメントはありません</p>
   <% else %>
   <% end %>
 </div>

@@ -62,8 +62,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pry-rails'
 gem 'devise'
-gem 'refile', require: 'refile/rails', github: 'refile/refile'
-gem 'refile-mini_magick'
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
