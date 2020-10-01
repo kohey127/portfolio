@@ -14,11 +14,9 @@ class Public::ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
     @service.customer_id = current_customer.id
-    
-    binding.pry
-    
     if @service.save(service_params)
       flash[:notice] = "体験を登録しました"
+      redirect_to mypage_path
     else
       render :new
     end

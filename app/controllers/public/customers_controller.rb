@@ -6,10 +6,15 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
-    @genres = Genre.all
+    @customer = current_customer
   end
 
   def update
+    if current_customer.update(customer_params)
+      redirect_to mypage_path, notice: '会員情報の更新が完了しました。'
+    else
+      render :edit
+    end
   end
 
   def unsubscribe
