@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     root 'services#top'
     get 'services/about' => 'services#about', as: 'about'
     resources :services do
+      get 'appointments/complete' => 'appointments#complete'
       resources :appointments, only: [:index, :new, :create, :edit, :update, :destroy]
     end
 

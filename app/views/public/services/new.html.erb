@@ -32,7 +32,7 @@
         <tr>
           <td><%= f.label :format, "主要提供形式" %></td>
           <td class="select_field">
-            <%= f.select :format, Service.formats.keys, :selected=>Service.formats[@service.format], include_blank: '選択してください' %>
+            <%= f.select :format, Service.formats.keys, include_blank: '選択してください' %>
           </td>
         </tr>
         <tr>

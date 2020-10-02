@@ -17,11 +17,18 @@
         <%= f.datetime_field :request_date %>
       </label>
     </dd>
+    <dt>
+      <%= f.label :request_format, "事前打ち合わせ希望形式" %>
+    </dt>
+    <dd>
+      <%= f.select :request_format, Appointment.request_formats.keys, include_blank: '選択してください' %>
+    </dd>
     <dt>メッセージ</dt>
-    <dd><%= f.text_area :first_message, cols: 50, rows: 10, placeholder: "話してみたいこと、第2希望日、第3希望日等をお書きください。" %></dd>
+    <dd><%= text_area_tag "first_message", "話してみたいこと、第2希望日、第3希望日等をお書きください。", {size:"50x10"} %></dd>
   </dl>
   <div>
     <%= f.submit "申し込む／話を聞く" %>
     <p>現時点でポイントは支払われません。</p>
   </div>
+  <%= hidden_field_tag :customer_id, @service.customer.id %>
 <% end %>
