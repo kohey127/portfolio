@@ -85,7 +85,7 @@ header {
     height: 60px;
     top: 70px;
     border-radius: 30px;
-    background-color: black;
+    background-color: #1E3039;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,14 +112,33 @@ header {
     background-color: #FFA200;
     text-align: center;
     color: white;
+    padding: 10px 15px;
     .service_catchphrase {
       span {
         display: inline-block;
         border-radius: 5px;
         font-size: 17px;
       }
-    .service_is_active {
     }
+    .service_is_active {
+      color: #34495E;
+      padding: 10px 0 18px;
+      span {
+        padding: 6px 12px;
+        background-color: #EFF0F2;
+        border-radius: 5px;
+        border-bottom: 4px solid rgb(189, 195, 199);
+        i {
+          margin-right: 4px;
+        }
+        a {          
+          text-decoration: none;
+          color: #34495E;
+        }
+        a:hover {
+          opacity: 0.6;
+        }
+      }
     }
   }
 } 
