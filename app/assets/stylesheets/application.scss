@@ -169,3 +169,14 @@ header {
     }
   } 
 }
+
+.service_show_container {
+  display: flex;
+  margin: 30px 3.7%;
+  .service_detail {
+    width: 65%;
+  }
+  .host_detail {
+    width: 27.6%;
+  }
+}
