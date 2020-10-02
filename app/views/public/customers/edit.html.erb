@@ -11,8 +11,6 @@
       </dd>
       <dt><%= f.label :name, "名前" %></dt>
       <dd><%= f.text_field :name, :placeholder =>"#{@customer.name}" %></dd>
-      <dt><%= f.label :email, "メールアドレス" %></dt>
-      <dd><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@customer.email}" %></dd>
       <dt><%= f.label :introduction, "自己紹介" %></dt>
       <dd><%= f.text_area :introduction, rows: 3, :placeholder =>"#{@customer.introduction}" %></dd>
       <dt><%= f.label :based, "拠点" %></dt>

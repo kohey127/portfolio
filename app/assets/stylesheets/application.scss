@@ -14,8 +14,13 @@
  *= require_self
  */
 
+/* bootstrap使用のため以下追記 */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/* font-awesome使用のため以下追記 */
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 * {
   padding: 0;
@@ -25,6 +30,12 @@
 
 body {
   background-color: #FCFCF0;
+  font-family: "Noto Sans Japanese";
+  font-size: 14px;
+  color: #656565;
+  letter-spacing: 0.05em;
+  line-height: 1.8em;
+  font-weight: normal;
 }
 
 header {
@@ -58,8 +69,57 @@ header {
   margin-top: 50px;
 }
 
-.service_item .comment {
+.comment {
   width: 80%;
   margin: 0 auto;
   text-align: center;
 }
+
+.service_item {
+  position: relative;
+  width: 265px;
+  background-color: white;
+  .service_point {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 70px;
+    border-radius: 30px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  .customer_image {
+    position: absolute;
+    top: 102px;
+    left: 94.5px;
+    .img-circle {
+      border: solid 3px white;
+      background-color: white;
+    }
+  }
+  .customer_name {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .customer_introduction {
+    font-size: 12px;
+    text-align: center;
+  }
+  .service_wrap {
+    background-color: #FFA200;
+    text-align: center;
+    color: white;
+    .service_catchphrase {
+      span {
+        display: inline-block;
+        border-radius: 5px;
+        font-size: 17px;
+      }
+    .service_is_active {
+    }
+    }
+  }
+} 
