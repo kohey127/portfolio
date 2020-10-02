@@ -6,6 +6,10 @@ class Public::ServicesController < ApplicationController
   def about
 
   end
+
+  def show
+    @service = Service.find(params[:id])
+  end
   
   def new
     @service = Service.new
