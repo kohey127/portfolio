@@ -48,9 +48,13 @@
 </div>
 <div class="success_appointment">
   <h3>申込成立</h3>
-  <% @success_appointments.each do |appointment| %>
+  <%
+=begin%>
+ <% @success_appointments.each do |appointment| %>
     <%= render 'public/services/service', service: appointment.service %>
-  <% end %>
+  <% end %> 
+<%
+=end%>
 </div>
 <div class="failure_appointment">
   <h3>申込失敗(※3日後に消えます)</h3>
