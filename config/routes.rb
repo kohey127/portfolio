@@ -15,9 +15,10 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'services#top'
     get 'services/about' => 'services#about', as: 'about'
+    get 'appointments' => 'appointments#index'
     resources :services do
       get 'appointments/complete' => 'appointments#complete'
-      resources :appointments, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :appointments, only: [:new, :create, :edit, :update, :destroy]
     end
 
     get 'customers/mypage' => 'customers#index', as: 'mypage'
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'
     
-    get 'chat' => 'appointment_comments#index', as: 'chat_path'
+    get 'chat' => 'appointment_comments#index', as: 'chat'
 
     # get 'rooms/show' => 'room_messages#show'
   end

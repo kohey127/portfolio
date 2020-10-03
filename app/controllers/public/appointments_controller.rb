@@ -1,12 +1,17 @@
 class Public::AppointmentsController < ApplicationController
   def index
     
+    binding.pry
+    
+    @comming_appointments = Appointment.where(to_customer_id: current_customer.id, status: "applying").includes(:service)
+    @applying_appointments = Appointment.where(from_customer_id: current_customer.id, status: "applying").includes(:service)
+    @success_appointments = Appointment.where(from_customer_id: current_customer.id).or(Appointment.where(to_customer_id: current_customer.id)).where(Appointment.where(status: "success")).includes(:service)
+    @failure_appointments = Appointment.where(from_customer_id: current_customer.id, status: "failure").includes(:service)
   end
 
   def create
       # 仮予約新規作成
       appointment = Appointment.new(appointment_params)
-      appointment.from_customer_id = current_customer.id
       appointment.status = "applying"
       if params[:request_date_exist] == "0"
         appointment.request_date = "undecided"
@@ -33,7 +38,7 @@ class Public::AppointmentsController < ApplicationController
   end
   private
   def appointment_params
-    params.require(:appointment).permit(:customer_id, :service_id, :from_customer_id, :request_format, :request_date, :status)
+    params.require(:appointment).permit(:service_id, :to_customer_id, :from_customer_id, :request_format, :request_date, :status)
   end
 
   def appointment_comment_params

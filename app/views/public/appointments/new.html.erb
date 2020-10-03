@@ -30,6 +30,7 @@
     <%= f.submit "申し込む／話を聞く" %>
     <p>現時点でポイントは支払われません。</p>
   </div>
-  <%= f.hidden_field :customer_id, value: @service.customer.id %>
+  <%= f.hidden_field :to_customer_id, value: @service.customer.id %>
+  <%= f.hidden_field :from_customer_id, value: current_customer.id %>
   <%= f.hidden_field :service_id, value: @service.id %>
 <% end %>
