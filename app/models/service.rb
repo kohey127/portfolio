@@ -13,5 +13,4 @@ class Service < ApplicationRecord
   attachment :image
   
   enum format:{ face_to_face: 0, online: 1, telephone: 2, message: 3 }
-  validates :format, inclusion: { in: Service.formats.keys }
 end
