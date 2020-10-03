@@ -7,20 +7,23 @@
   </thead>
   <tbody>
     <% @appointments.each do |appointment| %>
-      <td>
-        <% if appointment.from_customer_id == current_customer.id %>
-          <% customer_id = appointment.to_customer_id %>
-        <% elsif appointment.to_customer_id == current_customer.id %>
-          <% customer_id = appointment.from_customer_id %>
-        <% end %>
-        <%= Customer.find(customer_id).name %>
-      </td>
-      <td>
-        <% comment = AppointmentComment.find(appointment.id) %>
-        <%= link_to , show_chat_path(comment.id) do %>
-          <%= comment.content %>
-        <% end %>
-      </td>
+      <tr>
+        <td>
+          <% if appointment.from_customer_id == current_customer.id %>
+            <% customer_id = appointment.to_customer_id %>
+          <% elsif appointment.to_customer_id == current_customer.id %>
+            <% customer_id = appointment.from_customer_id %>
+          <% end %>
+          <% customer = Customer.find(customer_id) %>
+          <%= customer.name %>
+        </td>
+        <td>
+          <% comment = AppointmentComment.find(appointment.id) %>
+          <%= link_to appointment_comment_path(comment.id) do %>
+            <%= comment.content %>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
   <tbody>
 </table>

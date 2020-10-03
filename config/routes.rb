@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'
     
+    resources :appointment_comments, only: [:show]
     get 'chat' => 'appointment_comments#index', as: 'chat'
     get 'chat/show' => 'appointment_comments#show', as: 'show_chat'
 

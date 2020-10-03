@@ -1,0 +1,20 @@
+<h3>
+  <% if @appointment.from_customer_id == current_customer.id %>
+    <% customer_id = @appointment.to_customer_id %>
+  <% elsif @appointment.to_customer_id == current_customer.id %>
+    <% customer_id = @appointment.from_customer_id %>
+  <% end %>
+  <% customer = Customer.find(customer_id) %>
+  <%= customer.name %> さんとのチャット
+</h3>
+<div>
+  <% @appointment_comments.each do |comment| %>
+    <div><%= comment.content %></div>
+  <% end %>
+</div>
+<div>
+  <% if @appointment.from_customer_id == current_customer.id %>
+    <%= link_to  "体験が終わったのでレビューに進む", "" %>
+    <p>ホストにポイントが支払われます。</p>
+  <% end %>
+</div>
