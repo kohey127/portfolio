@@ -1,4 +1,26 @@
 <table>
-  <% @appointments.each do |appointment| %>
-    <%= appointment. %>
-  <% end %>
+  <thead>
+    <tr>
+      <th>相手</th>
+      <th>メッセージ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <td>
+        <% if appointment.from_customer_id == current_customer.id %>
+          <% customer_id = appointment.to_customer_id %>
+        <% elsif appointment.to_customer_id == current_customer.id %>
+          <% customer_id = appointment.from_customer_id %>
+        <% end %>
+        <%= Customer.find(customer_id).name %>
+      </td>
+      <td>
+        <% comment = AppointmentComment.find(appointment.id) %>
+        <%= link_to , show_chat_path(comment.id) do %>
+          <%= comment.content %>
+        <% end %>
+      </td>
+    <% end %>
+  <tbody>
+</table>

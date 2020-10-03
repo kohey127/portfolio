@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     put 'customers/withdraw' => 'customers#withdraw'
     
     get 'chat' => 'appointment_comments#index', as: 'chat'
+    get 'chat/show' => 'appointment_comments#show', as: 'show_chat'
 
     # get 'rooms/show' => 'room_messages#show'
   end
