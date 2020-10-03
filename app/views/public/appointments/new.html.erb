@@ -21,7 +21,7 @@
       <%= f.label :request_format, "事前打ち合わせ希望形式" %>
     </dt>
     <dd>
-      <%= f.select :request_format, Appointment.request_formats.keys, include_blank: '選択してください' %>
+      <%= f.select :request_format, Appointment.request_formats.keys.map {|k| [I18n.t("enums.appointment.request_format.#{k}"), k]}, include_blank: '選択してください' %>
     </dd>
     <dt>メッセージ</dt>
     <dd><%= text_area_tag "first_message", "話してみたいこと、第2希望日、第3希望日等をお書きください。", {size:"50x10"} %></dd>
