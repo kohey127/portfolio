@@ -6,21 +6,15 @@
     </tr>
   </thead>
   <tbody>
-    <% @appointments.each do |appointment| %>
+    <% @appointment_comments.each do |appointment_comment| %>
+    <% appointment = appointment_comment.appointment %>
       <tr>
         <td>
-          <% if appointment.from_customer_id == current_customer.id %>
-            <% customer_id = appointment.to_customer_id %>
-          <% elsif appointment.to_customer_id == current_customer.id %>
-            <% customer_id = appointment.from_customer_id %>
-          <% end %>
-          <% customer = Customer.find(customer_id) %>
-          <%= customer.name %>
+          <%= appointment.partner_customer(current_customer.id).name %>
         </td>
         <td>
-          <% comment = AppointmentComment.find(appointment.id) %>
-          <%= link_to appointment_comment_path(comment.id) do %>
-            <%= comment.content %>
+          <%= link_to appointment_comment_path(appointment_comment.id) do %>
+            <%= appointment_comment.content %>
           <% end %>
         </td>
       </tr>

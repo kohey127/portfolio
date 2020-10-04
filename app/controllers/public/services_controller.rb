@@ -1,6 +1,6 @@
 class Public::ServicesController < ApplicationController
   def top
-
+    @services = Service.all
   end
 
   def about
