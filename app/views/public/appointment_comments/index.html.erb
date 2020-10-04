@@ -7,7 +7,7 @@
   </thead>
   <tbody>
     <% @appointment_comments.each do |appointment_comment| %>
-    <% appointment = appointment_comment.appointment %>
+      <% appointment = appointment_comment.appointment %>
       <tr>
         <td>
           <%= appointment.partner_customer(current_customer.id).name %>

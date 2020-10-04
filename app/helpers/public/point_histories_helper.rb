@@ -1,0 +1,2 @@
+module Public::PointHistoriesHelper
+end
