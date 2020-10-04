@@ -14,7 +14,7 @@ class Appointment < ApplicationRecord
   enum request_format:{ online: 0, telephone: 1, message: 2, anything: 3 }
   
   def partner_customer(id)
-    return self.from_customer if self.from_customer_id == id    
-    self.to_customer
+    return self.to_customer if self.from_customer_id == id    
+    self.from_customer
   end
 end

@@ -1,11 +1,10 @@
 class Public::AppointmentsController < ApplicationController
   def index
-    
-    binding.pry
-    
     @comming_appointments = Appointment.where(to_customer_id: current_customer.id, status: "applying").includes(:service)
     @applying_appointments = Appointment.where(from_customer_id: current_customer.id, status: "applying").includes(:service)
-    @success_appointments = (Appointment.where(from_customer_id: current_customer.id).or(Appointment.where(to_customer_id: current_customer.id))).where(Appointment.where(status: "success")).includes(:service)
+    @success_appointments = Appointment.where(from_customer_id: current_customer.id)
+                                        .or(Appointment.where(to_customer_id: current_customer.id))
+                                        .where(status: "success").includes(:service)
     @failure_appointments = Appointment.where(from_customer_id: current_customer.id, status: "failure").includes(:service)
   end
 
