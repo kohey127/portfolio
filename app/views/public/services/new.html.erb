@@ -1,21 +1,16 @@
 <h1>体験新規登録</h1>
 <%= form_with(model: @service, url: services_path, method: :post, local: true) do |f| %>
-<%
-=begin%>
- <%= form_with(model: @customer, url:  owners_update_owner_costomer_path(@customer), method: :patch, local: true ) do |f| %> 
-<%
-=end%>
   <div class="flex-container">
     <div class="image_field">
       <%= f.label :image, "画像" %>
-      <%= attachment_image_tag @servise, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "item_image", size: "300x300" %>
+      <%= attachment_image_tag @service, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "item_image", size: "300x300" %>
       <span class="btn btn-file btn-info"><%= f.attachment_field :image %>画像選択</span>
       <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
     </div>
     <table class="admin_item_info item_form">
       <thead>
         <tr>
-          <th></th>	
+          <th></th>
           <th></th>
           <th></th>
           <th></th>
@@ -37,7 +32,7 @@
         <tr>
           <td><%= f.label :format, "主要提供形式" %></td>
           <td class="select_field">
-            <%= f.select :format, Service.formats.keys, :selected=>Service.formats[@service.format], include_blank: '選択してください' %>
+            <%= f.select :format, Service.formats.keys.map {|k| [I18n.t("enums.service.format.#{k}"), k]}, include_blank: '選択してください' %>
           </td>
         </tr>
         <tr>

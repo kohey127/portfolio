@@ -1,0 +1,42 @@
+<div class="service_item">
+  <%= attachment_image_tag(service, :image, format: "jpeg", fallback: "no-image.png", class: "service_image") %>
+  <div class="service_point">
+    <%= service.point %> pt
+  </div>
+  <div class="customer_image">
+    <%= attachment_image_tag(service.customer, :image, size: "70x70", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
+  </div>
+  <div class="customer_name">
+    <span><strong><%= service.customer.name %></strong></span>
+  </div>
+  <div class="customer_introduction">
+    <span><%= service.customer.introduction %></span>
+  </div>
+  <div class="service_wrap">
+    <div class="service_catchphrase">
+      <span><strong><%= service.catchphrase %></strong></span>
+    </div>
+    <div class="service_content">
+      <span><%= service.content %></span>
+    </div>
+    <div class="service_format">
+      <span><%= service.format %></span>
+    </div>
+    <div class="service_place">
+      <span>
+        <i class="fa fa-map-marker"></i>
+        <%= service.place %>
+      </span>
+    </div>
+    <div class="service_is_active">
+      <span>
+        <% if service.is_active == true %>
+          <i class="fa fa-check-circle"></i>
+          <%= link_to  "公開中", service_path(service.id) %>
+        <% else %>
+          公開停止中
+        <% end %>
+      </span>
+    </div>
+  </div>
+</div>

@@ -7,9 +7,6 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -44,8 +41,8 @@
             <p>ようこそ、<%= current_customer.name %>さん!</p>
             <li><%= link_to 'About', about_path %></li>
             <li><%= link_to 'マイページ', mypage_path %></li>
-            <li><%= link_to '申込状況', appointment_path_url %></li>
-            <li><%= link_to 'チャット', chat_path_url %></li>
+            <li><%= link_to '申込状況', appointments_path %></li>
+            <li><%= link_to 'チャット', chat_path %></li>
             <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
           </ul>
         </div>

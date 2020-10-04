@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>相手</th>
+      <th>メッセージ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @appointment_comments.each do |appointment_comment| %>
+    <% appointment = appointment_comment.appointment %>
+      <tr>
+        <td>
+          <%= appointment.partner_customer(current_customer.id).name %>
+        </td>
+        <td>
+          <%= link_to appointment_comment_path(appointment_comment.id) do %>
+            <%= appointment_comment.content %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <tbody>
+</table>

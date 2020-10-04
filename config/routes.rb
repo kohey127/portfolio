@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount ActionCable.server => '/cable'
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
   }
@@ -16,7 +15,12 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'services#top'
     get 'services/about' => 'services#about', as: 'about'
-    resources :services
+    get 'appointments' => 'appointments#index'
+    resources :services do
+      get 'appointments/complete' => 'appointments#complete'
+      resources :appointments, only: [:new, :create, :edit, :update, :destroy]
+      resources :comments, only: [:create]
+    end
 
     get 'customers/mypage' => 'customers#index', as: 'mypage'
     get 'customers/information' => 'customers#show', as: 'customerpage'
@@ -27,9 +31,8 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'
     
-    get 'appointment' => 'appointments#index', as: 'appointment_path'
-    get 'chat' => 'appointment_comments#index', as: 'chat_path'
+    resources :appointment_comments, only: [:show, :create]
+    get 'chat' => 'appointment_comments#index', as: 'chat'
 
-    # get 'rooms/show' => 'room_messages#show'
   end
 end

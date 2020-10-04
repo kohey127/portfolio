@@ -1,8 +1,19 @@
 ja:
-  enum:
+  enums:
     service:
       format:
         face_to_face: 対面
         online: オンライン
         telephone: 電話
         message: メッセージ
+    appointment:
+      status:
+        applying: 申込中
+        success: 予約成立
+        failure: 予約失敗
+        done: 取引完了
+      request_format:
+        online: オンライン
+        telephone: 電話
+        message: メッセージ
+        anything: 相手にお任せ

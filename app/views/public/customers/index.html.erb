@@ -1,7 +1,6 @@
 <div class="flex-container">
   <div class="flex-item">
     <%= attachment_image_tag(current_customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png") %>
-    <span><%= link_to  "マイページを編集する", edit_information_path %></span>
   </div>
   <div class="flex-item">
     <h1>
@@ -19,11 +18,11 @@
     <ul>
       <li>
         <span>獲得EXP</span>
-        <span><% current_customer.exp_point %></span>
+        <span><%= current_customer.exp_point %></span>
       </li>
       <li>
         <span>公開中の体験</span>
-        <span><% current_customer.services.count %></span>
+        <span><%= current_customer.services.count %></span>
       </li>
       <li>
         <span>フォロー</span>
@@ -40,14 +39,21 @@
     </ul>
   </div>
 </div>
-
-<div class="service_item">
-  <h3>公開中のサービス</h3>
-  <% if current_customer.services.blank? %> 
-    <p>公開中のサービスはありません</p>
-  <% else %>
-  <% end %>
+<div class="btn">
+  <%= link_to  "マイページを編集する", edit_information_path %>
 </div>
+
+<h3>公開中のサービス</h3>
+<% if current_customer.services.blank? %> 
+  <p>公開中のサービスはありません</p>
+<% else %>
+  <div class="service_flex_container">
+    <% current_customer.services.each do |service| %>
+      <%= render 'public/services/service', service: service %>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="button">
   <%= link_to  "サービスを追加する", new_service_path %>
 <div>

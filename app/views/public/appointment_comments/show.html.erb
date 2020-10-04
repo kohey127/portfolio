@@ -1,0 +1,29 @@
+<h3>
+  <%= @appointment.partner_customer(current_customer.id).name %> さんとのチャット
+</h3>
+<div>
+  <% @appointment_comments.each do |comment| %>
+    <div>
+      <%= comment.customer.name %>：<%= comment.content %>
+    </div>
+  <% end %>
+</div>
+<div>
+  <%= form_with(model: @appointment_comment, url: appointment_comments_path, method: :post, local: true) do |f| %>
+    <%= f.text_area :content, rows: 5, cols: 10 %>
+    <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <%= f.hidden_field :appointment_id, value: @appointment.id %>
+    <%= f.submit "送信" %>
+  <% end %>
+</div>
+<div>
+  <% if @appointment.from_customer_id == current_customer.id && @appointment.success? %>
+    <%= form_with(model: @comment, url: service_comments_path(@appointment.service.id), method: :post, local: true) do |f| %>
+      <%= f.text_area :content, rows: 5, cols: 10 %>
+      <%= f.hidden_field :customer_id, value: current_customer.id %>
+      <%= f.submit "レビューを書き込んで体験を完了する", data: { confirm: '本当に体験を完了しますか？' } %>
+      <p>※ホストにポイントが支払われます。</p>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to  "チャット一覧に戻る", chat_path %>
