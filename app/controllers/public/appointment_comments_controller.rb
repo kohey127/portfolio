@@ -1,4 +1,6 @@
 class Public::AppointmentCommentsController < ApplicationController
+  before_action :authenticate_customer!
+  
   def index
     target = Appointment.where(to_customer_id: current_customer.id).or(Appointment.where(from_customer_id: current_customer.id))
     @appointment_comments = AppointmentComment.where(appointment_id: target.ids).group(:appointment_id).includes(:appointment)

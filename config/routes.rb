@@ -23,13 +23,13 @@ Rails.application.routes.draw do
     end
 
     get 'customers/mypage' => 'customers#index', as: 'mypage'
-    get 'customers/information' => 'customers#show', as: 'customerpage'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
     patch 'customers/information' => 'customers#update', as: 'update_information'
     put 'customers/information' => 'customers#update'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'
+    resources :customers, only: [:show]
     
     resources :appointment_comments, only: [:show, :create]
     get 'chat' => 'appointment_comments#index', as: 'chat'

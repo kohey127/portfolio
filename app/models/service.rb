@@ -7,7 +7,6 @@ class Service < ApplicationRecord
   validates :place, presence: true
   validates :content, presence: true
   validates :format, presence: true
-  validates :is_active, presence: true
   validates :point, presence: true
   
   attachment :image

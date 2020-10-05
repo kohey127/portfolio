@@ -2,7 +2,7 @@
   <div class="service_detail">
     <div class="service_detail_image">
       <div class="service_image">
-        <%= attachment_image_tag(@service, :image, size: "60%x350", format: "jpeg", fallback: "no-image.png") %>
+        <%= attachment_image_tag(@service, :image, size: "600x350", format: "jpeg", fallback: "no-image.png") %>
       </div>
       <div class="service_place">
         <%= @service.place %>
@@ -39,6 +39,30 @@
       <p>必要なポイント：<% @service.point %>pt</p>
       <%= link_to  "体験利用手続きに進む／話だけでも聞いてみる", new_service_appointment_path(@service.id) %>
       <p>話を聞くだけではポイントは必要ありません</p>
+    </div>
+    <div class="comment">
+      <% if @comments.blank? %>
+        <p>まだ口コミはありません</p>
+      <% else %>
+        <table>
+          <thead>
+            <tr>
+              <th>体験者</th>
+              <th>登校日</th>
+              <th>口コミ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @comments.each do |comment| %>
+              <tr>
+                <td><%= comment.customer.name %></td>
+                <td><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+                <td><%= comment.content %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
   </div>
   <div class="host_detail">

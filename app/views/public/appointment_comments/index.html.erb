@@ -10,6 +10,7 @@
       <% appointment = appointment_comment.appointment %>
       <tr>
         <td>
+          <%= attachment_image_tag(appointment.partner_customer(current_customer.id), :image, size: "50x50", format: "jpeg", fallback: "no-image.png", class: "img-circle") %><br>
           <%= appointment.partner_customer(current_customer.id).name %>
         </td>
         <td>

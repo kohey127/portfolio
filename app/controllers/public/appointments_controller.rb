@@ -1,4 +1,6 @@
 class Public::AppointmentsController < ApplicationController
+  before_action :authenticate_customer!
+  
   def index
     @comming_appointments = Appointment.where(to_customer_id: current_customer.id, status: "applying").includes(:service)
     @applying_appointments = Appointment.where(from_customer_id: current_customer.id, status: "applying").includes(:service)
@@ -6,6 +8,9 @@ class Public::AppointmentsController < ApplicationController
                                         .or(Appointment.where(to_customer_id: current_customer.id))
                                         .where(status: "success").includes(:service)
     @failure_appointments = Appointment.where(from_customer_id: current_customer.id, status: "failure").includes(:service)
+    @done_appointments = Appointment.where(from_customer_id: current_customer.id)
+                                        .or(Appointment.where(to_customer_id: current_customer.id))
+                                        .where(status: "done").includes(:service)
   end
 
   def create

@@ -28,6 +28,27 @@
   box-sizing: border-box;
 }
 
+#error_explanation {
+  color: red;
+  padding-bottom: 20px;
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  ul {
+    padding-left: 50px;
+    list-style: circle;
+  }
+}
+
+.field_with_errors {
+  display: inline-block;
+  input,
+  textarea {
+    border: 1px solid red;
+  }
+}
+
 body {
   background-color: #FCFCF0;
   font-family: "Noto Sans Japanese";
@@ -112,10 +133,14 @@ header {
       border: solid 3px white;
       background-color: white;
     }
+    .img-circle:hover {
+      opacity: 0.9;
+    }
   }
   .customer_name {
     margin-top: 40px;
     text-align: center;
+    text-decoration: none;
   }
   .customer_introduction {
     font-size: 12px;

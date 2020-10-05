@@ -35,7 +35,6 @@
       </li>
       <li>
         <span>レビュー</span>
-        <span><%= @comments.count %></span>
       </li>
     </ul>
   </div>
@@ -58,29 +57,3 @@
 <div class="button">
   <%= link_to  "体験を追加する", new_service_path %>
 <div>
-<div class="comment">
-  <% if @comments.blank? %>
-    <p>まだ口コミはありません</p>
-  <% else %>
-    <table>
-      <thead>
-        <tr>
-          <th>体験名</th>
-          <th>体験者</th>
-          <th>投稿日</th>
-          <th>口コミ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @comments.each do |comment| %>
-          <tr>
-            <td><%= comment.service.catchphrase %></td>
-            <td><%= comment.customer.name %></td>
-            <td><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-            <td><%= comment.content %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</div>

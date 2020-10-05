@@ -1,8 +1,21 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
+  
   def index
+    @customer = current_customer
+    @services = @customer.services.includes(:customer)
+    @comments = Comment.joins(service: :customer).where(customers: {id: @customer.id})
   end
 
   def show
+    
+    binding.pry
+    if current_customer.id == params[:id]
+      redirect_to mypage_path
+    else
+      
+    end
+    
   end
 
   def edit
@@ -21,6 +34,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
+    if current_customer.update(is_active: false)
+      reset_session
+      flash[:success] = "退会処理が完了しました。ご利用ありがとうございました。"
+    end
+    redirect_to root_path
   end
   
   private

@@ -1,6 +1,8 @@
 class Public::ServicesController < ApplicationController
+  before_action :authenticate_customer!
+  
   def top
-    @services = Service.all
+    @services = Service.where.not(customer_id: current_customer.id, is_active: false).includes(:customer)
   end
 
   def about
@@ -10,10 +12,22 @@ class Public::ServicesController < ApplicationController
   def show
     @service = Service.find(params[:id])
     @customer = @service.customer
+    @comments = @service.comments.includes(:customer)
   end
   
   def new
     @service = Service.new
+  end
+
+  def update
+    service = Service.find(params[:id])
+    case params[:service]
+    when "open"
+      service.update(is_active: true)
+    when "close"
+      service.update(is_active: false)
+    end
+    redirect_to mypage_path
   end
 
   def create

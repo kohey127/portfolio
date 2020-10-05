@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_customer!
+  
   def create
     # ポイント更新事前準備
     appointment = Appointment.find(params[:comment][:appointment_id])
@@ -22,7 +24,7 @@ class Public::CommentsController < ApplicationController
     # ポイント更新処理
     from_customer.update(point: from_customer.point -= point)
     to_customer.update(exp_point: to_customer.exp_point += point)
-    
+
     # ポイント履歴更新処理
     point_history.customer_id = from_customer.id
     point_history.balance = latest_point - point
@@ -44,19 +46,7 @@ class Public::CommentsController < ApplicationController
   end
   
   private
-  def customer_params
-    params.require(:customer).permit(:exp_point, :point)
-  end
-
   def comment_params
     params.require(:comment).permit(:customer_id, :service_id, :content)
-  end
-
-  def point_histories_params
-    params.require(:point_history).permit(:customer_id, :balance, :trigger)
-  end
-
-  def exp_histories_params
-    params.require(:exp_history).permit(:customer_id, :balance, :trigger)
   end
 end
