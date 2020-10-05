@@ -1,5 +1,5 @@
 class PointHistory < ApplicationRecord
-  belongs_to: customer
+  belongs_to :customer
   
   validates :balance, presence: true
   validates :trigger, presence: true

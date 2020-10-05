@@ -21,6 +21,8 @@
     <%= form_with(model: @comment, url: service_comments_path(@appointment.service.id), method: :post, local: true) do |f| %>
       <%= f.text_area :content, rows: 5, cols: 10 %>
       <%= f.hidden_field :customer_id, value: current_customer.id %>
+      <%= f.hidden_field :appointment_id, value: @appointment.id %>
+      <%= f.hidden_field :service_id, value: @appointment.service.id %>
       <%= f.submit "レビューを書き込んで体験を完了する", data: { confirm: '本当に体験を完了しますか？' } %>
       <p>※ホストにポイントが支払われます。</p>
     <% end %>

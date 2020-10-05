@@ -13,7 +13,7 @@
           <%= appointment.partner_customer(current_customer.id).name %>
         </td>
         <td>
-          <%= link_to appointment_comment_path(appointment_comment.id) do %>
+          <%= link_to appointment_comment_path(appointment_comment.appointment.id) do %>
             <%= appointment_comment.content %>
           <% end %>
         </td>

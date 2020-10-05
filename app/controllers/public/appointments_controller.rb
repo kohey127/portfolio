@@ -23,7 +23,7 @@ class Public::AppointmentsController < ApplicationController
     appointment_comment.customer_id = current_customer.id
     appointment_comment.appointment_id = appointment.id
     appointment_comment.content = params[:first_message]
-    appointment_comment.save!
+    appointment_comment.save
     redirect_to service_appointments_complete_path
   end
 
@@ -53,9 +53,5 @@ class Public::AppointmentsController < ApplicationController
   private
   def appointment_params
     params.require(:appointment).permit(:service_id, :to_customer_id, :from_customer_id, :request_format, :request_date, :status)
-  end
-
-  def appointment_comment_params
-    params.require(:appointment_comment).permit(:customer_id, :appointment_id, :content)
   end
 end
