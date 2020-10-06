@@ -1,7 +1,7 @@
 <div class="comming_appointment">
   <h3>承認待ち</h3>
   <% @comming_appointments.each do |appointment| %>
-    <div class="flex-container">
+    <div class="flex_container">
       <div>
         <span>申込があった体験</span>
         <%= render 'public/services/service', service: appointment.service %>

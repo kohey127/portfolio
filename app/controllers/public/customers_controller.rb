@@ -8,14 +8,13 @@ class Public::CustomersController < ApplicationController
   end
 
   def show
-    
-    binding.pry
-    if current_customer.id == params[:id]
+    @customer = Customer.find(params[:id])
+    if @customer == current_customer
       redirect_to mypage_path
     else
-      
-    end
-    
+      @services = @customer.services.includes(:customer)
+      @comments = Comment.joins(service: :customer).where(customers: {id: @customer.id})
+    end    
   end
 
   def edit
