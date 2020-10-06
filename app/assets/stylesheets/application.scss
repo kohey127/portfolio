@@ -293,17 +293,6 @@ header {
   }
 }
 
-.service_show_container {
-  display: flex;
-  margin: 30px 3.7%;
-  .service_detail {
-    width: 65%;
-  }
-  .host_detail {
-    width: 27.6%;
-  }
-}
-
 .comment {
   table {
     width: 100%;
@@ -312,6 +301,115 @@ header {
       th {
         text-align: center;
       }
+    }
+  }
+}
+
+.service_show_container {
+  display: flex;
+  margin: 30px 3.7%;
+  .service_detail {
+    width: 65%;
+    padding-right: 5%;
+    .service_cover_image {      
+      height: 420px;
+      position: relative;
+      width: 100%;
+      .service_img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      .service_cover_information {
+        width: 100%;
+        color: gray;
+        position: absolute;
+        .service_place {         
+          margin: 20px 0 5px;
+          text-align: center;
+          font-size: 18px;
+        }
+        .service_format {          
+          margin: 5px 0;
+          text-align: center;
+          font-size: 14px;
+        }
+        .service_catchphrase {
+          margin: 10px 0;
+          text-align: center;
+        }
+        .customer_image {
+          margin: 0 auto;
+          margin-top: 130px;
+          .img-circle {
+            border: 5px solid white;
+          }
+        }
+        .service_point {
+          background-color: lightgoldenrodyellow;
+          font-size: 36px;
+          height: 80px;
+          text-align: center;
+          span {
+            line-height: 80px;
+          }
+        }        
+      }
+    }
+    .service_detail_information {
+      padding: 10px;
+      background-color: white;
+      dl {
+        margin-top: 30px;
+        dt {
+          float: left;
+          margin: 0 20px;
+          padding: 10px 0;          
+        }
+        dd {
+          border-top: 1px solid;
+          padding: 10px 0;
+        }
+        dd:last-child {          
+          border-bottom: 1px solid;
+        }
+      }
+    }
+  }
+  .host_detail {
+    width: 27.6%;
+  }
+}
+
+.enter_appointment_btn {
+  margin: 30px 0;
+  p {
+    margin: 0;
+  }
+}
+
+.customer_information_nav {
+  width: 100%;
+  font-size: 15px;
+  background-color: white;
+  padding-top: 20px;
+  .customer_profile_nav {
+    text-align: center;
+  }
+  ul {
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+    li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f1f1;
+      span:nth-child(2) {
+        float: right;
+        font-weight: bold;
+      }
+    }
+    li:last-child {
+      border-bottom: none;
     }
   }
 }

@@ -1,16 +1,6 @@
 <div class="flex_container">
   <div class="flex-item customer_image btn">
     <%= attachment_image_tag(@customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
-    <div class="btn_gray">
-      <span>
-        <%= link_to  "プロフィールを編集する", edit_information_path %>
-      </span>
-    </div>
-    <div class="btn_green">
-      <span>
-        <%= link_to  "新規体験登録", new_service_path %>
-      </span>
-    </div>
   </div>
   <div class="flex-item customer_information">
     <div>
@@ -64,33 +54,5 @@
   </div>
 <% end %>
 
-<div class="comment">
-  <div class="section_title">
-    <h3>レビュー</h3>
-    <i class="fas fa-angle-down"></i>
-  </div>
-  <% if @comments.blank? %>
-    <p>まだレビューはありません</p>
-  <% else %>
-    <table>
-      <thead>
-        <tr>
-          <th>投稿日</th>
-          <th>体験者</th>
-          <th>体験名</th>
-          <th>内容</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @comments.each do |comment| %>
-          <tr>
-            <td><%= comment.created_at.strftime("%Y/%m/%d") %></td>
-            <td><%= comment.customer.name %></td>
-            <td><%= comment.service.catchphrase %></td>
-            <td><%= comment.content %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</div>
+<%= render 'customers/comment', comments: @comments %>
+
