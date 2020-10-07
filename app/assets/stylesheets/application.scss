@@ -130,6 +130,31 @@ header {
   }
 }
 
+// トップページ
+.top_wrap {
+  text-align: center;
+  .top_title {
+    h1 {
+      text-shadow: 1px 1px 5px white, -1px 1px 5px white, 1px -1px 5px white, -1px -1px 5px white;
+    }
+  }
+  .top_btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    .about_btn {
+      margin-right: 20px;
+    }
+  }
+}
+
+.icon::before {
+  content: "";
+  padding-right: 10px;
+  border-left: 7px solid #9cb4a4;  
+  margin-left: 5%;
+}
+
 // 体験ボックス
 .service_flex_container {
   width: 1140px;
@@ -329,8 +354,9 @@ header {
         }
         .service_cover_information {
           width: 100%;
-          color: gray;
           position: absolute;
+          color: #FCFCF0;
+          text-shadow: 1px 1px 5px #656565, -1px 1px 5px #656565, 1px -1px 5px #656565, -1px -1px 5px #656565;
           .service_place {         
             margin: 20px 0 5px;
             text-align: center;
@@ -344,7 +370,6 @@ header {
           .service_catchphrase {
             margin: 10px 0;
             text-align: center;
-            color: #656565;
           }
           .customer_image {
             margin: 0 auto;
