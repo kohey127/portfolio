@@ -18,17 +18,15 @@
     </div>
   </div>
 </div>
-
-<h3 class="icon">トップShexper</h3>
-<div class="customer_flex service_flex_container">
-  <% @customers.each do |customer| %>
-    <%= render 'public/customers/customer', customer: customer %>
-  <% end %>
-</div>
-
 <h3 class="icon">人気の体験</h3>
 <div class="service_flex_container">
   <% @services.each do |service| %>
     <%= render 'service', service: service %>
+  <% end %>
+</div>
+<h3 class="icon">トップShexper</h3>
+<div class="customer_flex_container">
+  <% @customers.each do |customer| %>
+    <%= render 'public/customers/customer', customer: customer %>
   <% end %>
 </div>

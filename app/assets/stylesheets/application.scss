@@ -133,11 +133,6 @@ header {
 // トップページ
 .top_wrap {
   text-align: center;
-  .top_title {
-    h1 {
-      text-shadow: 1px 1px 5px white, -1px 1px 5px white, 1px -1px 5px white, -1px -1px 5px white;
-    }
-  }
   .top_btn {
     display: flex;
     justify-content: center;
@@ -151,8 +146,20 @@ header {
 .icon::before {
   content: "";
   padding-right: 10px;
-  border-left: 7px solid #9cb4a4;  
+  border-left: 7px solid rgba(204, 80, 46, 0.7);  
   margin-left: 5%;
+}
+
+.customer_flex_container {
+  width: 1140px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  .top_customer_information_nav {
+    width: 265px;
+    margin: 10px;
+    box-shadow: 0 0 3px gray;
+  }
 }
 
 // 体験ボックス
