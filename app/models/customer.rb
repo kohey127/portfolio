@@ -19,4 +19,5 @@ class Customer < ApplicationRecord
   scope :only_active, -> { where(is_active: true) }
   
   attachment :image
+
 end

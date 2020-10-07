@@ -9,8 +9,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+      <%
+=begin%>
+ <% if admin_signed_in? %>
   <body>
-      <% if admin_signed_in? %>
       <header class="admin_header">
         <div class="header-content">
           <%= link_to 'Shexp!', admin_top_path, class: "logo" %>
@@ -20,7 +22,9 @@
             <li><%= link_to '注文履歴一覧', admin_orders_path %></li>
             <li><%= link_to 'ジャンル管理', admin_genres_path %></li>
             <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
-          </ul>
+          </ul> 
+<%
+=end%>
           <%
 =begin%>
  <%= form_tag(admin_search_path, method: :get) do %>
@@ -29,11 +33,11 @@
             <%= select_tag "search[method]", options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect" }) %>
             <%= submit_tag '検索', class: "btn btn-primary" %>
           <% end %> 
-<%
-=end%>
         </div>
       </header>
-    <% elsif customer_signed_in? %>
+<%
+=end%>
+    <% if customer_signed_in? %>
       <header>
         <div class="header-content">
           <%= link_to 'Shexp!', root_path, class: "logo" %>

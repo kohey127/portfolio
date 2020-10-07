@@ -5,7 +5,7 @@ class Public::ServicesController < ApplicationController
     # 自分の以外、かつ公開中のサービスを取得
     @services = Service.where.not(customer_id: current_customer.id, is_active: false).includes(:customer)
     # 獲得EXP順に並び替えた顧客情報を取得
-    @customers = Customer.all.order(exp_point: "asc")
+    @customers = Customer.all.order(exp_point: "desc")
   end
 
   def about

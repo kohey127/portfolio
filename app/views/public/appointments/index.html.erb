@@ -35,7 +35,7 @@
           <%= link_to  "拒否する", service_appointment_path(appointment.service.id, appointment.id, :update_param => "failure"), method: :patch, data: { confirm: '本当に拒否しますか？ 拒否する旨を申込者に伝えた上で実行ください。' } %>
         </div>
         <div class="btn">
-          <%= link_to  "チャットを開く", appointment_comment_path(appointment.appointment_comment.id) %>
+          <%= link_to  "チャットを開く", appointment_comment_path(appointment.id) %>
         </div>
       </div>
     </div>
