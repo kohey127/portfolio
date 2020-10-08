@@ -10,7 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require_tree ./
  *= require_self
  */
 
@@ -543,17 +543,13 @@ footer {
       text-align: center;
     }
   }
-  .appointment_customer_information {
+  .from_customer_information {
     margin: auto 5%;
-    padding: 5px;
     .from_customer_title {
       text-align: center;
     }
-    .from_customer_information {
-      margin: auto 5%;
-      .from_customer_image {
-        text-align: center;
-      }
+    .from_customer_image {
+      text-align: center;
     }
   }
   .btn_information {

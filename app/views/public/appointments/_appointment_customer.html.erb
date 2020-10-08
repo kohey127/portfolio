@@ -1,28 +1,23 @@
-<div class="customer_information_nav top_customer_information_nav">
-  <div class="customer_profile_nav top_customer_profile_nav">
-    <%= link_to customer_path(customer.id) do %>
-      <%= attachment_image_tag(customer, :image, size: "100x100", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
+<div class="from_customer_title">
+  <h4>申込者</h4>
+</div>
+<div class="from_customer_image">
+  <% customer = appointment.partner_customer(current_customer.id) %>
+  <%= attachment_image_tag(customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
+</div>
+<div>
+  名前：<%= customer.name %>
+</div>
+<div>
+  <span>
+    打合せ希望日時：
+    <% if appointment.request_date == "undecided" %>
+      未定
+    <% else %>
+      <%= appointment.request_date.to_datetime.strftime("%Y年%m月%d日 %H:%M") %>
     <% end %>
-    <h1>
-      <strong><%= customer.name %></strong>
-    </h1>
-    <div>
-      <span><%= customer.introduction %></span>
-    </div>
-    <div>フォローボタン</div>
-  </div>
-  <ul>
-    <li>
-      <span>獲得EXP</span>
-      <span><%= customer.exp_point %></span>
-    </li>
-    <li>
-      <span>お気に入りに登録された件数</span>
-      <span></span>
-    </li>
-    <li>
-      <span>レビュー</span>
-      <span><%= customer.comments.count %></span>
-    </li>
-  </ul>
+  </span>
+</div>
+<div>
+  打合せ希望形式：<%= appointment.request_format_i18n %>
 </div>

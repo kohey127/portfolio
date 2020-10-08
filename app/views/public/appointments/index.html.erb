@@ -1,5 +1,5 @@
 <div class="comming_appointment">
-  <h3 class="icon">承認待ち</h3>
+  <h3 class="icon">あなたの承認待ち</h3>
   <% @comming_appointments.each do |appointment| %>
     <div class="flex_appointment_container">
       <div class="to_customer_service_information">
@@ -7,31 +7,9 @@
           <h4>申込があった体験</h4>
         </div>
         <%= render 'public/services/service', service: appointment.service %>
-      <div>
+      </div>
       <div class="from_customer_information">
-        <div>
-          <h4>申込者</h4>
-        </div>
-        <div>
-          <% customer = appointment.partner_customer(current_customer.id) %>
-          <%= attachment_image_tag(customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
-        </div>
-        <div>
-          名前：<%= customer.name %>
-        </div>
-        <div>
-          <span>
-            打合せ希望日時：
-            <% if appointment.request_date == "undecided" %>
-              未定
-            <% else %>
-              <%= appointment.request_date.to_datetime.strftime("%Y年%m月%d日 %H:%M") %>
-            <% end %>
-          </span>
-        </div>
-        <div>
-          打合せ希望形式：<%= appointment.request_format_i18n %>
-        </div>
+        <%= render 'public/appointments/appointment_customer', appointment: appointment %>
       </div>
       <div class="btn_information">
         <div class="btn_green">
@@ -46,6 +24,30 @@
             <%= link_to  "拒否する", service_appointment_path(appointment.service.id, appointment.id, :update_param => "failure"), method: :patch, data: { confirm: '本当に拒否しますか？ 拒否する旨を申込者に伝えた上で実行ください。' } %>
           </span>
         </div>
+        <div class="btn_gray">
+          <span>
+            <i class="fa fa-check-circle"></i>
+            <%= link_to  "チャットを開く", appointment_comment_path(appointment.id) %>
+          </span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="waiting_review_appointments">
+  <h3 class="icon">相手のレビュー待ち</h3>
+  <% @waiting_review_appointments.each do |appointment| %>
+    <div class="flex_appointment_container">
+      <div class="to_customer_service_information">
+        <div class="service_title">
+          <h4>申込があった体験</h4>
+        </div>
+        <%= render 'public/services/service', service: appointment.service %>
+      </div>
+      <div class="from_customer_information">
+        <%= render 'public/appointments/appointment_customer', appointment: appointment %>
+      </div>
+      <div class="btn_information">
         <div class="btn_gray">
           <span>
             <i class="fa fa-check-circle"></i>
