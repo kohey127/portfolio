@@ -408,6 +408,7 @@ footer {
     font-size: 15px;
     tr{
       th {
+        background: none;
         text-align: center;
       }
     }
@@ -529,5 +530,33 @@ footer {
     li:last-child {
       border-bottom: none;
     }
+  }
+}
+
+// 申込状況一覧ページ
+.flex_appointment_container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  .to_customer_service_information {
+    .service_title {
+      text-align: center;
+    }
+  }
+  .appointment_customer_information {
+    margin: auto 5%;
+    padding: 5px;
+    .from_customer_title {
+      text-align: center;
+    }
+    .from_customer_information {
+      margin: auto 5%;
+      .from_customer_image {
+        text-align: center;
+      }
+    }
+  }
+  .btn_information {
+    margin: auto 0;
   }
 }

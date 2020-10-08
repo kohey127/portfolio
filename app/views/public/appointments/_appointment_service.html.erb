@@ -31,6 +31,17 @@
         <%= service.place %>
       </span>
     </div>
-    <%= render 'public/services/service_btn', service: service %>
+    <!-- チャットへのリンクボタン -->
+    <div class="btn_gray">
+      <span>
+        <i class="fa fa-check-circle"></i>
+        <%= link_to  "チャットを開く", appointment_comment_path(appointment.id) %>
+      </span>
+    </div>
+    <div class="date">
+      <span>
+        <%= appointment.updated_at.strftime("%Y年%m月%d日 %H:%M") %>
+      </span>
+    </div>
   </div>
 </div>

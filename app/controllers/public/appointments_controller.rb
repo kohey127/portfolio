@@ -3,14 +3,11 @@ class Public::AppointmentsController < ApplicationController
   
   def index
     @comming_appointments = Appointment.where(to_customer_id: current_customer.id, status: "applying").includes(:service)
+    @waiting_review_appointments = Appointment.where(to_customer_id: current_customer.id, status: "success").includes(:service)
     @applying_appointments = Appointment.where(from_customer_id: current_customer.id, status: "applying").includes(:service)
-    @success_appointments = Appointment.where(from_customer_id: current_customer.id)
-                                        .or(Appointment.where(to_customer_id: current_customer.id))
-                                        .where(status: "success").includes(:service)
-    @failure_appointments = Appointment.where(from_customer_id: current_customer.id, status: "failure").includes(:service)
-    @done_appointments = Appointment.where(from_customer_id: current_customer.id)
-                                        .or(Appointment.where(to_customer_id: current_customer.id))
-                                        .where(status: "done").includes(:service)
+    @success_appointments = Appointment.where(from_customer_id: current_customer.id, status: "success").includes(:service)
+    @failure_appointments = Appointment.where(from_customer_id: current_customer.id, status: "failure", created_at: 3.day.ago.beginning_of_day..Time.zone.now.end_of_day).includes(:service)
+    @done_appointments = Appointment.where(from_customer_id: current_customer.id, status: "done").includes(:service)
   end
 
   def create
