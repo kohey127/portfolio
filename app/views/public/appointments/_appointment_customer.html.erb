@@ -2,11 +2,17 @@
   <h4>申込者</h4>
 </div>
 <div class="from_customer_image">
-  <% customer = appointment.partner_customer(current_customer.id) %>
-  <%= attachment_image_tag(customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
+  <% partner = appointment.partner_customer(current_customer.id) %>
+  <%= link_to customer_path(partner.id) do %>
+    <%= attachment_image_tag(partner, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
+  <% end %>
 </div>
-<div>
-  名前：<%= customer.name %>
+<div><strong><%= partner.name %></strong></div>
+<div class="btn_gray">
+  <span>
+    <i class="fa fa-check-circle"></i>
+    <%= link_to  "チャットを開く", appointment_comment_path(appointment.id) %>
+  </span>
 </div>
 <div>
   <span>
@@ -19,5 +25,7 @@
   </span>
 </div>
 <div>
-  打合せ希望形式：<%= appointment.request_format_i18n %>
+  <span>
+    打合せ希望形式：<%= appointment.request_format_i18n %>
+  </span>
 </div>

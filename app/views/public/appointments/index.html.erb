@@ -10,6 +10,11 @@
       </div>
       <div class="from_customer_information">
         <%= render 'public/appointments/appointment_customer', appointment: appointment %>
+        <div class="date">
+          <span>
+            申込受信日時：<%= appointment.updated_at.strftime("%Y年%m月%d日 %H:%M") %>
+          </span>
+        </div>
       </div>
       <div class="btn_information">
         <div class="btn_green">
@@ -22,12 +27,6 @@
           <span>
             <i class="fa fa-check-circle"></i>
             <%= link_to  "拒否する", service_appointment_path(appointment.service.id, appointment.id, :update_param => "failure"), method: :patch, data: { confirm: '本当に拒否しますか？ 拒否する旨を申込者に伝えた上で実行ください。' } %>
-          </span>
-        </div>
-        <div class="btn_gray">
-          <span>
-            <i class="fa fa-check-circle"></i>
-            <%= link_to  "チャットを開く", appointment_comment_path(appointment.id) %>
           </span>
         </div>
       </div>
@@ -46,14 +45,12 @@
       </div>
       <div class="from_customer_information">
         <%= render 'public/appointments/appointment_customer', appointment: appointment %>
-      </div>
-      <div class="btn_information">
-        <div class="btn_gray">
+        <div class="date">
           <span>
-            <i class="fa fa-check-circle"></i>
-            <%= link_to  "チャットを開く", appointment_comment_path(appointment.id) %>
+            申込承認日時：<%= appointment.updated_at.strftime("%Y年%m月%d日 %H:%M") %>
           </span>
         </div>
+      </div>
       </div>
     </div>
   <% end %>
@@ -67,7 +64,7 @@
   </div>
 </div>
 <div class="success_appointment">
-  <h3 class="icon">申込成立</h3>
+  <h3 class="icon">申込成立<small>　(体験完了後にレビューを書いて体験を完了してください)</small></h3>
   <div class="service_flex_container">
     <% @success_appointments.each do |appointment| %>
       <%= render 'public/appointments/appointment_service', {service: appointment.service, appointment: appointment} %>
@@ -75,7 +72,7 @@
   </div>
 </div>
 <div class="failure_appointment">
-  <h3 class="icon">申込失敗<small>(※3日後に消えます)</small></h3>
+  <h3 class="icon">申込失敗<small>　(※3日後に消えます)</small></h3>
   <div class="service_flex_container">
     <% @failure_appointments.each do |appointment| %>
       <%= render 'public/appointments/appointment_service', {service: appointment.service, appointment: appointment} %>

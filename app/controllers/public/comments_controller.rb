@@ -9,19 +9,25 @@ class Public::CommentsController < ApplicationController
     point = appointment.service.point
     point_history = PointHistory.new
     exp_history = ExpHistory.new
-    if from_customer.point_histories.blank?
-      latest_point = from_customer.point
+    latest_point = from_customer.point
+    latest_exp = to_customer.exp_point
+
+    # コメントの書き込み
+    comment = Comment.new(comment_params)
+    if comment.save
+      flash[:notice] = "レビューを書いて体験を完了しました。"
     else
-      latest_point = from_customer.point_histories.balance.order(created_at: :desc).limit(1)
+      flash[:danger] = "レビューが空です。"
+      redirect_to appointment_comment_path(appointment.id) and return
     end
-    if to_customer.exp_histories.blank?
-      latest_exp = 0
-    else
-      latest_exp_histories = to_customer.exp_histories.order(created_at: :desc).limit(1)
-      latest_exp = latest_exp_histories.balance
-    end
+    
+    # 予約ステータスを取引完了に更新
+    appointment.done!
 
     # ポイント更新処理
+    
+    binding.pry
+    
     from_customer.update(point: from_customer.point -= point)
     to_customer.update(exp_point: to_customer.exp_point += point)
 
@@ -29,18 +35,11 @@ class Public::CommentsController < ApplicationController
     point_history.customer_id = from_customer.id
     point_history.balance = latest_point - point
     point_history.trigger = appointment.id
-    point_history.save    
+    point_history.save
     exp_history.customer_id = to_customer.id
     exp_history.balance = latest_exp + point
     exp_history.trigger = appointment.id
     exp_history.save
-    
-    # コメントの書き込み
-    comment = Comment.new(comment_params)
-    comment.save
-    
-    # 予約ステータスを取引完了に更新
-    appointment.done!
     
     redirect_to appointments_path
   end
