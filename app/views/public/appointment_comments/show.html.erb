@@ -1,34 +1,42 @@
-<div>
-  <%= attachment_image_tag(@appointment.partner_customer(current_customer.id), :image, size: "100x100", format: "jpeg", fallback: "no-image.png", class: "img-circle") %><br>
-<div>
-<h3>
-  <%= @appointment.partner_customer(current_customer.id).name %> さんとのチャット
-</h3>
-<div>
-  <% @appointment_comments.each do |comment| %>
-    <div>
-      <%= comment.customer.name %>：<%= comment.content %>
-    </div>
-  <% end %>
-</div>
-<div>
-  <%= form_with(model: @appointment_comment, url: appointment_comments_path, method: :post, local: true) do |f| %>
-    <%= f.text_area :content, rows: 5, cols: 10 %>
-    <%= f.hidden_field :customer_id, value: current_customer.id %>
-    <%= f.hidden_field :appointment_id, value: @appointment.id %>
-    <%= f.submit "送信" %>
-  <% end %>
-</div>
-<div>
-  <% if @appointment.from_customer_id == current_customer.id && @appointment.success? %>
-    <%= form_with(model: @comment, url: service_comments_path(@appointment.service.id), method: :post, local: true) do |f| %>
-      <%= f.text_area :content, rows: 5, cols: 10 %>
+<div class="apppointment_comment_wrap">
+  <% partner = @appointment.partner_customer(current_customer.id) %>
+  <div>
+    <%= link_to customer_path(partner.id) do %>
+      <%= attachment_image_tag(partner, :image, size: "100x100", format: "jpeg", fallback: "no-image.png", class: "img-circle") %><br>
+    <% end %>
+  </div>
+  <h3>
+    <%= partner.name %> さんとのチャット
+  </h3>
+  <div class="apppointment_comment_content">
+    <% @appointment_comments.each do |comment| %>
+        <% if appointment_comment.customer == current_customer %>
+          <div class="float_left"><%= appointment_comment.content %>
+        <% else %>
+          <div class="float_right"><%= appointment_comment.content %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= form_with(model: @appointment_comment, url: appointment_comments_path, method: :post, local: true) do |f| %>
+      <%= f.text_area :content, rows: 7, cols: 80 %>
       <%= f.hidden_field :customer_id, value: current_customer.id %>
       <%= f.hidden_field :appointment_id, value: @appointment.id %>
-      <%= f.hidden_field :service_id, value: @appointment.service.id %>
-      <%= f.submit "レビューを書き込んで体験を完了する", data: { confirm: '本当に体験を完了しますか？' } %>
-      <p>※ホストにポイントが支払われます。</p>
+      <%= f.submit "送信" %>
     <% end %>
-  <% end %>
+  </div>
+  <div>
+    <% if @appointment.from_customer_id == current_customer.id && @appointment.success? %>
+      <%= form_with(model: @comment, url: service_comments_path(@appointment.service.id), method: :post, local: true) do |f| %>
+        <%= f.text_area :content, rows: 5, cols: 10 %>
+        <%= f.hidden_field :customer_id, value: current_customer.id %>
+        <%= f.hidden_field :appointment_id, value: @appointment.id %>
+        <%= f.hidden_field :service_id, value: @appointment.service.id %>
+        <%= f.submit "レビューを書き込んで体験を完了する", data: { confirm: '本当に体験を完了しますか？' } %>
+        <p>※ホストにポイントが支払われます。</p>
+      <% end %>
+    <% end %>
+  </div>
+  <%= link_to  "チャット一覧に戻る", chat_path %>
 </div>
-<%= link_to  "チャット一覧に戻る", chat_path %>

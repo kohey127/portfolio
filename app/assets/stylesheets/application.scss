@@ -556,3 +556,21 @@ footer {
     margin: auto 0;
   }
 }
+
+// 予約チャット画面
+.apppointment_comment_wrap {
+  text-align: center;
+  .apppointment_comment_content {
+    background-color: white;
+    width: 60%;
+    margin: 20px auto;
+    .float_left {
+      float: left;
+      width: 60%;
+    }
+    .float_right {
+      float: right;
+      width: 60%;
+    }
+  }
+}
