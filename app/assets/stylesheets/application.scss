@@ -126,6 +126,7 @@ footer {
 // カスタマー情報
 .flex_container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   width: 90%;
   margin: 0 auto;
@@ -185,7 +186,7 @@ footer {
 }
 
 .customer_flex_container {
-  width: 1140px;
+  width: 91%;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -250,7 +251,7 @@ footer {
 
 // 体験ボックス
 .service_flex_container {
-  width: 1140px;
+  width: 91%;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -550,6 +551,7 @@ footer {
 // 申込状況一覧ページ
 .flex_appointment_container {
   display: flex;
+  flex-wrap: wrap;
   width: 90%;
   margin: 0 auto;
   .to_customer_service_information {
