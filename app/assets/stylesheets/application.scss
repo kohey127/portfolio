@@ -10,7 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *= require_tree ./
  *= require_self
  */
 
@@ -28,6 +28,29 @@
   box-sizing: border-box;
 }
 
+// エラーメッセージ
+#error_explanation {
+  color: red;
+  padding-bottom: 20px;
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  ul {
+    padding-left: 50px;
+    list-style: circle;
+  }
+}
+
+.field_with_errors {
+  display: inline-block;
+  input,
+  textarea {
+    border: 1px solid red;
+  }
+}
+
+// 全体
 body {
   background-color: #FCFCF0;
   font-family: "Noto Sans Japanese";
@@ -38,10 +61,21 @@ body {
   font-weight: normal;
 }
 
+main {
+  margin: 50px 0;
+}
+
+.submit_btn {
+  border: none;
+  background: none;
+  color: white;
+}
+
+// ヘッダ
 header {
   background-color: rgba(204, 80, 46, 0.9);
   color: white;
-  .header-content {
+  .header_content {
     display: flex;
     justify-content: space-between;
     .flex {
@@ -49,7 +83,7 @@ header {
       margin-bottom: 0;
       li {
         list-style: none;
-        margin: 20px;
+        padding: 20px;
         a {
           text-decoration: none;
           color: white;
@@ -63,18 +97,152 @@ header {
   }
 }
 
-.flex-container {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 50px;
+// フッタ
+footer {
+  background-color: rgba(204, 80, 46, 0.9);
+  .footer_content {
+    display: flex;
+    justify-content: center;
+    .footer_link {
+      padding: 20px;
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      a:hover {
+        color: lightgrey;
+        background-color:  rgba(204, 80, 46, 0.1);
+      }
+    }
+  }
 }
 
-.comment {
-  width: 80%;
+// カスタマー情報
+.flex_container {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
   margin: 0 auto;
+}
+
+.customer_image {
   text-align: center;
 }
 
+.customer_information {
+  width: 45%;
+  list-style: none;
+  font-size: 15px;
+  line-height: 30px;
+}
+
+.customer_status {
+  width: 25%;
+  font-size: 15px;
+  ul {
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+    background-color: white;
+    li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f1f1;
+      span:nth-child(2) {
+        float: right;
+        font-weight: bold;
+      }
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// トップページ
+.top_wrap {
+  text-align: center;
+  .top_btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    .about_btn {
+      margin-right: 20px;
+    }
+  }
+}
+
+.icon::before {
+  content: "";
+  padding-right: 10px;
+  border-left: 7px solid rgba(204, 80, 46, 0.7);  
+  margin-left: 5%;
+}
+
+.customer_flex_container {
+  width: 1140px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  .top_customer_information_nav {
+    width: 265px;
+    margin: 10px;
+    box-shadow: 0 0 3px gray;
+  }
+}
+
+// aboutページ
+.about_icon {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.about_icon::before {
+  content: "";
+  padding-right: 10px;
+  border-left: 7px solid rgba(204, 80, 46, 0.7);
+}
+.about_wrap {
+  width: 80%;
+  margin: 0 auto;
+  .flow_wrap {
+    margin-top: 20px;
+    .experience_flow {
+      display: flex;
+      margin: 0 3%;
+      table {
+        text-align: center;
+        .arrow {
+          font-size: 15px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+        .table_content {
+          padding: 10px;
+          border: dashed 1px;
+        }
+        th {
+          font-size: 20px;
+          background: none;
+          text-align: center;
+          empty-cells: show;
+          padding-bottom: 10px;
+        }
+        tr {
+          td {
+            empty-cells: show;
+            }
+          td:first-child, td:last-child{
+            width: 40%;
+          }
+          td:nth-child(2) {
+            width: 20%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 体験ボックス
 .service_flex_container {
   width: 1140px;
   display: flex;
@@ -87,6 +255,7 @@ header {
   width: 265px;
   background-color: white;
   margin: 10px;
+  box-shadow: 0 0 3px gray;
   .service_image {
     width: 100%;
     height: 140px;
@@ -112,10 +281,14 @@ header {
       border: solid 3px white;
       background-color: white;
     }
+    .img-circle:hover {
+      opacity: 0.9;
+    }
   }
   .customer_name {
     margin-top: 40px;
     text-align: center;
+    text-decoration: none;
   }
   .customer_introduction {
     font-size: 12px;
@@ -148,36 +321,335 @@ header {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    .service_is_active {
+  }
+}
+
+// 汎用ボタン関係
+.btn_gray {
+  color: #34495E;
+  padding-top: 10px;
+  span {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #EFF0F2;
+    border-radius: 5px;
+    border-bottom: 4px solid rgb(189, 195, 199);
+    i {
+      margin-right: 4px;
+    }
+    a {          
+      text-decoration: none;
       color: #34495E;
-      padding: 10px 0 18px;
-      span {
-        padding: 6px 12px;
-        background-color: #EFF0F2;
-        border-radius: 5px;
-        border-bottom: 4px solid rgb(189, 195, 199);
-        i {
-          margin-right: 4px;
-        }
-        a {          
-          text-decoration: none;
-          color: #34495E;
-        }
-        a:hover {
-          opacity: 0.6;
-        }
+    }
+    a:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.btn_red {
+  padding-top: 10px;
+  span {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #E74C3C;
+    border-radius: 5px;
+    border-bottom: 4px solid #d62c1a;
+    i {
+      margin-right: 4px;
+      color: white;
+    }
+    a {          
+      text-decoration: none;
+      color: white;
+    }
+    a:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.btn_green {
+  padding-top: 10px;
+  span {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #2ECC71;
+    border-radius: 5px;
+    border-bottom: 4px solid green;
+    i {
+      margin-right: 4px;
+      color: white;
+    }
+    a {          
+      text-decoration: none;
+      color: white;
+    }
+    a:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+// セクションタイトル部分
+.section_title {
+  margin: 30px auto;
+  padding: 18px 0 5px;
+  background: #4c4c4c;
+  color: #FFF;
+  width: 260px;
+  text-align: center;
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+// コメント部分
+.comment {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  table {
+    width: 100%;
+    font-size: 15px;
+    tr{
+      th {
+        background: none;
+        text-align: center;
       }
     }
   }
-} 
+}
 
+// サービス詳細ページ
 .service_show_container {
   display: flex;
   margin: 30px 3.7%;
   .service_detail {
     width: 65%;
+    margin-right: 5%;
+    .service_nav_wrap {
+      box-shadow: 0 0 3px gray;
+      .service_cover_image {      
+        height: 420px;
+        position: relative;
+        width: 100%;
+        .service_img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0.9;
+        }
+        .service_cover_information {
+          width: 100%;
+          position: absolute;
+          color: #FCFCF0;
+          text-shadow: 1px 1px 5px #656565, -1px 1px 5px #656565, 1px -1px 5px #656565, -1px -1px 5px #656565;
+          .service_place {         
+            margin: 20px 0 5px;
+            text-align: center;
+            font-size: 18px;
+          }
+          .service_format {          
+            margin: 5px 0;
+            text-align: center;
+            font-size: 14px;
+          }
+          .service_catchphrase {
+            margin: 10px 0;
+            text-align: center;
+          }
+          .customer_image {
+            margin: 0 auto;
+            margin-top: 130px;
+            .img-circle {
+              border: 5px solid white;
+              background-color: white;
+            }
+          }
+          .service_point {
+            background-color: lightgoldenrodyellow;
+            font-size: 36px;
+            height: 80px;
+            text-align: center;
+            span {
+              line-height: 80px;
+            }
+          }        
+        }
+      }
+    }
+    .service_detail_information {
+      padding: 10px;
+      background-color: white;
+      dl {
+        margin-top: 30px;
+        dt {
+          float: left;
+          margin: 0 20px;
+          padding: 10px 0;          
+        }
+        dd {
+          border-top: 1px solid;
+          padding: 10px 0;
+        }
+        dd:last-child {          
+          border-bottom: 1px solid;
+        }
+      }
+    }
   }
   .host_detail {
     width: 27.6%;
+  }
+}
+
+// サービス利用リンクボタン
+.enter_appointment_btn {
+  margin: 30px 0;
+  p {
+    margin: 0;
+  }
+}
+
+// サービス詳細ページのホスト情報
+.customer_information_nav {
+  width: 100%;
+  font-size: 15px;
+  background-color: white;
+  padding-top: 20px;
+  .customer_profile_nav {
+    text-align: center;
+  }
+  ul {
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+    li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f1f1;
+      span:nth-child(2) {
+        float: right;
+        font-weight: bold;
+      }
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// 申込状況一覧ページ
+.flex_appointment_container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  .to_customer_service_information {
+    .service_title {
+      text-align: center;
+    }
+  }
+  .from_customer_information {
+    margin: auto 5%;
+    text-align: center;
+    .from_customer_title {
+      text-align: center;
+    }
+    .from_customer_image {
+      text-align: center;
+    }
+  }
+  .btn_information {
+    margin: auto 0;
+  }
+}
+
+// 予約チャット画面
+.apppointment_comment_wrap {
+  text-align: center;
+  .apppointment_comment_content {
+    width: 60%;
+    margin: 20px auto;
+    // 左からの吹き出し
+    .left_balloon {
+      position: relative;
+      background: #fff;
+      border: 1px solid #777;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 15px;
+      margin-right: 20%;
+      clear: both;
+      max-width: 500px;
+      float: left;
+    }
+    .left_balloon:after,
+    .left_balloon:before {
+      right: 100%;
+      top: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+    .left_balloon:after {
+      border-color: rgba(255, 255, 255, 0);
+      border-right-color: #fff;
+      border-width: 7px;
+      margin-top: -7px;
+    }
+    .left_balloon:before {
+      border-color: rgba(0, 0, 0, 0);
+      border-right-color: #000;
+      border-width: 8px;
+      margin-top: -8px;
+    }
+    // 右からの吹き出し
+    .right_balloon {
+      position: relative;
+      background: #85e249;
+      border: 1px solid #777;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 15px;
+      margin-left: 20%;
+      clear: both;
+      max-width: 500px;
+      float: right;
+    }
+    .right_balloon:after,
+    .right_balloon:before {
+      left: 100%;
+      top: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+    .right_balloon:after {
+      border-color: rgba(133, 226, 73, 0);
+      border-left-color: #85e249;
+      border-width: 7px;
+      margin-top: -7px;
+    }
+    .right_balloon:before {
+      border-color: rgba(119, 119, 119, 0);
+      border-left-color: #777;
+      border-width: 8px;
+      margin-top: -8px;
+    }
+    // 割り込み削除
+    .clear_balloon{
+    clear: both;
+    }
+  }
+  .comment_form {
+    margin-top: 30px;
   }
 }

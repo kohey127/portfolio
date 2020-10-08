@@ -6,10 +6,12 @@ class Customer < ApplicationRecord
 
   has_many :services, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :contacts, dependent: :destroy
+  # has_many :contacts, dependent: :destroy
   has_many :appointment_comments, dependent: :destroy
-  has_many :customer_genres, dependent: :destroy
-  has_many :favorites, dependent: :destroy
+  # has_many :customer_genres, dependent: :destroy
+  # has_many :favorites, dependent: :destroy
+  has_many :point_histories, dependent: :destroy
+  has_many :exp_histories, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
@@ -17,4 +19,5 @@ class Customer < ApplicationRecord
   scope :only_active, -> { where(is_active: true) }
   
   attachment :image
+
 end

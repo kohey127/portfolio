@@ -1,8 +1,20 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
+  
   def index
+    @customer = current_customer
+    @services = @customer.services.includes(:customer)
+    @comments = get_comments(@customer.id)
   end
 
   def show
+    @customer = Customer.find(params[:id])
+    if @customer == current_customer
+      redirect_to mypage_path
+    else
+      @services = @customer.services.includes(:customer)
+      @comments = Comment.joins(service: :customer).where(customers: {id: @customer.id})
+    end    
   end
 
   def edit
@@ -21,10 +33,20 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
+    if current_customer.update(is_active: false)
+      reset_session
+      flash[:success] = "退会処理が完了しました。ご利用ありがとうございました。"
+    end
+    redirect_to root_path
   end
   
   private
   def customer_params
     params.require(:customer).permit(:image, :name, :introduction, :based)
+  end
+
+  # 顧客が受けたレビューを取得
+  def get_comments(id)
+    Comment.joins(service: :customer).where(customers: {id: id})
   end
 end

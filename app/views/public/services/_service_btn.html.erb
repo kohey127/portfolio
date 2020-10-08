@@ -1,0 +1,48 @@
+<!-- 申込状況ページでは非表示 -->
+<% if request.path != "/appointments" %>
+  <!-- マイページでは体験の公開／非公開リンクを表示 -->
+  <% if request.path == "/customers/mypage" %>
+    <% if service.is_active == true %>
+      <div class="btn_gray">
+        <span>
+          <i class="fa fa-check-circle"></i>
+          <%= link_to  "詳細を表示", service_path(service.id) %>
+        </span>
+      </div>
+      <div class="btn_red">
+        <span>
+          <i class="fa fa-check-circle"></i>
+          <%= link_to  "公開を停止する", service_path(service.id, :service => 'close'), method: :patch %>
+        </span>
+      </div>
+    <% else %>
+      <div class="btn_gray">
+        <span>
+          <i class="fa fa-check-circle"></i>
+          <%= link_to  "詳細を表示", service_path(service.id) %>
+        </span>
+      </div>
+      <div class="btn_green">
+        <span>
+          <i class="fa fa-check-circle"></i>
+          <%= link_to  "公開を再開する", service_path(service.id, :service => 'open'), method: :patch %>
+        </span>
+      </div>
+    <% end %>
+  <!-- トップページとユーザ詳細ページでは体験の詳細ページへのリンクを表示 -->
+  <% else %>
+    <div class="btn_gray">
+      <% if service.is_active == true %>
+        <span>
+          <i class="fa fa-check-circle"></i>
+          <%= link_to  "公開中", service_path(service.id) %>
+        </span>
+      <% else %>
+        <span>
+          <i class="fa fa-check-circle"></i>
+          <%= link_to  "非公開中", service_path(service.id) %>
+        </span>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

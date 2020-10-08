@@ -1,6 +1,11 @@
 class Public::ServicesController < ApplicationController
+  before_action :authenticate_customer!
+  
   def top
-    @services = Service.all
+    # 自分の以外、かつ公開中のサービスを取得
+    @services = Service.where.not(customer_id: current_customer.id, is_active: false).includes(:customer)
+    # 獲得EXP順に並び替えた顧客情報を取得
+    @customers = Customer.all.order(exp_point: "desc")
   end
 
   def about
@@ -10,10 +15,22 @@ class Public::ServicesController < ApplicationController
   def show
     @service = Service.find(params[:id])
     @customer = @service.customer
+    @comments = @service.comments.includes(:customer)
   end
   
   def new
     @service = Service.new
+  end
+
+  def update
+    service = Service.find(params[:id])
+    case params[:service]
+    when "open"
+      service.update(is_active: true)
+    when "close"
+      service.update(is_active: false)
+    end
+    redirect_to mypage_path
   end
 
   def create
