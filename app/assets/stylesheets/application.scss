@@ -185,13 +185,52 @@ footer {
 }
 
 // aboutページ
+.about_icon {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.about_icon::before {
+  content: "";
+  padding-right: 10px;
+  border-left: 7px solid rgba(204, 80, 46, 0.7);
+}
 .about_wrap {
-  .experience_flow {
-    display: flex;
-    .user_flow {
-      margin-right: 30px;
-      ol li {
-        text-decoration: none;
+  width: 80%;
+  margin: 0 auto;
+  .flow_wrap {
+    margin-top: 20px;
+    .experience_flow {
+      display: flex;
+      margin: 0 3%;
+      table {
+        text-align: center;
+        .arrow {
+          font-size: 15px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+        }
+        .table_content {
+          padding: 10px;
+          border: dashed 1px;
+        }
+        th {
+          font-size: 20px;
+          background: none;
+          text-align: center;
+          empty-cells: show;
+          padding-bottom: 10px;
+        }
+        tr {
+          td {
+            empty-cells: show;
+            }
+          td:first-child, td:last-child{
+            width: 40%;
+          }
+          td:nth-child(2) {
+            width: 20%;
+          }
+        }
       }
     }
   }
