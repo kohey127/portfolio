@@ -18,10 +18,10 @@
                 ようこそ、<%= current_customer.name %>さん!<br>
                 ポイント残高：<%= current_customer.point %>
               </p>
+              <li><%= link_to 'トップ', root_path %></li>
               <li><%= link_to 'About', about_path %></li>
               <li><%= link_to 'マイページ', mypage_path %></li>
               <li><%= link_to '申込状況', appointments_path %></li>
-              <li><%= link_to 'チャット', chat_path %></li>
               <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
             </ul>
           </div>

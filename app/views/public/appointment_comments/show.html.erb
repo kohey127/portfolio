@@ -1,5 +1,7 @@
-<h3>
+<div>
   <%= attachment_image_tag(@appointment.partner_customer(current_customer.id), :image, size: "100x100", format: "jpeg", fallback: "no-image.png", class: "img-circle") %><br>
+<div>
+<h3>
   <%= @appointment.partner_customer(current_customer.id).name %> さんとのチャット
 </h3>
 <div>

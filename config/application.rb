@@ -19,5 +19,8 @@ module Shexp
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.time_zone = 'Tokyo'
+
+    config.assets.paths << config.root.join("vendor/assets/javascripts")
+    config.assets.paths << config.root.join("vendor/assets/stylesheets")
   end
 end
