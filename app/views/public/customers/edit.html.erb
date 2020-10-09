@@ -15,20 +15,14 @@
       <dd><%= f.text_area :introduction, rows: 3, :placeholder =>"#{@customer.introduction}" %></dd>
       <dt><%= f.label :based, "拠点" %></dt>
       <dd><%= f.text_field :based, :placeholder =>"#{@customer.based}" %></dd>
-      <%
-=begin%>
- <dt><%= f.label :based, "興味のあるジャンル" %></dt>
-      <dd>
-        <% @genres.each do |genre| %>
-          <%= f.radio_button :genre,  %>
-        <% end %>
-      </dd> 
-<%
-=end%>
     </dl>
-    <div class="button">
+    <div class="submit_btn_green">
       <%= f.submit "更新", class: "btn btn-primary" %>
-      <%= link_to "退会する", confirm_unsubscribe_path, class: "btn btn-primary" %>
+    </div>
+    <div class="btn_red">
+      <span>
+        <%= link_to "退会する", confirm_unsubscribe_path, class: "btn btn-primary" %>
+      </span>
     </div>
   </div>
 <% end %>

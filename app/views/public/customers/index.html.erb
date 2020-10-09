@@ -1,9 +1,14 @@
 <div class="flex_container">
-  <div class="flex-item customer_image btn">
+  <div class="flex-item customer_image">
     <%= attachment_image_tag(@customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
     <div class="btn_gray">
       <span>
         <%= link_to  "プロフィールを編集する", edit_information_path %>
+      </span>
+    </div>
+    <div class="btn_gray">
+      <span>
+        <%= link_to  "ポイント獲得履歴を見る", new_service_path %>
       </span>
     </div>
     <div class="btn_green">
