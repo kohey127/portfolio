@@ -142,6 +142,11 @@ footer {
   }
 }
 
+// ログイン画面
+.login_form {
+  margin-top: 25px;  
+}
+
 // カスタマー情報
 .flex_container {
   display: flex;
@@ -429,6 +434,9 @@ footer {
     margin: 0;
     font-size: 16px;
     font-weight: 600;
+  }
+  i {
+    font-size: 16px;
   }
 }
 
