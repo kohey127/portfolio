@@ -764,8 +764,39 @@ footer {
   }
 }
 
-// 予約完了画面
+// 申込完了画面
 .appointment_complete {
   text-align: center;
   font-size: 16px;
+}
+
+// プロフィール編集画面
+.profile_edit {
+  width: 90%;
+  margin: 40px auto;
+  font-size: 16px;
+  .profile_edit_form {
+    display: flex;
+    justify-content: space-around;
+    .profile_edit_image {
+      dd {
+        margin: 5px 0 10px;
+        span {
+          margin-top: 30px;
+        }
+      }
+    }
+    .profile_edit_information {
+      dd {
+        margin: 5px 0 10px;
+      }
+    }
+  }
+  .profile_btn {
+    display: flex;
+    justify-content: center;    margin-top: 30px;
+    .profile_update {
+      margin-right: 30px;
+    }
+  }
 }
