@@ -171,7 +171,7 @@ footer {
 }
 
 .customer_status {
-  width: 25%;
+  width: 265px;
   font-size: 15px;
   ul {
     list-style: none;
@@ -460,7 +460,7 @@ footer {
   }
 }
 
-// サービス詳細ページ
+// 体験詳細画面
 .service_show_container {
   display: flex;
   margin: 30px 3.7%;
@@ -543,9 +543,12 @@ footer {
   }
 }
 
-// サービス利用リンクボタン
-.enter_appointment_btn {
+// 体験利用リンク、体験編集リンク
+.service_detail_btn {
   margin: 30px 0;
+  .service_edit_btn {
+    text-align: center;
+  } 
   p {
     margin: 0;
   }
@@ -603,7 +606,6 @@ footer {
     }
   }
 }
-
 .add_service_btn {
   text-align: center;
 }
