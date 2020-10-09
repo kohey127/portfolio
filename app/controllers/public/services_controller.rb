@@ -58,6 +58,17 @@ class Public::ServicesController < ApplicationController
     end
   end
 
+  def destroy
+    
+    binding.pry
+    
+    service = Service.find(params[:id])
+    if service.destroy
+    flash[:notice] = "体験を削除しました"
+    end
+    redirect_to mypage_path
+  end
+
   private
   def service_params
     params.require(:service).permit(:customer_id, :content, :place, :catchphrase, :image, :point, :is_active, :format)
