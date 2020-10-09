@@ -800,3 +800,19 @@ footer {
     }
   }
 }
+
+// 退会確認画面
+.unsubscribe_form {
+  font-size: 16px;
+  text-align: center;
+  .unsubscribe_sentence {
+    margin: 35px auto;
+  }
+  .unsubscribe_action_btn {
+    display: flex;
+    justify-content: center;
+    .btn_withdraw {
+      margin-right: 30px;
+    }
+  }
+}
