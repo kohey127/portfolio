@@ -1,6 +1,6 @@
 class Public::ServicesController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def top
     # 自分の以外、かつ公開中のサービスを取得
     @services = Service.where.not(customer_id: current_customer.id, is_active: false).includes(:customer)
@@ -22,9 +22,23 @@ class Public::ServicesController < ApplicationController
     @service = Service.new
   end
 
+  def edit
+    @service = Service.find(params[:id])
+  end
+
   def update
     service = Service.find(params[:id])
-    case params[:service]
+    if service.update(service_params)
+      flash[:notice] = "体験の情報を更新しました"
+    else
+      render :edit
+    end
+    redirect_to mypage_path
+  end
+
+  def status_update
+    service = Service.find(params[:service_id])
+    case params[:status]
     when "open"
       service.update(is_active: true)
     when "close"

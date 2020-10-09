@@ -1,13 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  # devise_for :admin, controllers: {
-  #   sessions: 'admin/sessions',
-  # }
-
-  # namespace :admin do
-  #   get 'top' => 'homes#top', as: 'top'
-  # end
 
   devise_for :customers, controllers: {
     sessions: 'public/sessions',
@@ -20,6 +13,7 @@ Rails.application.routes.draw do
     get 'appointments' => 'appointments#index'
     resources :services do
       get 'appointments/complete' => 'appointments#complete'
+      patch 'status' => 'services#status_update', as: 'update_status'
       resources :appointments, only: [:new, :create, :edit, :update, :destroy]
       resources :comments, only: [:create]
     end

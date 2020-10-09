@@ -1,4 +1,4 @@
-<!-- 申込状況ページでは非表示 -->
+<!-- 申込状況画面では非表示 -->
 <% if request.path != "/appointments" %>
   <!-- マイページでは体験の公開／非公開リンクを表示 -->
   <% if request.path == "/customers/mypage" %>
@@ -12,7 +12,7 @@
       <div class="btn_red">
         <span>
           <i class="fa fa-check-circle"></i>
-          <%= link_to  "公開を停止する", service_path(service.id, :service => 'close'), method: :patch %>
+          <%= link_to  "公開を停止する", service_update_status_path(service.id, :status => 'close'), method: :patch %>
         </span>
       </div>
     <% else %>
@@ -25,11 +25,11 @@
       <div class="btn_green">
         <span>
           <i class="fa fa-check-circle"></i>
-          <%= link_to  "公開を再開する", service_path(service.id, :service => 'open'), method: :patch %>
+          <%= link_to  "公開を再開する", service_update_status_path(service.id, :status => 'open'), method: :patch %>
         </span>
       </div>
     <% end %>
-  <!-- トップページとユーザ詳細ページでは体験の詳細ページへのリンクを表示 -->
+  <!-- トップページとユーザ詳細画面では体験の詳細画面へのリンクを表示 -->
   <% else %>
     <div class="btn_gray">
       <% if service.is_active == true %>
