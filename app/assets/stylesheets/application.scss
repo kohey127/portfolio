@@ -67,12 +67,6 @@ main {
   margin: 50px 0;
 }
 
-.submit_btn {
-  border: none;
-  background: none;
-  color: white;
-}
-
 // ヘッダ
 header {
   background-color: rgba(204, 80, 46, 0.9);
@@ -371,13 +365,13 @@ footer {
     i {
       margin-right: 4px;
     }
-    a {          
+    a {
       text-decoration: none;
       color: #34495E;
     }
-  }
-  span:hover {
-    opacity: 0.6;
+    a:hover {
+      opacity: 0.6;
+    }
   }
 }
 
@@ -397,9 +391,9 @@ footer {
       text-decoration: none;
       color: white;
     }
-  }
-  span:hover {
-    opacity: 0.6;
+    a:hover {
+      opacity: 0.6;
+    }
   }
 }
 
@@ -419,8 +413,38 @@ footer {
       text-decoration: none;
       color: white;
     }
+    a:hover {
+      opacity: 0.6;
+    }
   }
-  span:hover {
+}
+
+.submit_btn_green {
+  padding-top: 10px;
+  input {          
+    color: white;
+    padding: 6px 12px;
+    background-color: #2ECC71;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 4px solid green;
+  }
+  input:hover {
+    opacity: 0.6;
+  }
+}
+
+.submit_btn_red {
+  padding-top: 10px;
+  input {          
+    color: white;
+    padding: 6px 12px;
+    background-color: #E74C3C;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 4px solid #d62c1a;
+  }
+  input:hover {
     opacity: 0.6;
   }
 }
@@ -726,4 +750,22 @@ footer {
   .comment_form {
     margin-top: 30px;
   }
+}
+
+// 体験利用申込画面
+.appointment_form {
+  width: 80%;
+  margin: 40px auto 0;
+  font-size: 16px;
+  dl {
+    dt {
+      margin: 20px 0 10px;
+    }
+  }
+}
+
+// 予約完了画面
+.appointment_complete {
+  text-align: center;
+  font-size: 16px;
 }

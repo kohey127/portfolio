@@ -48,10 +48,6 @@ class Public::AppointmentsController < ApplicationController
     redirect_to appointments_path
   end
 
-  def destroy
-
-  end
-
   private
   def appointment_params
     params.require(:appointment).permit(:service_id, :to_customer_id, :from_customer_id, :request_format, :request_date, :status)

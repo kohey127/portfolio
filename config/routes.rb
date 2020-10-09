@@ -11,11 +11,11 @@ Rails.application.routes.draw do
     root 'services#top'
     get 'services/about' => 'services#about', as: 'about'
     get 'appointments' => 'appointments#index'
-    resources :services do
+    resources :services, only: [:new, :show, :create, :edit, :update, :destroy] do
       get 'appointments/complete' => 'appointments#complete'
       patch 'status' => 'services#status_update', as: 'update_status'
-      resources :appointments, only: [:new, :create, :edit, :update, :destroy]
-      resources :comments, only: [:create]
+      resources :appointments, only: [:new, :create, :edit, :update]
+      resources :comments, only: [:create, :edit]
     end
 
     get 'customers/mypage' => 'customers#index', as: 'mypage'

@@ -23,10 +23,8 @@
       <%= f.text_area :content, rows: 7, cols: 80 %>
       <%= f.hidden_field :customer_id, value: current_customer.id %>
       <%= f.hidden_field :appointment_id, value: @appointment.id %>
-      <div class="btn_green">
-        <span>
-          <%= f.submit "送信", :class=>"submit_btn" %>
-        </span>
+      <div class="submit_btn_green">
+        <%= f.submit "送信", :class=>"submit_btn" %>
       </div>  
     <% end %>
   </div>
@@ -37,11 +35,8 @@
         <%= f.hidden_field :customer_id, value: current_customer.id %>
         <%= f.hidden_field :appointment_id, value: @appointment.id %>
         <%= f.hidden_field :service_id, value: @appointment.service.id %>
-        <div class="btn_red">
-          <span>
-            <i class="fa fa-check-circle"></i>
-            <%= f.submit "レビューを送信して体験を完了する", :class=>"submit_btn", data: { confirm: '本当に体験を完了しますか？' } %>
-          </span>
+        <div class="submit_btn_red">
+          <%= f.submit "レビューを送信して体験を完了する", :class=>"submit_btn", data: { confirm: '本当に体験を完了しますか？' } %>
         </div>            
         <p>※<%= partner.name %>さんにポイントが支払われます。</p>
       <% end %>

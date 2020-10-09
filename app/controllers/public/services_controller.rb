@@ -2,7 +2,7 @@ class Public::ServicesController < ApplicationController
   before_action :authenticate_customer!
 
   def top
-    # 自分の以外、かつ公開中のサービスを取得
+    # 自分の以外、かつ公開中の体験を取得
     @services = Service.where.not(customer_id: current_customer.id, is_active: false).includes(:customer)
     # 獲得EXP順に並び替えた顧客情報を取得
     @customers = Customer.all.order(exp_point: "desc")
@@ -27,13 +27,13 @@ class Public::ServicesController < ApplicationController
   end
 
   def update
-    service = Service.find(params[:id])
-    if service.update(service_params)
+    @service = Service.find(params[:id])
+    if @service.update(service_params)
       flash[:notice] = "体験の情報を更新しました"
+      redirect_to mypage_path
     else
       render :edit
     end
-    redirect_to mypage_path
   end
 
   def status_update
@@ -58,10 +58,7 @@ class Public::ServicesController < ApplicationController
     end
   end
 
-  def destroy
-    
-    binding.pry
-    
+  def destroyt
     service = Service.find(params[:id])
     if service.destroy
     flash[:notice] = "体験を削除しました"

@@ -9,6 +9,7 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    # 自分のユーザ詳細ページを見るときはマイページにリダイレクトする
     if @customer == current_customer
       redirect_to mypage_path
     else
