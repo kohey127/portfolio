@@ -76,3 +76,17 @@ ja:
       not_saved: 
         one: "エラーが発生しました。以下ご確認お願いいたします。"
         other: "エラーが発生しました。以下ご確認お願いいたします。"
+  activerecord:
+    models:
+      service: 体験
+    attributes:
+      service:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        content: 説明
+        place: 提供場所
+        catchphrase: キャッチフレーズ
+        image_id: 画像
+        point: 必要ポイント
+        format: 主要提供形式   
