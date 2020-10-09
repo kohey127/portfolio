@@ -42,11 +42,19 @@
     </div>
     <div class="service_detail_btn">
       <% if @customer == current_customer %>
-        <div class="btn_gray service_edit_btn">
-          <span>
-            <i class="fa fa-check-circle"></i>
-            <%= link_to  "体験を編集する", edit_service_path(@service.id) %>
-          </span>
+        <div class="service_btn">
+          <div class="btn_gray service_edit_btn">
+            <span>
+              <i class="fa fa-check-circle"></i>
+              <%= link_to  "体験を編集する", edit_service_path(@service.id) %>
+            </span>
+          </div>
+          <div class="btn_red service_destroy_btn">
+            <span>
+              <i class="fa fa-check-circle"></i>
+              <%= link_to  "体験を削除する", service_path(@service.id), method: :delete %>
+            </span>
+          </div>
         </div>
       <% else %>
         <p>必要なポイント：<%= @service.point %>pt</p>

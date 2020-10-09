@@ -543,12 +543,16 @@ footer {
   }
 }
 
-// 体験利用リンク、体験編集リンク
+// 体験利用、編集、削除リンク
 .service_detail_btn {
   margin: 30px 0;
-  .service_edit_btn {
-    text-align: center;
-  } 
+  .service_btn {
+    display: flex;
+    justify-content: center;
+    .service_edit_btn {
+      margin-right: 30px;
+    }
+  }
   p {
     margin: 0;
   }
