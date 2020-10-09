@@ -40,8 +40,15 @@
         </dl>
       </div>
     </div>
-    <div class="enter_appointment_btn">
-      <% if @customer != current_customer %>
+    <div class="service_detail_btn">
+      <% if @customer == current_customer %>
+        <div class="btn_gray service_edit_btn">
+          <span>
+            <i class="fa fa-check-circle"></i>
+            <%= link_to  "体験を編集する", edit_service_path(@service.id) %>
+          </span>
+        </div>
+      <% else %>
         <p>必要なポイント：<%= @service.point %>pt</p>
         <div class="btn_green">
           <span>
@@ -54,8 +61,8 @@
   </div>
   <div class="host_detail">
     <div class="enter_appointment_btn">
-      <p>必要なポイント：<%= @service.point %>pt</p>
       <% if @customer != current_customer %>
+        <p>必要なポイント：<%= @service.point %>pt</p>
         <div class="btn_green">
           <span>
             <%= link_to  "申し込む／話を聞く", new_service_appointment_path(@service.id) %>
