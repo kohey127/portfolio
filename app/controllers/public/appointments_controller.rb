@@ -2,31 +2,59 @@ class Public::AppointmentsController < ApplicationController
   before_action :authenticate_customer!
   
   def index
+    # 申込があった体験
     @comming_appointments = Appointment.where(to_customer_id: current_customer.id, status: "applying").includes(:service)
+
+    # 承認後、相手のレビュー待ちの体験
     @waiting_review_appointments = Appointment.where(to_customer_id: current_customer.id, status: "success").includes(:service)
+
+    # 申込中の体験
     @applying_appointments = Appointment.where(from_customer_id: current_customer.id, status: "applying").includes(:service)
+
+    # 申込を承認された体験
     @success_appointments = Appointment.where(from_customer_id: current_customer.id, status: "success").includes(:service)
+
+    # 申込が中断された体験
     @failure_appointments = Appointment.where(from_customer_id: current_customer.id, status: "failure", created_at: 3.day.ago.beginning_of_day..Time.zone.now.end_of_day).includes(:service)
+
+    # 過去に申し込んだ体験
     @done_appointments = Appointment.where(from_customer_id: current_customer.id, status: "done").includes(:service)
   end
 
   def create
-    # 仮予約新規作成
-    appointment = Appointment.new(appointment_params)
-    appointment.status = "applying"
+    # 申込新規作成準備
+    @appointment = Appointment.new(appointment_params)
+    @appointment.status = "applying"
     if params[:request_date_exist] == "0"
-      appointment.request_date = "undecided"
+      @appointment.request_date = "undecided"
     else
-      appointment.request_date = params[:appointment][:request_date]
+      @appointment.request_date = params[:appointment][:request_date]
     end
-    appointment.save!
-    # コメント新規作成
-    appointment_comment = AppointmentComment.new
-    appointment_comment.customer_id = current_customer.id
-    appointment_comment.appointment_id = appointment.id
-    appointment_comment.content = params[:first_message]
-    appointment_comment.save
-    redirect_to service_appointments_complete_path
+
+    # ポイントが足りないときにエラーを表示
+    @service = Service.find(params[:service_id])
+    if current_customer.point < @service.point
+      flash[:danger] = "ポイントが足りません"
+      render :new and return
+    end
+    
+    # 初期メッセージが空の時にエラーを表示
+    if params[:appointment][:first_message] == ""
+      flash[:danger] = "メッセージが空です"
+      render :new and return
+    end
+
+    if @appointment.save
+      # 申込を作成できたらコメントを新規作成
+      appointment_comment = AppointmentComment.new
+      appointment_comment.customer_id = current_customer.id
+      appointment_comment.appointment_id = @appointment.id
+      appointment_comment.content = params[:appointment][:first_message]
+      redirect_to service_appointments_complete_path
+    else
+      # 予約を保存できなかったときにエラーを表示
+      render :new
+    end
   end
 
   def new
