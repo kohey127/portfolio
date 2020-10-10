@@ -53,3 +53,51 @@ ja:
       over_x_years:
         one:   "1年以上"
         other: "%{count}年以上"
+  devise:
+    failure:
+      already_authenticated: "既にログイン済みです。"
+      # inactive: "Your account is not activated yet."
+      invalid: "メールアドレスまたはパスワードが正しくありません。"
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
+      # timeout: "Your session expired. Please sign in again to continue."
+      unauthenticated: "続けるにはログインが必要です。"
+    registrations:
+      signed_up: "会員登録が完了しました。ようこそShexpへ！"
+      updated: "パスワードの更新が完了しました。"
+    sessions:
+      signed_in: "ログインが完了しました。"
+      signed_out: "ログアウトが完了しました。"
+      already_signed_out: "ログアウトが完了しました。"
+  errors:
+    messages:
+      already_confirmed: "メールアドレスは既に登録されています。"
+      # not_found: "not found"
+      # not_locked: "was not locked"
+      not_saved: 
+        one: "エラーが発生しました。以下ご確認お願いいたします。"
+        other: "エラーが発生しました。以下ご確認お願いいたします。"
+  activerecord:
+    models:
+      service: 体験
+    attributes:
+      service:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        content: 説明
+        place: 提供場所
+        catchphrase: キャッチフレーズ
+        image_id: 画像
+        point: 必要ポイント
+        format: 主要提供形式
+  activerecord:
+    models:
+      appointment: 申込み
+    attributes:
+      appointment:
+        created_at: 登録日時
+        updated_at: 更新日時
+        id: ID
+        request_format: 事前打ち合わせ希望形式
+        request_date: 事前打ち合わせ希望日時
+        status: 予約ステータス

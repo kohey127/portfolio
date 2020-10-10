@@ -1,13 +1,19 @@
 <div class="flex_container">
-  <div class="flex-item customer_image btn">
+  <div class="flex-item customer_image">
     <%= attachment_image_tag(@customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
     <div class="btn_gray">
       <span>
         <%= link_to  "プロフィールを編集する", edit_information_path %>
       </span>
     </div>
+    <div class="btn_gray">
+      <span>
+        <%= link_to  "ポイント獲得履歴を見る", new_service_path %>
+      </span>
+    </div>
     <div class="btn_green">
       <span>
+        <i class="fa fa-check-circle"></i>
         <%= link_to  "新規体験登録", new_service_path %>
       </span>
     </div>
@@ -31,7 +37,7 @@
         <span><%= @customer.exp_point %></span>
       </li>
       <li>
-        <span>公開中の体験</span>
+        <span>登録中の体験</span>
         <span><%= @services.count %></span>
       </li>
       <li>
@@ -51,11 +57,11 @@
   </div>
 </div>
 <div class="section_title">
-  <h3>公開中の体験</h3>
+  <h3>登録中の体験</h3>
   <i class="fas fa-angle-down"></i>
 </div>
 <% if @services.blank? %> 
-  <p>公開中の体験はありません</p>
+  <p class="nothing_sentence">登録中の体験はありません</p>
 <% else %>
   <div class="service_flex_container">
     <% @services.each do |service| %>

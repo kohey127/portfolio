@@ -40,22 +40,45 @@
         </dl>
       </div>
     </div>
-    <div class="enter_appointment_btn">
-      <% if @customer != current_customer %>
-        <p>必要なポイント：<%= @service.point %>pt</p>
-        <div class="btn_green">
-          <span>
-            <%= link_to  "申し込む／話を聞く", new_service_appointment_path(@service.id) %>
-          </span>
+    <div class="service_detail_btn">
+      <!-- 自分の体験だった場合は、体験の編集と削除ボタンを表示 -->
+      <% if @customer == current_customer %>
+        <div class="service_btn">
+          <div class="btn_gray service_edit_btn">
+            <span>
+              <i class="fa fa-check-circle"></i>
+              <%= link_to  "体験を編集する", edit_service_path(@service.id) %>
+            </span>
+          </div>
+          <div class="btn_red service_destroy_btn">
+            <span>
+              <i class="fa fa-check-circle"></i>
+              <%= link_to  "体験を削除する", service_path(@service.id), method: :delete %>
+            </span>
+          </div>
         </div>
-        <p>話を聞くだけではポイントは必要ありません</p>
+      <% else %>
+        <!-- 自分の体験ではなく、公開中の時は申込ボタンを表示 -->
+        <% if @service.is_active == true %>
+          <p>必要なポイント：<%= @service.point %>pt</p>
+          <div class="btn_green">
+            <span>
+              <%= link_to  "申し込む／話を聞く", new_service_appointment_path(@service.id) %>
+            </span>
+          </div>
+          <p>話を聞くだけではポイントは必要ありません</p>
+        <!-- 非公開の時は申込ボタンを非表示 -->
+        <% else %>
+          <p>この体験は公開停止中です</p>
+        <% end %>
       <% end %>
     </div>
   </div>
   <div class="host_detail">
     <div class="enter_appointment_btn">
-      <p>必要なポイント：<%= @service.point %>pt</p>
-      <% if @customer != current_customer %>
+      <!-- 自分以外の体験、かつ体験が公開中の時、申込ボタンを表示 -->
+      <% if @customer != current_customer && @service.is_active == true %>
+        <p>必要なポイント：<%= @service.point %>pt</p>
         <div class="btn_green">
           <span>
             <%= link_to  "申し込む／話を聞く", new_service_appointment_path(@service.id) %>

@@ -1,57 +1,61 @@
-<div class="flex_container">
-  <div class="flex-item customer_image btn">
-    <%= attachment_image_tag(@customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
-  </div>
-  <div class="flex-item customer_information">
-    <div>
-      <h1><strong><%= @customer.name %></strong></h1>
-    </div>
-    <div>
-      <i class="fa fa-map-marker"></i>
-      <span><%= @customer.based %></span>
-    </div>
-    <div>
-      <span><%= @customer.introduction %></span>
-    </div>
-  </div>
-  <div class="flex-item customer_status">
-    <ul>
-      <li>
-        <span>獲得EXP</span>
-        <span><%= @customer.exp_point %></span>
-      </li>
-      <li>
-        <span>公開中の体験</span>
-        <span><%= @services.count %></span>
-      </li>
-      <li>
-        <span>フォロー</span>
-      </li>
-      <li>
-        <span>フォロワー</span>
-      </li>
-      <li>
-        <span>ポジティブな評価</span>
-      </li>
-      <li>
-        <span>レビュー</span>
-        <span><%= @comments.count %></span>
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="section_title">
-  <h3>公開中の体験</h3>
-  <i class="fas fa-angle-down"></i>
-</div>
-<% if @services.blank? %> 
-  <p>公開中の体験はありません</p>
+<% if @customer.is_active == false %>
+  <p>このユーザは退会しています。</p>
 <% else %>
-  <div class="service_flex_container">
-    <% @services.each do |service| %>
-      <%= render 'public/services/service', service: service %>
-    <% end %>
+  <div class="flex_container">
+    <div class="flex-item customer_image btn">
+      <%= attachment_image_tag(@customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
+    </div>
+    <div class="flex-item customer_information">
+      <div>
+        <h1><strong><%= @customer.name %></strong></h1>
+      </div>
+      <div>
+        <i class="fa fa-map-marker"></i>
+        <span><%= @customer.based %></span>
+      </div>
+      <div>
+        <span><%= @customer.introduction %></span>
+      </div>
+    </div>
+    <div class="flex-item customer_status">
+      <ul>
+        <li>
+          <span>獲得EXP</span>
+          <span><%= @customer.exp_point %></span>
+        </li>
+        <li>
+          <span>登録中の体験</span>
+          <span><%= @services.count %></span>
+        </li>
+        <li>
+          <span>フォロー</span>
+        </li>
+        <li>
+          <span>フォロワー</span>
+        </li>
+        <li>
+          <span>ポジティブな評価</span>
+        </li>
+        <li>
+          <span>レビュー</span>
+          <span><%= @comments.count %></span>
+        </li>
+      </ul>
+    </div>
   </div>
+  <div class="section_title">
+    <h3>登録中の体験</h3>
+    <i class="fas fa-angle-down"></i>
+  </div>
+  <% if @services.blank? %> 
+    <p class="nothing_sentence">登録中の体験はありません</p>
+  <% else %>
+    <div class="service_flex_container">
+      <% @services.each do |service| %>
+        <%= render 'public/services/service', service: service %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= render 'public/customers/comment', comments: @comments %>
 <% end %>
-<%= render 'public/customers/comment', comments: @comments %>
 

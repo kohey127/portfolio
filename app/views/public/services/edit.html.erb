@@ -1,108 +1,55 @@
-<div class="service_show_container">
-  <div class="service_detail">
-    <div class="service_detail_image">
-      <div class="service_image">
-        <%= attachment_image_tag(@service, :image, size: "600x350", format: "jpeg", fallback: "no-image.png") %>
+<h1 class="icon">体験新規登録</h1>
+<%= form_with(model: @service, url: service_path(@service.id), method: :patch, local: true) do |f| %>
+  <%= render 'layouts/error_messages', resource: @service %>
+  <div class="flex_service_container">
+    <div class="image_field">
+      <div><%= f.label :image, "画像" %></div>
+      <div class="image_preview_field">
+        <%= attachment_image_tag @service, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "service_image", size: "300x200" %>
       </div>
-      <div class="service_place">
-        <%= @service.place %>
-      </div>
-      <div class="service_format">
-        <%= @service.format %>
-      </div>
-      <div class="service_catchphrase">
-        <%= @service.catchphrase %>
-      </div>
-      <div class="customer_image">
-        <%= attachment_image_tag(@customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png") %>
-      </div>
-      <div class="favorite_btn">
-        お気に入り登録ボタン
-      </div>
-      <div class="service_point">
-        <%= @service.point %> point
+      <div class="image_attachment_field">
+        <span class="btn btn-file btn-info"><%= f.attachment_field :image %>画像選択</span>
+        <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
       </div>
     </div>
-    <div class="service_detail_information">
-      <dl>
-        <dt><i class="fas fa-user"></i></dt>
-        <dd><%= @customer.name %></dd>
-        <dt><i class="fas fa-comments"></i></dt>
-        <dd><%= @service.format %></dd>
-        <dt><i class="fas fa-map-marker-alt"></i></dt>
-        <dd><%= @service.place %></dd>
-        <dt></dt>
-        <dd><%= @service.content %><dd>
-      </dl>
-    </div>
-    <div class="enter_appointment_btn">
-      <p>必要なポイント：<% @service.point %>pt</p>
-      <>
-      <div class="btn_green">
-        <span>
-          <%= link_to  "申し込む／話を聞く", new_service_appointment_path(@service.id) %>
-        </span>
-      </div>
-      <p>話を聞くだけではポイントは必要ありません</p>
-    </div>
-    <div class="comment">
-      <% if @comments.blank? %>
-        <p>まだ口コミはありません</p>
-      <% else %>
-        <table>
-          <thead>
-            <tr>
-              <th>体験者</th>
-              <th>登校日</th>
-              <th>口コミ</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @comments.each do |comment| %>
-              <tr>
-                <td><%= comment.customer.name %></td>
-                <td><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-                <td><%= comment.content %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% end %>
-    </div>
+    <table class="service_add_form">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= f.label :catchphrase, "キャッチフレーズ" %></td>
+          <td><%= f.text_field :catchphrase %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :content, "説明" %></td>
+          <td><%= f.text_area :content, rows: 3 %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :place, "提供場所" %></td>
+          <td><%= f.text_field :place %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :format, "主要提供形式" %></td>
+          <td class="select_field">
+            <%= f.select :format, Service.formats.keys.map {|k| [I18n.t("enums.service.format.#{k}"), k]}, include_blank: '選択してください' %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :point, "必要ポイント" %></td>
+          <td><%= f.number_field :point %>ポイント</td>
+        </tr>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="host_detail">
-    <div class="enter_appointment_btn">
-      <p>必要なポイント：<%= @service.point %>pt</p>
-      <div class="btn_green">
-        <span>
-          <%= link_to  "申し込む／話を聞く", new_service_appointment_path(@service.id) %>
-        </span>
-      </div>
-      <p>話を聞くだけではポイントは必要ありません</p>
-    </div>
-    <div>
-      <%= attachment_image_tag(@customer, :image, size: "200x180", format: "jpeg", fallback: "no-image.png") %>
-    </div>
-    <h1>
-      <strong><%= @customer.name %></strong>
-    </h1>
-    <div>
-      <span><%= @customer.introduction %></span>
-    </div>
-    <div>フォローボタン</div>
-    <ul>
-      <li>
-        <span>獲得EXP</span>
-        <span><%= @customer.exp_point %></span>
-      </li>
-      <li>
-        <span>お気に入りに登録された件数</span>
-        <span></span>
-      </li>
-      <li>
-        <span>レビュー</span>
-        <span><%= @customer.comments.count %></span>
-      </li>
-    </ul>
+  <div class="add_service_btn add_service_btn">
+    <%= f.submit "更新" %>
   </div>
-</div>
+<% end %>

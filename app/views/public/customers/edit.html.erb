@@ -1,34 +1,34 @@
-<h1>プロフィール編集</h1>
-<%= form_with(model: @customer, url: update_information_path, local: true) do |f| %>
-  <%= render 'layouts/error_messages', resource: @customer %>
-  <div class="profile_edit">
-    <dl>
-      <dt><%= f.label :image, "画像" %></dt>
-      <dd>
-        <%= attachment_image_tag @customer, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "item_image", size: "200x200" %><br>
-        <span class="btn btn-file btn-info"><%= f.attachment_field :image %>画像選択</span>
-        <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
-      </dd>
-      <dt><%= f.label :name, "名前" %></dt>
-      <dd><%= f.text_field :name, :placeholder =>"#{@customer.name}" %></dd>
-      <dt><%= f.label :introduction, "自己紹介" %></dt>
-      <dd><%= f.text_area :introduction, rows: 3, :placeholder =>"#{@customer.introduction}" %></dd>
-      <dt><%= f.label :based, "拠点" %></dt>
-      <dd><%= f.text_field :based, :placeholder =>"#{@customer.based}" %></dd>
-      <%
-=begin%>
- <dt><%= f.label :based, "興味のあるジャンル" %></dt>
-      <dd>
-        <% @genres.each do |genre| %>
-          <%= f.radio_button :genre,  %>
-        <% end %>
-      </dd> 
-<%
-=end%>
-    </dl>
-    <div class="button">
-      <%= f.submit "更新", class: "btn btn-primary" %>
-      <%= link_to "退会する", confirm_unsubscribe_path, class: "btn btn-primary" %>
+<h2 class="icon">プロフィール編集</h2>
+<div class="profile_edit">
+  <%= form_with(model: @customer, url: update_information_path, local: true) do |f| %>
+    <%= render 'layouts/error_messages', resource: @customer %>
+    <div class="profile_edit_form">
+      <dl class="profile_edit_image">
+        <dt><%= f.label :image, "画像" %></dt>
+        <dd>
+          <%= attachment_image_tag @customer, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "item_image", size: "200x200" %><br>
+          <span class="btn btn-file btn-info"><%= f.attachment_field :image %>画像選択</span>
+          <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
+        </dd>
+      </dl>
+      <dl class="profile_edit_information">
+        <dt><%= f.label :name, "名前" %></dt>
+        <dd><%= f.text_field :name, :placeholder =>"#{@customer.name}" %></dd>
+        <dt><%= f.label :introduction, "自己紹介" %></dt>
+        <dd><%= f.text_area :introduction, rows: 10, cols: 50 , :placeholder =>"#{@customer.introduction}" %></dd>
+        <dt><%= f.label :based, "拠点" %></dt>
+        <dd><%= f.text_field :based, :placeholder =>"#{@customer.based}" %></dd>
+      </dl>
     </div>
-  </div>
-<% end %>
+    <div class="profile_btn">
+      <div class="submit_btn_green profile_update">
+        <%= f.submit "更新" %>
+      </div>
+      <div class="btn_red">
+        <span>
+          <%= link_to "退会する", confirm_unsubscribe_path %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</div>
