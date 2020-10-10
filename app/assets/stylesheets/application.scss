@@ -826,3 +826,28 @@ footer {
     }
   }
 }
+
+// ポイント獲得履歴画面
+.history {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+  table {
+    border-collapse: collapse;
+    border: solid 2px gray;
+    margin: 40px;
+    thead {
+      tr {
+        th {
+          text-align: center;
+        }
+      }
+    }
+    th, td {
+      padding: 5px;
+      border: dashed 1px gray;
+    }
+  }
+}

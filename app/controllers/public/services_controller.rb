@@ -4,8 +4,8 @@ class Public::ServicesController < ApplicationController
   def top
     # 公開中の体験を取得
     @services = Service.where.not(is_active: false).includes(:customer)
-    # 獲得EXP順に並び替えた顧客情報を取得
-    @customers = Customer.all.order(exp_point: "desc")
+    # 有効会員を獲得EXP順に並び替えて取得
+    @customers = Customer.where.not(is_active: false).order(exp_point: "desc")
   end
 
   def about
