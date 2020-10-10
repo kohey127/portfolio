@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_075358) do
   create_table "exp_histories", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "balance", default: 0, null: false
-    t.integer "trigger", null: false
+    t.integer "trigger_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_075358) do
   create_table "point_histories", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "balance", default: 500, null: false
-    t.integer "trigger", default: -1, null: false
+    t.integer "trigger_id", default: -1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -3,7 +3,7 @@ class CreateExpHistories < ActiveRecord::Migration[5.2]
     create_table :exp_histories do |t|
       t.integer :customer_id, null: false
       t.integer :balance, null: false, default: 0
-      t.integer :trigger, null: false
+      t.integer :trigger_id, null: false
 
       t.timestamps
     end
