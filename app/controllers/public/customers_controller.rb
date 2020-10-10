@@ -34,6 +34,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
+    current_customer.services.update_all(is_active: false)
     if current_customer.update(is_active: false)
       reset_session
       flash[:success] = "退会処理が完了しました。ご利用ありがとうございました。"

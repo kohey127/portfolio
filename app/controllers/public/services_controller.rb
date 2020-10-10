@@ -1,9 +1,9 @@
 class Public::ServicesController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!, except: [:top, :about]
 
   def top
-    # 自分の以外、かつ公開中の体験を取得
-    @services = Service.where.not(customer_id: current_customer.id, is_active: false).includes(:customer)
+    # 公開中の体験を取得
+    @services = Service.where.not(is_active: false).includes(:customer)
     # 獲得EXP順に並び替えた顧客情報を取得
     @customers = Customer.all.order(exp_point: "desc")
   end
@@ -58,7 +58,7 @@ class Public::ServicesController < ApplicationController
     end
   end
 
-  def destroyt
+  def destroy
     service = Service.find(params[:id])
     if service.destroy
     flash[:notice] = "体験を削除しました"

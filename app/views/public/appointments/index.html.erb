@@ -64,7 +64,7 @@
   </div>
 </div>
 <div class="success_appointment">
-  <h3 class="icon">申込成立<small>　(体験完了後にレビューを書いて体験を完了してください)</small></h3>
+  <h3 class="icon">申込成立<small>　(相手に申込を承認された体験です。体験完了後にレビューを書いて体験を完了してください。)</small></h3>
   <div class="service_flex_container">
     <% @success_appointments.each do |appointment| %>
       <%= render 'public/appointments/appointment_service', {service: appointment.service, appointment: appointment} %>
@@ -72,7 +72,7 @@
   </div>
 </div>
 <div class="failure_appointment">
-  <h3 class="icon">申込中断<small>　(※3日後に消えます)</small></h3>
+  <h3 class="icon">申込中断<small>　(相手に申込を拒否／中断された体験の一覧です。3日後に消えます。)</small></h3>
   <div class="service_flex_container">
     <% @failure_appointments.each do |appointment| %>
       <%= render 'public/appointments/appointment_service', {service: appointment.service, appointment: appointment} %>
