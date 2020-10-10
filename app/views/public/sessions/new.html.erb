@@ -1,9 +1,6 @@
 <section class="inner">
   <h2 class="section-ttl">ログイン</h2>
-  <% if flash[:danger] %>
-    <p class="text-red"><%= flash[:danger] %></p>
-  <% end %>
-
+  
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="login_form">
       <%= f.label :email, "メールアドレス" %><br />

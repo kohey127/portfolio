@@ -52,6 +52,12 @@
   }
 }
 
+// flashメッセージ
+.alert-success {
+  width: 90%;
+  margin: 0 auto;
+}
+
 // 全体
 body {
   background-color: #FCFCF0;
@@ -65,6 +71,10 @@ body {
 
 main {
   margin: 50px 0;
+}
+
+.nothing_sentence {
+  text-align: center;
 }
 
 // ヘッダ

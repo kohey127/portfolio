@@ -34,13 +34,13 @@ class Public::AppointmentsController < ApplicationController
     # ポイントが足りないときにエラーを表示
     @service = Service.find(params[:service_id])
     if current_customer.point < @service.point
-      flash[:danger] = "ポイントが足りません"
+      flash.now[:danger] = "ポイントが足りません"
       render :new and return
     end
-    
+
     # 初期メッセージが空の時にエラーを表示
     if params[:appointment][:first_message] == ""
-      flash[:danger] = "メッセージが空です"
+      flash.now[:danger] = "メッセージが空です"
       render :new and return
     end
 
@@ -69,9 +69,13 @@ class Public::AppointmentsController < ApplicationController
     appointment = Appointment.find(params[:id])
     case params[:update_param]
       when "success"
-        appointment.success!
+        if appointment.success!
+          flash[:notice] = "申込を承認しました"
+        end
       when "failure"
-        appointment.failure!
+        if appointment.failure!
+          flash[:notice] = "申込を拒否／中断しました"
+        end
     end
     redirect_to appointments_path
   end
