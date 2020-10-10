@@ -26,7 +26,7 @@
         <%= f.select :request_format, Appointment.request_formats.keys.map {|k| [I18n.t("enums.appointment.request_format.#{k}"), k]}, include_blank: '選択してください' %>
       </dd>
       <dt>メッセージ</dt>
-      <dd><%= text_area_tag "first_message", "話してみたいこと、第2希望日、第3希望日等をお書きください。", {size:"50x10"} %></dd>
+      <dd><%= f.text_area :first_message, rows: 10, cols: 50 , :placeholder =>"話してみたいこと、第2希望日、第3希望日等をお書きください。最初のメッセージとして#{@service.customer.name}さんに送信されます。" %></dd>
     </dl>
     <div class="submit_btn_green">
       <%= f.submit "申し込む／話を聞く" %>

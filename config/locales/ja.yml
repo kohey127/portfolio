@@ -89,4 +89,15 @@ ja:
         catchphrase: キャッチフレーズ
         image_id: 画像
         point: 必要ポイント
-        format: 主要提供形式   
+        format: 主要提供形式
+  activerecord:
+    models:
+      appointment: 申込み
+    attributes:
+      appointment:
+        created_at: 登録日時
+        updated_at: 更新日時
+        id: ID
+        request_format: 事前打ち合わせ希望形式
+        request_date: 事前打ち合わせ希望日時
+        status: 予約ステータス
