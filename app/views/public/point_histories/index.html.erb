@@ -5,14 +5,14 @@
       <thead>
         <tr>
           <th>日時</th>
-          <th>契機</th>
+          <th>相手</th>
           <th>ポイント残高</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= current_customer.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
-          <td>システム</td>
+          <td>管理者</td>
           <td>0</td>
         </tr>
         <% @exp_histories.each do |point| %>
@@ -31,24 +31,24 @@
       <thead>
         <tr>
           <th>日時</th>
-          <th>契機</th>
+          <th>相手</th>
           <th>ポイント残高</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= current_customer.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
-          <td>システム</td>
+          <td>管理者</td>
           <td>500</td>
         </tr>
         <% @point_histories.each do |point| %>
           <tr>
             <td><%= point.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
             <td>
-              <% if point.trigger == "-1" %>
-                システム
+              <% if point.trigger == "1" %>
+                管理者
               <% else %>
-                ユーザ間取引
+                <%= point.trigger.name %>
               <% end %>
             </td>
             <td><%= point.balance %></td>

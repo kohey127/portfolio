@@ -79,7 +79,7 @@ main {
 
 // ヘッダ
 header {
-  background-color: rgb(204, 80, 46);
+  background-color: rgba(204, 80, 46, 1);
   color: white;
   .header_content {
     display: flex;
@@ -125,7 +125,7 @@ header {
 
 // フッタ
 footer {
-  background-color: rgba(204, 80, 46, 0.9);
+  background-color: rgba(204, 80, 46, 1);
   .footer_content {
     display: flex;
     justify-content: center;
@@ -852,14 +852,8 @@ footer {
     border-collapse: collapse;
     border: solid 2px gray;
     margin: 40px;
-    thead {
-      tr {
-        th {
-          text-align: center;
-        }
-      }
-    }
     th, td {
+      text-align: center;
       padding: 5px;
       border: dashed 1px gray;
     }
