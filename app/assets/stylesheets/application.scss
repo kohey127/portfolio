@@ -53,7 +53,7 @@
 }
 
 // flashメッセージ
-.alert-success {
+.alert {
   width: 90%;
   margin: 0 auto;
 }
@@ -79,7 +79,7 @@ main {
 
 // ヘッダ
 header {
-  background-color: rgba(204, 80, 46, 0.9);
+  background-color: rgba(204, 80, 46, 1);
   color: white;
   .header_content {
     display: flex;
@@ -109,9 +109,23 @@ header {
   }
 }
 
+.logo a {
+  background-image: url("logo.jpg");
+  background-size: cover;
+  display: block;
+  width: 200px;
+  height: 70px;
+  span {
+    visibility: hidden;
+  }
+}
+.logo a:hover {
+  opacity: 0.9;
+}
+
 // フッタ
 footer {
-  background-color: rgba(204, 80, 46, 0.9);
+  background-color: rgba(204, 80, 46, 1);
   .footer_content {
     display: flex;
     justify-content: center;
@@ -823,6 +837,25 @@ footer {
     justify-content: center;
     .btn_withdraw {
       margin-right: 30px;
+    }
+  }
+}
+
+// ポイント獲得履歴画面
+.history {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+  table {
+    border-collapse: collapse;
+    border: solid 2px gray;
+    margin: 40px;
+    th, td {
+      text-align: center;
+      padding: 5px;
+      border: dashed 1px gray;
     }
   }
 }

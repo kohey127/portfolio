@@ -10,14 +10,13 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'services#top'
     get 'services/about' => 'services#about', as: 'about'
-    get 'appointments' => 'appointments#index'
     resources :services, only: [:new, :show, :create, :edit, :update, :destroy] do
       get 'appointments/complete' => 'appointments#complete'
       patch 'status' => 'services#status_update', as: 'update_status'
       resources :appointments, only: [:new, :create, :edit, :update]
       resources :comments, only: [:create, :edit]
     end
-
+    
     get 'customers/mypage' => 'customers#index', as: 'mypage'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
     patch 'customers/information' => 'customers#update', as: 'update_information'
@@ -25,8 +24,11 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'
-    resources :customers, only: [:show]
+    resources :customers, only: [:show] do
+      get 'history' => 'point_histories#index', as: 'point_history'
+    end
     
+    get 'appointments' => 'appointments#index'
     resources :appointment_comments, only: [:show, :create]
     get 'chat' => 'appointment_comments#index', as: 'chat'
 

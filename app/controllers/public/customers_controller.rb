@@ -14,7 +14,7 @@ class Public::CustomersController < ApplicationController
       redirect_to mypage_path
     else
       @services = @customer.services.includes(:customer)
-      @comments = Comment.joins(service: :customer).where(customers: {id: @customer.id})
+      @comments = get_comments(@customer.id)
     end    
   end
 

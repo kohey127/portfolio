@@ -31,20 +31,23 @@ class Public::AppointmentsController < ApplicationController
       @appointment.request_date = params[:appointment][:request_date]
     end
 
+    # エラーフラグの初期値を設定
+    error_flag = 0
+
     # ポイントが足りないときにエラーを表示
     @service = Service.find(params[:service_id])
     if current_customer.point < @service.point
       flash.now[:danger] = "ポイントが足りません"
-      render :new and return
+      error_flag = 1
     end
 
     # 初期メッセージが空の時にエラーを表示
     if params[:appointment][:first_message] == ""
       flash.now[:danger] = "メッセージが空です"
-      render :new and return
+      error_flag = 1
     end
 
-    if @appointment.save
+    if error_flag == 0 && @appointment.save
       # 申込を作成できたらコメントを新規作成
       appointment_comment = AppointmentComment.new
       appointment_comment.customer_id = current_customer.id
