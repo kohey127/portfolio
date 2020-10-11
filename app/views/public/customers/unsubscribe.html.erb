@@ -1,0 +1,21 @@
+<div class="unsubscribe_form">
+  <h2>本当に退会しますか？</h2>
+
+  <div class="unsubscribe_sentence">
+    退会すると、会員登録情報や<br>これまでの体験利用履歴が閲覧できなくなります。<br>退会する場合は、「退会する」をクリックしてください。
+  </div>
+
+  <!-- 退会ボタン -->
+  <div class="unsubscribe_action_btn">
+    <div class="btn_green btn_withdraw">
+      <span>
+        <%= link_to  "退会しない", mypage_path %>
+      </span>
+    </div>
+    <div class="btn_red">
+      <span>
+        <%= link_to  "退会する",  withdraw_customer_path, method: :patch, "data-confirm" => "OKを押すと退会処理が実行されます。本当によろしいですか？" %>
+      </span>
+    </div>
+  </div>
+<div>

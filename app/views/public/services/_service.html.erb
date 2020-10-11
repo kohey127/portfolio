@@ -1,0 +1,36 @@
+<div class="service_item">
+  <%= attachment_image_tag(service, :image, format: "jpeg", fallback: "no-image.png", class: "service_image") %>
+  <div class="service_point">
+    <%= service.point %> pt
+  </div>
+  <%= link_to customer_path(service.customer.id) do %>
+    <div class="customer_image">
+      <%= attachment_image_tag(service.customer, :image, size: "70x70", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
+    </div>
+  <% end %>
+  <div class="customer_name">
+    <span><strong><%= service.customer.name %></strong></span>
+  </div>
+  <div class="customer_introduction">
+    <span><%= service.customer.introduction %></span>
+  </div>
+  <div class="service_wrap">
+    <div class="service_catchphrase">
+      <span><strong><%= service.catchphrase %></strong></span>
+    </div>
+    <div class="service_content">
+      <span><%= service.content %></span>
+    </div>
+    <div class="service_format">
+      <i class="fas fa-comments"></i>
+      <span><%= service.format_i18n %></span>
+    </div>
+    <div class="service_place">
+      <span>
+        <i class="fa fa-map-marker"></i>
+        <%= service.place %>
+      </span>
+    </div>
+    <%= render 'public/services/service_btn', service: service %>
+  </div>
+</div>

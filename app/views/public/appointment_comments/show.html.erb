@@ -1,0 +1,51 @@
+<div class="apppointment_comment_wrap">
+  <% partner = @appointment.partner_customer(current_customer.id) %>
+  <div>
+    <%= link_to customer_path(partner.id) do %>
+      <%= attachment_image_tag(partner, :image, size: "100x100", format: "jpeg", fallback: "no-image.png", class: "img-circle") %><br>
+    <% end %>
+  </div>
+  <h3>
+    <%= partner.name %> さんとのチャット
+  </h3>
+  <div class="apppointment_comment_content">
+    <% @appointment_comments.each do |appointment_comment| %>
+      <% if appointment_comment.customer == current_customer %>
+        <p class="left_balloon"><%= appointment_comment.content %></p>
+      <% else %>
+        <p class="right_balloon"><%= appointment_comment.content %></p>
+      <% end %>
+    <% end %>
+    <br class="clear_balloon">
+  </div>
+  <div>
+    <%= form_with(model: @appointment_comment, url: appointment_comments_path, method: :post, local: true) do |f| %>
+      <%= f.text_area :content, rows: 7, cols: 80 %>
+      <%= f.hidden_field :customer_id, value: current_customer.id %>
+      <%= f.hidden_field :appointment_id, value: @appointment.id %>
+      <div class="submit_btn_green">
+        <%= f.submit "送信", :class=>"submit_btn" %>
+      </div>  
+    <% end %>
+  </div>
+  <div class="comment_form">
+    <% if @appointment.from_customer_id == current_customer.id && @appointment.success? %>
+      <%= form_with(model: @comment, url: service_comments_path(@appointment.service.id), method: :post, local: true) do |f| %>
+        <%= f.text_area :content, rows: 7, cols: 80, :placeholder => "#{partner.name}さんの体験を通しての率直な感想、良かったところやもう少しだったところ、お礼などをお気軽にお書きください。" %>
+        <%= f.hidden_field :customer_id, value: current_customer.id %>
+        <%= f.hidden_field :appointment_id, value: @appointment.id %>
+        <%= f.hidden_field :service_id, value: @appointment.service.id %>
+        <div class="submit_btn_red">
+          <%= f.submit "レビューを送信して体験を完了する", :class=>"submit_btn", data: { confirm: '本当に体験を完了しますか？' } %>
+        </div>            
+        <p>※<%= partner.name %>さんにポイントが支払われます。</p>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="btn_gray">
+    <span>
+      <i class="fa fa-check-circle"></i>
+      <%= link_to  "申込状況一覧に戻る", appointments_path %>
+    </span>
+  </div>
+</div>

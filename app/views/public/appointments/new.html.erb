@@ -1,0 +1,39 @@
+<h2 class="icon">体験の利用を申し込む／話を聞く</h2>
+<div class="appointment_form">
+  <%= form_with(model: @appointment, url: service_appointments_path(@service.id) ,method: :post, local: true) do |f| %>
+    <%= render 'layouts/error_messages', resource: @appointment %>
+    <dl>
+      <dt>利用したい体験</dt>
+      <dd>
+        <div><%= @service.catchphrase %></div>
+      </dd>
+      <dt>必要ポイント</dt>
+      <dd><%= @service.point %>ポイント</dd>
+      <dt>希望日</dt>
+      <dd>
+        <label>
+          <%= radio_button_tag :request_date_exist, 0, :checked => true %>未定
+        </label>
+        <label>
+          <%= radio_button_tag :request_date_exist, 1 %>
+          <%= f.datetime_field :request_date %>
+        </label>
+      </dd>
+      <dt>
+        <%= f.label :request_format, "事前打ち合わせ希望形式" %>
+      </dt>
+      <dd>
+        <%= f.select :request_format, Appointment.request_formats.keys.map {|k| [I18n.t("enums.appointment.request_format.#{k}"), k]}, include_blank: '選択してください' %>
+      </dd>
+      <dt>メッセージ</dt>
+      <dd><%= f.text_area :first_message, rows: 10, cols: 50 , :placeholder =>"話してみたいこと、第2希望日、第3希望日等をお書きください。最初のメッセージとして#{@service.customer.name}さんに送信されます。" %></dd>
+    </dl>
+    <div class="submit_btn_green">
+      <%= f.submit "申し込む／話を聞く" %>
+      <p>現時点でポイントは支払われません</p>
+    </div>
+    <%= f.hidden_field :to_customer_id, value: @service.customer.id %>
+    <%= f.hidden_field :from_customer_id, value: current_customer.id %>
+    <%= f.hidden_field :service_id, value: @service.id %>
+  <% end %>
+</div>

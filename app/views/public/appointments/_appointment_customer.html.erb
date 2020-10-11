@@ -1,0 +1,31 @@
+<div class="from_customer_title">
+  <h4>申込者</h4>
+</div>
+<div class="from_customer_image">
+  <% partner = appointment.partner_customer(current_customer.id) %>
+  <%= link_to customer_path(partner.id) do %>
+    <%= attachment_image_tag(partner, :image, size: "200x180", format: "jpeg", fallback: "no-image.png", class: "img-circle") %>
+  <% end %>
+</div>
+<div><strong><%= partner.name %></strong></div>
+<div class="btn_gray">
+  <span>
+    <i class="fa fa-check-circle"></i>
+    <%= link_to  "チャットを開く", appointment_comment_path(appointment.id) %>
+  </span>
+</div>
+<div>
+  <span>
+    打合せ希望日時：
+    <% if appointment.request_date == "undecided" %>
+      未定
+    <% else %>
+      <%= appointment.request_date.to_datetime.strftime("%Y年%m月%d日 %H:%M") %>
+    <% end %>
+  </span>
+</div>
+<div>
+  <span>
+    打合せ希望形式：<%= appointment.request_format_i18n %>
+  </span>
+</div>

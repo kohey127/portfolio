@@ -13,4 +13,29 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require jquery
+//= require bootstrap-sprockets
+//= require_tree ./
+
+$(document).on("turbolinks:load", function(){
+	// admin/items#new,editでの画像プレビュー
+	function readURL(input) {
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#img_prev').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	$("#item_image").change(function(){
+		readURL(this);
+	});
+	// public/orders#confirmでの確認ダイアログ
+	$('.submit_to_create_order').on('click', function(){
+			var result = window.confirm('OKを押すと、注文が確定します。');
+			if(!result){
+				return false;
+			}
+	});
+});

@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th>相手</th>
+      <th>メッセージ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @appointment_comments.each do |appointment_comment| %>
+      <% appointment = appointment_comment.appointment %>
+      <tr>
+        <td>
+          <%= attachment_image_tag(appointment.partner_customer(current_customer.id), :image, size: "50x50", format: "jpeg", fallback: "no-image.png", class: "img-circle") %><br>
+          <%= appointment.partner_customer(current_customer.id).name %>
+        </td>
+        <td>
+          <%= link_to appointment_comment_path(appointment_comment.appointment.id) do %>
+            <%= appointment_comment.content %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <tbody>
+</table>

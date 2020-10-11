@@ -1,0 +1,55 @@
+<h1 class="icon">体験新規登録</h1>
+<%= form_with(model: @service, url: service_path(@service.id), method: :patch, local: true) do |f| %>
+  <%= render 'layouts/error_messages', resource: @service %>
+  <div class="flex_service_container">
+    <div class="image_field">
+      <div><%= f.label :image, "画像" %></div>
+      <div class="image_preview_field">
+        <%= attachment_image_tag @service, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "service_image", size: "300x200" %>
+      </div>
+      <div class="image_attachment_field">
+        <span class="btn btn-file btn-info"><%= f.attachment_field :image %>画像選択</span>
+        <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
+      </div>
+    </div>
+    <table class="service_add_form">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= f.label :catchphrase, "キャッチフレーズ" %></td>
+          <td><%= f.text_field :catchphrase %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :content, "説明" %></td>
+          <td><%= f.text_area :content, rows: 3 %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :place, "提供場所" %></td>
+          <td><%= f.text_field :place %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :format, "主要提供形式" %></td>
+          <td class="select_field">
+            <%= f.select :format, Service.formats.keys.map {|k| [I18n.t("enums.service.format.#{k}"), k]}, include_blank: '選択してください' %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.label :point, "必要ポイント" %></td>
+          <td><%= f.number_field :point %>ポイント</td>
+        </tr>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="add_service_btn add_service_btn">
+    <%= f.submit "更新" %>
+  </div>
+<% end %>
