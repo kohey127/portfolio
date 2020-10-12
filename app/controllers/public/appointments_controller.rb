@@ -53,6 +53,7 @@ class Public::AppointmentsController < ApplicationController
       appointment_comment.customer_id = current_customer.id
       appointment_comment.appointment_id = @appointment.id
       appointment_comment.content = params[:appointment][:first_message]
+      appointment_comment.save
       redirect_to service_appointments_complete_path
     else
       # 予約を保存できなかったときにエラーを表示
