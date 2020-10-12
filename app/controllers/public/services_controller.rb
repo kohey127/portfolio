@@ -7,7 +7,7 @@ class Public::ServicesController < ApplicationController
       @services = Service.where(is_active: true).includes(:customer)
     else
       # 公開中の体験を取得
-      @services = Service.where.not(is_active: false).includes(:customer)
+      @services = Service.where(is_active: true).includes(:customer)
     end
       # 管理者ユーザ(id=1)を除いた有効会員を獲得EXP順に並び替えて取得
       @customers = Customer.where.not(id: 1, is_active: false).order(exp_point: "desc").includes(services: :comments)
