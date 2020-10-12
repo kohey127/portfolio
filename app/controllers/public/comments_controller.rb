@@ -15,7 +15,7 @@ class Public::CommentsController < ApplicationController
     # コメントの書き込み
     comment = Comment.new(comment_params)
     if comment.save
-      flash[:notice] = "レビューを書いて体験を完了しました。"
+      flash[:success] = "レビューを書いて体験を完了しました。"
     else
       flash[:danger] = "レビューが空です。"
       redirect_to appointment_comment_path(appointment.id) and return
@@ -28,14 +28,14 @@ class Public::CommentsController < ApplicationController
     from_customer.update(point: from_customer.point -= point)
     to_customer.update(exp_point: to_customer.exp_point += point)
 
-    # ポイント履歴更新処理(customer_idには自分のID、triggerには相手のIDを格納)
+    # ポイント履歴更新処理(customer_idには自身のID、triggerには相手のIDを格納)
     point_history.customer_id = from_customer.id
     point_history.balance = latest_point - point
-    point_history.trigger = to_customer.id
+    point_history.trigger_id = to_customer.id
     point_history.save
     exp_history.customer_id = to_customer.id
     exp_history.balance = latest_exp + point
-    exp_history.trigger = from_customer.id
+    exp_history.trigger_id = from_customer.id
     exp_history.save
     
     redirect_to appointments_path

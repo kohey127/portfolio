@@ -16,6 +16,7 @@ class Public::AppointmentCommentsController < ApplicationController
   def create
     appointment_comment = AppointmentComment.new(appointment_comment_params)
     if appointment_comment.save
+      flash[:success] = "メッセージを送信しました"
       redirect_to appointment_comment_path(params[:appointment_comment][:appointment_id])
     end
   end

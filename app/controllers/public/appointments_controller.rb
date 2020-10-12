@@ -74,11 +74,11 @@ class Public::AppointmentsController < ApplicationController
     case params[:update_param]
       when "success"
         if appointment.success!
-          flash[:notice] = "申込を承認しました"
+          flash[:success] = "申込を承認しました"
         end
       when "failure"
         if appointment.failure!
-          flash[:notice] = "申込を拒否／中断しました"
+          flash[:success] = "申込を拒否／中断しました"
         end
     end
     redirect_to appointments_path
