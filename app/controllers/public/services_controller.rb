@@ -2,10 +2,15 @@ class Public::ServicesController < ApplicationController
   before_action :authenticate_customer!, except: [:top, :about]
 
   def top
-    # 公開中の体験を取得
-    @services = Service.where.not(is_active: false).includes(:customer)
-    # 管理者ユーザ(id=1)を除いた有効会員を獲得EXP順に並び替えて取得
-    @customers = Customer.where.not(id: 1, is_active: false).order(exp_point: "desc").includes(services: :comments)
+    if customer_signed_in?
+      # 自分の体験を除いた公開中の体験を取得
+      @services = Service.where(is_active: true).includes(:customer)
+    else
+      # 公開中の体験を取得
+      @services = Service.where(is_active: true).includes(:customer)
+    end
+      # 管理者ユーザ(id=1)を除いた有効会員を獲得EXP順に並び替えて取得
+      @customers = Customer.where.not(id: 1, is_active: false).order(exp_point: "desc").includes(services: :comments)
   end
 
   def about
@@ -29,7 +34,7 @@ class Public::ServicesController < ApplicationController
   def update
     @service = Service.find(params[:id])
     if @service.update(service_params)
-      flash[:notice] = "体験の情報を更新しました"
+      flash[:success] = "体験の情報を更新しました"
       redirect_to mypage_path
     else
       render :edit
@@ -51,7 +56,7 @@ class Public::ServicesController < ApplicationController
     @service = Service.new(service_params)
     @service.customer_id = current_customer.id
     if @service.save(service_params)
-      flash[:notice] = "体験を登録しました"
+      flash[:success] = "体験を登録しました"
       redirect_to mypage_path
     else
       render :new
@@ -61,7 +66,7 @@ class Public::ServicesController < ApplicationController
   def destroy
     service = Service.find(params[:id])
     if service.destroy
-    flash[:notice] = "体験を削除しました"
+    flash[:success] = "体験を削除しました"
     end
     redirect_to mypage_path
   end

@@ -53,6 +53,7 @@ class Public::AppointmentsController < ApplicationController
       appointment_comment.customer_id = current_customer.id
       appointment_comment.appointment_id = @appointment.id
       appointment_comment.content = params[:appointment][:first_message]
+      appointment_comment.save
       redirect_to service_appointments_complete_path
     else
       # 予約を保存できなかったときにエラーを表示
@@ -73,11 +74,11 @@ class Public::AppointmentsController < ApplicationController
     case params[:update_param]
       when "success"
         if appointment.success!
-          flash[:notice] = "申込を承認しました"
+          flash[:success] = "申込を承認しました"
         end
       when "failure"
         if appointment.failure!
-          flash[:notice] = "申込を拒否／中断しました"
+          flash[:success] = "申込を拒否／中断しました"
         end
     end
     redirect_to appointments_path

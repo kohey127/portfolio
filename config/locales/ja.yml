@@ -82,22 +82,57 @@ ja:
     attributes:
       service:
         id: ID
-        created_at: 登録日時
-        updated_at: 更新日時
         content: 説明
         place: 提供場所
         catchphrase: キャッチフレーズ
         image_id: 画像
         point: 必要ポイント
         format: 主要提供形式
+        created_at: 登録日時
+        updated_at: 更新日時
   activerecord:
     models:
       appointment: 申込み
     attributes:
       appointment:
-        created_at: 登録日時
-        updated_at: 更新日時
         id: ID
         request_format: 事前打ち合わせ希望形式
         request_date: 事前打ち合わせ希望日時
         status: 予約ステータス
+        created_at: 登録日時
+        updated_at: 更新日時
+  activerecord:
+    models:
+      customer: 顧客情報
+    attributes:
+      customer:
+        id: ID
+        name: 名前
+        introduction: 自己紹介
+        image_id: 画像
+        based: 拠点
+        point: ポイント
+        exp_point: 獲得EXP
+        is_active: 会員ステータス
+        created_at: 登録日時
+        updated_at: 更新日時
+  activerecord:
+    models:
+      appointment_comment: チャット
+    attributes:
+      appointment_comment:
+        id: ID
+        content: メッセージ
+        created_at: 登録日時
+        updated_at: 更新日時
+  activerecord:
+    models:
+      comment: レビュー
+    attributes:
+      comment:
+        id: ID
+        content: レビュー内容
+        created_at: 登録日時
+        updated_at: 更新日時
+
+
