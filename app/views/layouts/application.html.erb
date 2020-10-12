@@ -12,7 +12,11 @@
     <header>
       <% if customer_signed_in? %>
           <div class="header_content">
-            <div class="logo"><a href="/"><span>トップページ</span></a></div>
+            <div class="logo">
+              <a href="/">
+                <span>トップページ</span>
+              </a>
+            </div>
             <ul class="header_flex">
               <p class="welcome_header_content">
                 ようこそ、<%= current_customer.name %>さん!<br>
@@ -27,10 +31,14 @@
           </div>
       <% else %>
           <div class="header_content">
-            <%= link_to 'Shexp!', root_path, class: "logo" %>
+            <div class="logo">
+              <a href="/">
+                <span>トップページ</span>
+              </a>
+            </div>
             <ul class="header_flex">
+              <li><%= link_to 'トップ', root_path %></li>
               <li><%= link_to 'About', about_path %></li>
-              <li><%= link_to '体験一覧', services_path %></li>
               <li><%= link_to '新規登録', new_customer_registration_path %></li>
               <li><%= link_to 'ログイン', new_customer_session_path %></li>
             </ul>
