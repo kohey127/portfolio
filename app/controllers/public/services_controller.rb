@@ -46,8 +46,10 @@ class Public::ServicesController < ApplicationController
     case params[:status]
     when "open"
       service.update(is_active: true)
+      flash[:success] = "体験の公開を再開しました"
     when "close"
       service.update(is_active: false)
+      flash[:success] = "体験をの公開を停止しました"
     end
     redirect_to mypage_path
   end
