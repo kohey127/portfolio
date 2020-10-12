@@ -7,10 +7,10 @@ class Public::CustomersController < ApplicationController
     @comments = get_comments(@customer.id)
   end
 
-  def show
+  def show    
     @customer = Customer.find(params[:id])
-    # 自分のユーザ詳細ページを見るときはマイページにリダイレクトする
-    if @customer == current_customer
+    # 自分のユーザ、もしくは管理者ユーザ詳細ページを見るときはマイページにリダイレクト
+    if @customer == current_customer || params[:id] == "1"
       redirect_to mypage_path
     else
       @services = @customer.services.includes(:customer)
