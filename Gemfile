@@ -79,3 +79,6 @@ gem 'rails-i18n'
 gem 'enum_help'
 gem 'font-awesome-sass'
 gem 'activeadmin'
+
+gem 'ed25519'
+gem 'bcrypt_pbkdf'

@@ -55,7 +55,7 @@
 // flashメッセージ
 .alert {
   width: 90%;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 
 // 全体
@@ -607,14 +607,54 @@ footer {
 }
 
 // サービス詳細ページのホスト情報
+$font-size-base: 16px;
+$line-height-computed: 1.4;
+$lines-to-show: 3;
+
+.long_text {
+  overflow: hidden;
+  width: 100%;
+  p {
+    margin: 0;
+    font-size: $font-size-base;
+    height: $font-size-base * $line-height-computed * $lines-to-show;
+    line-height: $line-height-computed;
+    position: relative;
+    &:before,
+    &:after {
+      position: absolute;
+    }
+    &:before {
+      content: "...";
+      top: $font-size-base * $line-height-computed * ($lines-to-show - 1);
+      right: 0;
+    }
+    &:after {
+      content: "";
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
 .customer_information_nav {
   width: 100%;
   font-size: 15px;
   background-color: white;
   padding-top: 20px;
+  height: 406px;
   .customer_profile_nav {
     text-align: center;
-  }
+    a .customer_image_link:hover {
+      opacity: 0.9;
+    }
+    h1 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0 3px;
+    }
+    }
   ul {
     list-style: none;
     padding: 0 10px;
