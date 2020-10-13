@@ -4,7 +4,7 @@ class Public::ServicesController < ApplicationController
   def top
     if customer_signed_in?
       # 自分の体験を除いた公開中の体験を取得
-      @services = Service.where(is_active: true).includes(:customer)
+      @services = Service.where(is_active: true).where.not(customer_id: current_customer.id).includes(:customer)
     else
       # 公開中の体験を取得
       @services = Service.where(is_active: true).includes(:customer)
@@ -46,8 +46,10 @@ class Public::ServicesController < ApplicationController
     case params[:status]
     when "open"
       service.update(is_active: true)
+      flash[:success] = "体験の公開を再開しました"
     when "close"
       service.update(is_active: false)
+      flash[:success] = "体験をの公開を停止しました"
     end
     redirect_to mypage_path
   end

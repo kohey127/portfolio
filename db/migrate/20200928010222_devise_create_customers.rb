@@ -36,7 +36,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.timestamps null: false
 
       t.string :name, null: false
-      t.string :introduction
+      t.text :introduction
       t.string :image_id
       t.string :based
       t.integer :point, null: false, default: 500

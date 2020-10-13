@@ -3,7 +3,7 @@ class CreateComments < ActiveRecord::Migration[5.2]
     create_table :comments do |t|
       t.integer :customer_id, null: false
       t.integer :service_id, null: false
-      t.string :content, null: false
+      t.text :content, null: false
 
       t.timestamps
     end
