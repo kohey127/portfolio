@@ -179,10 +179,12 @@ footer {
 
 .customer_image {
   text-align: center;
+  margin: auto 0;
 }
 
 .customer_information {
-  width: 45%;
+  width: 500px;
+  margin: auto 0;
   list-style: none;
   font-size: 15px;
   line-height: 30px;
@@ -191,6 +193,7 @@ footer {
 .customer_status {
   width: 265px;
   font-size: 15px;
+  margin: auto 0;
   ul {
     list-style: none;
     padding: 0 10px;
@@ -273,7 +276,6 @@ footer {
         }
         th {
           font-size: 20px;
-          background: none;
           text-align: center;
           empty-cells: show;
           padding-bottom: 10px;
@@ -489,23 +491,6 @@ footer {
   }
   i {
     font-size: 16px;
-  }
-}
-
-// コメント部分
-.comment {
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
-  table {
-    width: 100%;
-    font-size: 15px;
-    tr{
-      th {
-        background: none;
-        text-align: center;
-      }
-    }
   }
 }
 
@@ -878,6 +863,30 @@ $lines-to-show: 3;
     justify-content: center;
     .btn_withdraw {
       margin-right: 30px;
+    }
+  }
+}
+
+// コメント部分
+.comment {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  table {
+    width: 100%;
+    font-size: 15px;
+    border-collapse: collapse;
+    border: solid 1px gray;
+    margin: 40px;
+    tr{
+      th, td {
+        text-align: center;
+        padding: 5px;
+        border: dashed 1px gray;
+      }
+      td:last-child {
+        max-width: 640px;
+      }
     }
   }
 }
