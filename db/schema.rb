@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_075358) do
   create_table "appointment_comments", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "appointment_id", null: false
-    t.string "content", null: false
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_075358) do
   create_table "comments", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "service_id", null: false
-    t.string "content", null: false
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_075358) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
-    t.string "introduction"
+    t.text "introduction"
     t.string "image_id"
     t.string "based"
     t.integer "point", default: 500, null: false
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_075358) do
 
   create_table "services", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.string "content", null: false
+    t.text "content", null: false
     t.string "place", null: false
     t.string "catchphrase", null: false
     t.string "image_id"

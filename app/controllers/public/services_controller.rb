@@ -4,7 +4,7 @@ class Public::ServicesController < ApplicationController
   def top
     if customer_signed_in?
       # 自分の体験を除いた公開中の体験を取得
-      @services = Service.where(is_active: true).includes(:customer)
+      @services = Service.where(is_active: true).where.not(customer_id: current_customer.id).includes(:customer)
     else
       # 公開中の体験を取得
       @services = Service.where(is_active: true).includes(:customer)
