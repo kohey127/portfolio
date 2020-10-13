@@ -29,6 +29,10 @@ class Public::ServicesController < ApplicationController
 
   def edit
     @service = Service.find(params[:id])
+    if @service.customer != current_customer
+      flash[:danger] = "このページへはアクセスできません"
+      redirect_to mypage_path
+    end
   end
 
   def update

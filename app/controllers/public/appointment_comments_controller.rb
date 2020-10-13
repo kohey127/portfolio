@@ -7,8 +7,13 @@ class Public::AppointmentCommentsController < ApplicationController
   end
 
   def show
-    @appointment_comments = AppointmentComment.where(appointment_id: params[:id]).includes(:customer)
     @appointment = Appointment.find(params[:id])
+    # 自分以外のチャットルームの参照を禁止する
+    unless @appointment.from_customer_id == current_customer.id || @appointment.to_customer_id == current_customer.id
+      flash[:danger] = "このページにはアクセスできません"
+      redirect_to appointments_path
+    end
+    @appointment_comments = AppointmentComment.where(appointment_id: params[:id]).includes(:customer)
     @appointment_comment = AppointmentComment.new
     @comment = Comment.new
   end
