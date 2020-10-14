@@ -23,11 +23,14 @@ ja:
       service: 体験
       customer: 顧客情報
       appointment_comment: チャット
-      comment: レビュー
+      post_comment: レビュー
+      point_history: ポイント獲得履歴
+      exp_history: EXP獲得履歴
     attributes:
       customer:
         id: ID
         name: 名前
+        email: メールアドレス        
         introduction: 自己紹介
         image_id: 画像
         based: 拠点
@@ -38,6 +41,9 @@ ja:
         updated_at: 更新日時
       appointment:
         id: ID
+        service: 体験
+        to_customer: 提供者
+        from_customer: 利用者
         request_format: 事前打ち合わせ希望形式
         request_date: 希望日
         status: 予約ステータス
@@ -45,22 +51,40 @@ ja:
         updated_at: 更新日時
       service:
         id: ID
+        customer: 登録者
         content: 説明
         place: 提供場所
         catchphrase: キャッチフレーズ
         image_id: 画像
         point: 必要ポイント
         format: 主要提供形式
+        is_active: 有効状態
         created_at: 登録日時
         updated_at: 更新日時
       comment:
         id: ID
+        customer: レビュー者
+        service: 体験
         content: レビュー内容
         created_at: 登録日時
         updated_at: 更新日時
       appointment_comment:
         id: ID
+        customer: 発言者
+        appointment: 申込
         content: メッセージ
+        created_at: 登録日時
+        updated_at: 更新日時
+      point_history:
+        customer: 顧客
+        balance: 残高
+        trigger: 相手
+        created_at: 登録日時
+        updated_at: 更新日時
+      exp_history:
+        customer: 顧客
+        balance: 残高
+        trigger: 相手
         created_at: 登録日時
         updated_at: 更新日時
   datetime:
