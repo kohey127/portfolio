@@ -9,7 +9,6 @@
     <div class="long_text">
       <p><%= customer.introduction %></p>
     </div>
-    <div>フォローボタン</div>
   </div>
   <ul>
     <li>
@@ -22,7 +21,11 @@
     </li>
     <li>
       <span>レビュー</span>
-      <span><%= customer.comments.count %></span>
+      <%
+=begin%>
+ <span><%= customer.comments.count %></span> 
+<%
+=end%>
     </li>
   </ul>
 </div>

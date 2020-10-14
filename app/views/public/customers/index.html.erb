@@ -41,17 +41,15 @@
         <span><%= @services.count %></span>
       </li>
       <li>
-        <span>フォロー</span>
-      </li>
-      <li>
-        <span>フォロワー</span>
-      </li>
-      <li>
         <span>ポジティブな評価</span>
       </li>
       <li>
         <span>レビュー</span>
-        <span><%= @comments.count %></span>
+        <%
+=begin%>
+ <span><%= @comments.count %></span> 
+<%
+=end%>
       </li>
     </ul>
   </div>
