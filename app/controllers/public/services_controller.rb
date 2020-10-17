@@ -4,14 +4,13 @@ class Public::ServicesController < ApplicationController
   def top
       # # 自分の体験を除いた公開中の体験を取得
       # @services = Service.where(is_active: true).where.not(customer_id: current_customer.id).includes(:customer)
-      # 公開中の体験を取得
+      # 公開中の全体験を取得
       @services = Service.where(is_active: true).includes(:customer)
       # 管理者ユーザ(id=1)を除いた有効会員を獲得EXP順に並び替えて取得
       @customers = Customer.where.not(id: 1, is_active: false).order(exp_point: "desc").includes(services: :comments)
   end
 
   def about
-
   end
 
   def show
@@ -19,7 +18,7 @@ class Public::ServicesController < ApplicationController
     @customer = @service.customer
     @comments = @service.comments.includes(:customer)
   end
-  
+
   def new
     @service = Service.new
   end
@@ -69,9 +68,9 @@ class Public::ServicesController < ApplicationController
   def destroy
     service = Service.find(params[:id])
     if service.destroy
-    flash[:success] = "体験を削除しました"
+      flash[:success] = "体験を削除しました"
     end
-    redirect_to mypage_path
+      redirect_to mypage_path
   end
 
   private

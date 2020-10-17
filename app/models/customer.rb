@@ -8,7 +8,6 @@ class Customer < ApplicationRecord
   has_many :comments, dependent: :destroy
   # has_many :contacts, dependent: :destroy
   has_many :appointment_comments, dependent: :destroy
-  # has_many :customer_genres, dependent: :destroy
   # has_many :favorites, dependent: :destroy
   has_many :point_histories, dependent: :destroy
   
@@ -21,4 +20,12 @@ class Customer < ApplicationRecord
   
   attachment :image
 
+  # def get_comments
+  #   test = self.services.pluck(:id)
+  #   Commnet.where(service_id: test)
+  # end
+
+  def get_comments
+    Comment.joins(service: :customer).where(customers: {id: self.id})
+  end
 end

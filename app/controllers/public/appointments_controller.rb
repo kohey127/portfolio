@@ -3,22 +3,22 @@ class Public::AppointmentsController < ApplicationController
   
   def index
     # 申込があった体験
-    @comming_appointments = Appointment.where(to_customer_id: current_customer.id, status: "applying").includes(:service)
+    @comming_appointments = Appointment.where(to_customer_id: current_customer.id, status: "applying").order(created_at: "desc").includes(:service)
 
     # 承認後、相手のレビュー待ちの体験
-    @waiting_review_appointments = Appointment.where(to_customer_id: current_customer.id, status: "success").includes(:service)
+    @waiting_review_appointments = Appointment.where(to_customer_id: current_customer.id, status: "success").order(created_at: "desc").includes(:service)
 
     # 申込中の体験
-    @applying_appointments = Appointment.where(from_customer_id: current_customer.id, status: "applying").includes(:service)
+    @applying_appointments = Appointment.where(from_customer_id: current_customer.id, status: "applying").order(created_at: "desc").includes(:service)
 
     # 申込を承認された体験
-    @success_appointments = Appointment.where(from_customer_id: current_customer.id, status: "success").includes(:service)
+    @success_appointments = Appointment.where(from_customer_id: current_customer.id, status: "success").order(created_at: "desc").includes(:service)
 
     # 申込が中断された体験
-    @failure_appointments = Appointment.where(from_customer_id: current_customer.id, status: "failure", created_at: 3.day.ago.beginning_of_day..Time.zone.now.end_of_day).includes(:service)
+    @failure_appointments = Appointment.where(from_customer_id: current_customer.id, status: "failure", created_at: 3.day.ago.beginning_of_day..Time.zone.now.end_of_day).order(created_at: "desc").includes(:service)
 
     # 過去に申し込んだ体験
-    @done_appointments = Appointment.where(from_customer_id: current_customer.id, status: "done").includes(:service)
+    @done_appointments = Appointment.where(from_customer_id: current_customer.id, status: "done").order(created_at: "desc").includes(:service)
   end
 
   def create

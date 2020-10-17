@@ -4,7 +4,7 @@ class Public::CustomersController < ApplicationController
   def index
     @customer = current_customer
     @services = @customer.services.includes(:customer)
-    @comments = get_comments(@customer.id)
+    @comments = @customer.get_comments
   end
 
   def show    
@@ -14,7 +14,7 @@ class Public::CustomersController < ApplicationController
       redirect_to mypage_path
     else
       @services = @customer.services.includes(:customer)
-      @comments = get_comments(@customer.id)
+      @comments = @customer.get_comments
     end    
   end
 
@@ -47,10 +47,5 @@ class Public::CustomersController < ApplicationController
   private
   def customer_params
     params.require(:customer).permit(:image, :name, :introduction, :based)
-  end
-
-  # 顧客が受けたレビューを取得
-  def get_comments(id)
-    Comment.joins(service: :customer).where(customers: {id: id})
   end
 end
