@@ -21,7 +21,7 @@
             <td><%= comment.created_at.strftime("%Y/%m/%d") %></td>
             <td><%= comment.customer.name %></td>
             <td><%= comment.service.catchphrase %></td>
-            <td><%= safe_join(comment.content.split("\n"), tag(:br)) %></td>
+            <td><%= safe_join(comment.content.split("\n"), tag(:br)) %><br>本文の感情分析スコア<%= comment.score %></td>
           </tr>
         <% end %>
       </tbody>
