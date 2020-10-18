@@ -21,7 +21,7 @@
             <td><%= comment.created_at.strftime("%Y/%m/%d") %></td>
             <td><%= comment.customer.name %></td>
             <td><%= comment.service.catchphrase %></td>
-            <td><%= comment.content %></td>
+            <td><%= safe_join(comment.content.split("\n"), tag(:br)) %></td>
           </tr>
         <% end %>
       </tbody>

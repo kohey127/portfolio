@@ -564,7 +564,7 @@ footer {
         }
         dd {
           border-top: 1px solid;
-          padding: 10px 0;
+          padding: 10px 0 10px 55px;
         }
         dd:last-child {          
           border-bottom: 1px solid;
@@ -732,6 +732,7 @@ $lines-to-show: 3;
       clear: both;
       max-width: 500px;
       float: left;
+      text-align: left;
     }
     .left_balloon:after,
     .left_balloon:before {
@@ -768,6 +769,7 @@ $lines-to-show: 3;
       clear: both;
       max-width: 500px;
       float: right;
+      text-align: left;
     }
     .right_balloon:after,
     .right_balloon:before {
@@ -886,6 +888,7 @@ $lines-to-show: 3;
       }
       td:last-child {
         max-width: 640px;
+        text-align: left;
       }
     }
   }

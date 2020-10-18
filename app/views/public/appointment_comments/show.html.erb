@@ -11,9 +11,9 @@
   <div class="apppointment_comment_content">
     <% @appointment_comments.each do |appointment_comment| %>
       <% if appointment_comment.customer == current_customer %>
-        <p class="left_balloon"><%= appointment_comment.content %></p>
+        <p class="left_balloon"><%= safe_join(appointment_comment.content.split("\n"), tag(:br)) %></p>
       <% else %>
-        <p class="right_balloon"><%= appointment_comment.content %></p>
+        <p class="right_balloon"><%= safe_join(appointment_comment.content.split("\n"), tag(:br)) %></p>
       <% end %>
     <% end %>
     <br class="clear_balloon">

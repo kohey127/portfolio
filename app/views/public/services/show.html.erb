@@ -37,7 +37,7 @@
           <dt><i class="fas fa-map-marker-alt"></i></dt>
           <dd><%= @service.place %></dd>
           <dt><i class="fas fa-thumbtack"></i></dt>
-          <dd><%= @service.content %></dd>
+          <dd><%= safe_join(@service.content.split("\n"), tag(:br)) %></dd>
         </dl>
       </div>
     </div>
