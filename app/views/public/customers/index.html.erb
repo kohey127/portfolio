@@ -42,6 +42,11 @@
       </li>
       <li>
         <span>ポジティブな評価</span>
+        <% if @customer.get_raty != 0 %>
+          <span><strong><%= @customer.get_raty %></strong>%</span>
+        <% else %>
+          <span> - </span>
+        <% end %>
       </li>
       <li>
         <span>レビュー</span>

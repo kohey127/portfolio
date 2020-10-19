@@ -22,5 +22,7 @@ module Shexp
 
     config.assets.paths << config.root.join("vendor/assets/javascripts")
     config.assets.paths << config.root.join("vendor/assets/stylesheets")
+    
+    config.paths.add 'lib', eager_load: true
   end
 end
