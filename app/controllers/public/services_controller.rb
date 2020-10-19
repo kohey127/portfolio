@@ -2,8 +2,6 @@ class Public::ServicesController < ApplicationController
   before_action :authenticate_customer!, except: [:top, :about]
 
   def top
-      # # 自分の体験を除いた公開中の体験を取得
-      # @services = Service.where(is_active: true).where.not(customer_id: current_customer.id).includes(:customer)
       # 公開中の全体験を取得
       @services = Service.where(is_active: true).includes(:customer)
       # 管理者ユーザ(id=1)を除いた有効会員を獲得EXP順に並び替えて取得

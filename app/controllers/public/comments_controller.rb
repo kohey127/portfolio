@@ -11,9 +11,11 @@ class Public::CommentsController < ApplicationController
     exp_history = ExpHistory.new
     latest_point = from_customer.point
     latest_exp = to_customer.exp_point
-
-    # コメントの書き込み
+    
+    # レビューの書き込み
     comment = Comment.new(comment_params)
+    # レビューの感情分析結果を取得
+    comment.score = Language.get_data(comment_params[:content])
     if comment.save
       flash[:success] = "レビューを書いて体験を完了しました。"
     else

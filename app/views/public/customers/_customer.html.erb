@@ -6,8 +6,8 @@
     <h1>
       <strong><%= customer.name %></strong>
     </h1>
-    <div class="long_text">
-      <p><%= customer.introduction %></p>
+    <div class="customer_introduction">
+      <span><%= customer.introduction %></span>
     </div>
   </div>
   <ul>
@@ -16,8 +16,16 @@
       <span><%= customer.exp_point %></span>
     </li>
     <li>
-      <span>お気に入りに登録された件数</span>
+      <span>お気に入り件数</span>
       <span></span>
+    </li>
+    <li>
+      <span>ポジティブな評価</span>
+      <% if customer.get_raty != 0 %>
+        <span><strong><%= customer.get_raty %></strong>%</span>
+      <% else %>
+        <span> - </span>
+      <% end %>
     </li>
     <li>
       <span>レビュー</span>
