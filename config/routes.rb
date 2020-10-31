@@ -29,7 +29,6 @@ Rails.application.routes.draw do
     
     get 'appointments' => 'appointments#index'
     resources :appointment_comments, only: [:show, :create]
-    get 'chat' => 'appointment_comments#index', as: 'chat'
 
   end
 end
