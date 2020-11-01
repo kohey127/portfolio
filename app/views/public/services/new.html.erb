@@ -5,10 +5,10 @@
     <div class="image_field">
       <div><%= f.label :image, "画像" %></div>
       <div class="image_preview_field">
-        <%= attachment_image_tag @service, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "service_image", size: "300x200" %>
+        <%= attachment_image_tag @service, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "service_image", size: "320x220" %>
       </div>
       <div class="image_attachment_field">
-        <span class="btn btn-file btn-info"><%= f.attachment_field :image %>画像選択</span>
+        <span class="btn btn-file btn-info"><%= f.attachment_field :image, id: "item_image" %>画像選択</span>
         <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
       </div>
     </div>

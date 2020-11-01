@@ -31,11 +31,4 @@ $(document).on("turbolinks:load", function(){
 	$("#item_image").change(function(){
 		readURL(this);
 	});
-	// public/orders#confirmでの確認ダイアログ
-	$('.submit_to_create_order').on('click', function(){
-			var result = window.confirm('OKを押すと、注文が確定します。');
-			if(!result){
-				return false;
-			}
-	});
 });
