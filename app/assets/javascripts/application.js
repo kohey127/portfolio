@@ -17,25 +17,15 @@
 //= require bootstrap-sprockets
 //= require_tree ./
 
-$(document).on("turbolinks:load", function(){
-	// admin/items#new,editでの画像プレビュー
-	function readURL(input) {
-		if(input.files && input.files[0]){
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$('#img_prev').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
+$(function(){
+	// inputのidから情報の取得
+	$('#choice_image').on('change', function (e) {
+		// 既存の画像のurlの取得
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			$(".img_prev").attr('src', e.target.result);
 		}
-	}
-	$("#item_image").change(function(){
-		readURL(this);
-	});
-	// public/orders#confirmでの確認ダイアログ
-	$('.submit_to_create_order').on('click', function(){
-			var result = window.confirm('OKを押すと、注文が確定します。');
-			if(!result){
-				return false;
-			}
+		// 取得したurlにアップロード画像のurlを挿入
+		reader.readAsDataURL(e.target.files[0]); 
 	});
 });
