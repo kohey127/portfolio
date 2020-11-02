@@ -690,6 +690,19 @@ footer {
 // 予約チャット画面
 .apppointment_comment_wrap {
   text-align: center;
+  .chat_lead_message {
+    text-align: left;
+    padding: 20px 30px;
+    margin: 40px auto;
+    width: 60%;
+    background-color: white;
+    border: dashed 1px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px gainsboro;
+  }
+  .img-circle:hover {
+    opacity: 0.9;
+  }
   .apppointment_comment_content {
     width: 60%;
     margin: 20px auto;
