@@ -216,6 +216,14 @@ footer {
 // トップページ
 .top_wrap {
   text-align: center;
+  .top_title {
+    h1 {
+      strong {
+        color: rgba(204, 80, 46, 0.8);
+        text-shadow: 2px 2px 3px lightgrey;
+      }
+    }
+  }
   .top_btn {
     display: flex;
     justify-content: center;
