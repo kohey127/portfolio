@@ -350,13 +350,11 @@ footer {
     color: white;
     padding: 10px 15px;
     .service_catchphrase {
-      span {
-        display: inline-block;
-        border-radius: 5px;
-        font-size: 17px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+      span {
+        font-size: 17px;
       }
     }
     .service_content {

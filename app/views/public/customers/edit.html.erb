@@ -6,7 +6,7 @@
       <dl class="profile_edit_image">
         <dt><%= f.label :image, "画像" %></dt>
         <dd>
-          <%= attachment_image_tag @customer, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "item_image", size: "320x320" %><br>
+          <%= attachment_image_tag @customer, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", size: "320x320" %><br>
           <span class="btn btn-file btn-info"><%= f.attachment_field :image, id: "item_image" %>画像選択</span>
           <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
         </dd>

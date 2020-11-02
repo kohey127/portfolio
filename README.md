@@ -1,4 +1,4 @@
-# Shexp!（シェクスプ）（Share Experienceから）
+# Shexp（シェクスプ）（Share Experienceから）
 
 ## サイト概要
 #### 自身にとって当たり前な体験をシェアできるサービスです。自分にとっての当たり前は、他人にとっては面白い体験になり得るという視点から、当たり前の体験をシェアできるサービスがあったら面白いと思い作成しました。
@@ -27,6 +27,7 @@
 - 大学生の一日に密着するリアルオープンキャンパス体験
 - 重機、船、フェラーリの助手席、バイクの後ろに乗る体験
 - コロナ期間中、在宅ワークの部屋を期間限定で交換する体験
+- Go To Eatの使い方を伝授してもらう体験
 - ホームレス体験
 - 一日店長体験
 - 田舎で農業体験、とれたての野菜を川で冷やして食べる体験
@@ -48,7 +49,6 @@ https://docs.google.com/spreadsheets/d/1YbZsmjkN7cMtPHdddeU21f3f6gl5_BrMRwpbEI0o
 
 ## 開発環境
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- 言語：HTML,CSS,JavaScript,Ruby,SQL,Python
 - フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
 - 仮想環境：Vagrant,VirtualBox

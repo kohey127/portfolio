@@ -5,7 +5,7 @@
     <div class="image_field">
       <div><%= f.label :image, "画像" %></div>
       <div class="image_preview_field">
-        <%= attachment_image_tag @service, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "service_image", size: "320x220" %>
+        <%= attachment_image_tag @service, :image, format: "jpeg", id: "img_prev", fallback: "no-image.png", size: "320x220" %>
       </div>
       <div class="image_attachment_field">
         <span class="btn btn-file btn-info"><%= f.attachment_field :image, id: "item_image" %>画像選択</span>

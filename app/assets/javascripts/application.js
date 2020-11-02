@@ -18,7 +18,7 @@
 //= require_tree ./
 
 $(document).on("turbolinks:load", function(){
-	// admin/items#new,editでの画像プレビュー
+	// inputタグ内に情報が存在する場合にこれを読み込む関数を定義
 	function readURL(input) {
 		if(input.files && input.files[0]){
 			var reader = new FileReader();
@@ -28,6 +28,8 @@ $(document).on("turbolinks:load", function(){
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+	
+	// 新たな画像が選択されたときに上記関数を実行
 	$("#item_image").change(function(){
 		readURL(this);
 	});
