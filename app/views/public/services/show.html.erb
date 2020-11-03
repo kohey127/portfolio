@@ -22,9 +22,23 @@
               <span><%= attachment_image_tag(@customer, :image, size: "100x100", format: "jpeg", fallback: "no-image.png", class: "img-circle") %></span>
             <% end %>
           </div>
-          <div class="favorite_btn">
-            お気に入り登録ボタン
-          </div>
+          <% if @service.customer_id != current_customer.id %>
+            <div class="favorite_btn">
+              <% if @service.favorited_by?(current_customer) %>
+                <div class="btn_red">
+                  <span>
+                    <%= link_to  "お気に入りを解除する", service_favorites_path(@service.id), method: :delete %>
+                  </span>
+                </div>
+              <% else %>
+                <div class="btn_green btn_withdraw">
+                  <span>
+                    <%= link_to  "お気に入りの体験に登録する", service_favorites_path(@service.id), method: :post %>
+                  </span>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="service_point">

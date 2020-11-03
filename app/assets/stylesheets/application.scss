@@ -628,6 +628,9 @@ footer {
               opacity: 0.9;
             }
           }
+          .favorite_btn {
+            text-align: center;
+          }
         }
       }
     }
@@ -979,6 +982,14 @@ footer {
       padding: 5px;
       border: dashed 1px gray;
     }
+  }
+}
+
+// お気に入りサービス一覧画面
+.my_favorite {
+  p {
+    margin-top: 30px;
+    margin-left: 5%;
   }
 }
 
