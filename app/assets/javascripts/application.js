@@ -21,7 +21,7 @@
 $(function() {
   $('.menu-trigger').on('click', function(event) {
     $(this).toggleClass('active');
-    $('#sp-menu').fadeToggle();
+    $('#nav-menu').fadeToggle();
     event.preventDefault();
   });
 });

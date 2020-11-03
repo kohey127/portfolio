@@ -113,7 +113,8 @@ header {
 }
 
 // ヘッダナビゲーション
-#hm-icon{
+// ナビゲーションのアイコン
+#nav-icon{
   position: fixed;
   right: 20px;
   top: 11px;
@@ -160,10 +161,10 @@ header {
       transform: translateY(-20px) rotate(45deg);
       background-color: #fff;
     }
-  } 
+  }
 }
-
-#sp-menu {
+// ナビゲーションメニュー
+#nav-menu {
   position: fixed;
   top: 0;
   right: 0;
@@ -980,7 +981,7 @@ footer {
 // レスポンシブ対応
 @media screen and (max-width: 1000px) {
   // ナビゲーションの表示範囲拡大
-  #sp-menu {
+  #nav-menu {
     width: 40%;
   }
   // コメント表示
@@ -1079,7 +1080,7 @@ footer {
             }
             @media screen and (max-width: 500px) {
               // ナビゲーションの表示範囲拡大
-              #sp-menu {
+              #nav-menu {
                 width: 100%;
               }
               // ヘッダのWelcomeメッセージを非表示
