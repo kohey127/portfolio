@@ -539,22 +539,22 @@ footer {
           }
           .customer_image {
             margin: 0 auto;
-            margin-top: 130px;
+            margin-top: 10%;
             .img-circle {
               border: 5px solid white;
               background-color: white;
             }
           }
-          .service_point {
-            background-color: lightgoldenrodyellow;
-            font-size: 36px;
-            height: 80px;
-            text-align: center;
-            span {
-              line-height: 80px;
-            }
-          }        
         }
+      }
+    }
+    .service_point {
+      background-color: lightgoldenrodyellow;
+      font-size: 36px;
+      height: 80px;
+      text-align: center;
+      span {
+        line-height: 80px;
       }
     }
     .service_detail_information {
@@ -862,11 +862,10 @@ footer {
   margin: 0 auto;
   text-align: center;
   table {
-    width: 100%;
     font-size: 15px;
     border-collapse: collapse;
     border: solid 1px gray;
-    margin: 40px;
+    margin: 0 10%;
     tr{
       th, td {
         text-align: center;
@@ -900,24 +899,123 @@ footer {
   }
 }
 
-@media screen and (max-width: 630px) {
-  // トップページ
-  .service_item {
-    width: 43%;
-    margin: 1.8em auto;
-  }
-  .top_customer_information_nav {
-    width: 43% !important;
-    margin: 1.8em auto !important;
-  }
-
-  @media screen and (max-width: 500px) {
-    // トップページ
-    .service_item {
-      width: 70%;
+// レスポンシブ対応
+@media screen and (max-width: 1000px) {
+  // コメント表示
+  .comment {
+    table {
+      margin: 0;
     }
-    .top_customer_information_nav {
-      width: 70% !important;
+  }    
+  @media screen and (max-width: 900px) {
+    // 申込状況一覧のあなたの承認待ち
+    .comming_appointment {
+      .flex_appointment_container {
+        .btn_information {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          .btn_green {
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+    // プロフィール編集
+    .profile_edit {
+      .profile_edit_form {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    @media screen and (max-width: 800px) {
+      // 体験詳細ページ
+      .service_show_container {
+        .service_detail {
+          width: 100%;
+          margin: 0;
+        }
+        .host_detail {
+          display: none;
+        }
+        .service_detail_btn {
+          text-align: center;
+        }
+      }
+      @media screen and (max-width: 700px) {
+        // 申込状況一覧のあなたの承認待ち
+        .flex_appointment_container {
+          justify-content: center;
+        }
+        .apppointment_comment_wrap {
+          .chat_lead_message {
+            width: 90%;
+          }
+          #appointment_comment_content {
+            width: 90%;
+          }
+        }
+        @media screen and (max-width: 630px) {
+          // トップページ
+          .top_wrap {
+            .top_service_item {
+              width: 43%;
+              margin: 1.8em auto;
+            }
+            .top_customer_information_nav {
+              width: 43% !important;
+              margin: 1.8em auto !important;
+            }
+          }
+          .customer_flex_container {
+            justify-content: center;
+          }
+          // 申込状況一覧のあなたの承認待ち
+          .comming_appointment {
+            .flex_appointment_container {
+              justify-content: center;
+            }
+          }
+          // サービス一覧表示全体
+          .service_flex_container {
+            justify-content: center;
+          }
+          @media screen and (max-width: 600px) {
+            .service_add_form {
+              tbody {
+                tr {
+                  td {
+                    width: 100%;
+                    display: block;
+                    margin-left: 5%;
+                    #service_content {
+                      width: 90%;
+                    }
+                  }
+                }
+              }
+            }
+            @media screen and (max-width: 500px) {
+              // トップページ
+              .top_wrap {
+                .top_service_item {
+                  width: 70%;
+                }
+                .top_customer_information_nav {
+                  width: 70% !important;
+                }
+              }
+              // プロフィール編集ページ
+              .profile_edit_information {
+                width: 90%;
+                textarea {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
