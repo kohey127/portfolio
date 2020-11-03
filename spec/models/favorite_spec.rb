@@ -1,5 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Favorite, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'アソシエーションのテスト' do
+    context 'Customerモデルとの関係' do
+      it 'N:1となっている' do
+        expect(Favorite.reflect_on_association(:customer).macro).to eq :belongs_to
+      end
+    end
+    context 'Serviceモデルとの関係' do
+      it 'N:1となっている' do
+        expect(Favorite.reflect_on_association(:service).macro).to eq :belongs_to
+      end
+    end
+  end
 end

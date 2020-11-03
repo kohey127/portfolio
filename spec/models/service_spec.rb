@@ -47,5 +47,10 @@ RSpec.describe Service, type: :model do
         expect(Service.reflect_on_association(:comments).macro).to eq :has_many
       end
     end
+    context 'Favoriteモデルとの関係' do
+      it '1:Nとなっている' do
+        expect(Service.reflect_on_association(:favorites).macro).to eq :has_many
+      end
+    end
   end
 end
