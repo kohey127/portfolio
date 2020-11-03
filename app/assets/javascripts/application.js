@@ -17,6 +17,16 @@
 //= require bootstrap-sprockets
 //= require_tree ./
 
+// ヘッダーナビゲーション
+$(function() {
+  $('.menu-trigger').on('click', function(event) {
+    $(this).toggleClass('active');
+    $('#sp-menu').fadeToggle();
+    event.preventDefault();
+  });
+});
+
+// 画像プレビュー
 $(document).on("turbolinks:load", function(){
 	// inputタグ内に情報が存在する場合にこれを読み込む関数を定義
 	function readURL(input) {
@@ -27,8 +37,7 @@ $(document).on("turbolinks:load", function(){
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
-	}
-	
+	}	
 	// 新たな画像が選択されたときに上記関数を実行
 	$("#item_image").change(function(){
 		readURL(this);

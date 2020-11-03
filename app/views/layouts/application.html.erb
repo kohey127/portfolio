@@ -20,17 +20,34 @@
                 <span>トップページ</span>
               </a>
             </div>
-            <ul class="header_flex">
+            <div class="welcome_header">
               <p class="welcome_header_content">
                 ようこそ、<%= current_customer.name %>さん!<br>
                 ポイント残高：<%= current_customer.point %>
               </p>
-              <li><%= link_to 'トップ', root_path %></li>
-              <li><%= link_to 'About', about_path %></li>
-              <li><%= link_to 'マイページ', mypage_path %></li>
-              <li><%= link_to '申込状況', appointments_path %></li>
-              <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
-            </ul>
+            </div>
+            <div id="sp-menu">
+              <ul class="sp-link">
+                <li><%= link_to 'トップ', root_path %></li>
+                <li><%= link_to 'About', about_path %></li>
+                <li><%= link_to 'マイページ', mypage_path %></li>
+                <li><%= link_to '申込状況', appointments_path %></li>
+                <li><%= link_to 'ポイント獲得履歴', point_history_path %></li>
+                <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+              </ul>
+              <ul class="sp-info">
+                <li><%= current_customer.name %></li>
+                <li>ポイント残高：<%= current_customer.point %></li>
+                <li>獲得EXP：<%= current_customer.exp_point %></li>
+              </ul>
+            </div>
+            <div id="hm-icon">
+              <a class="menu-trigger" href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+              </a>
+            </div>
           </div>
       <% else %>
           <div class="header_content">
