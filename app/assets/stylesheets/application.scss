@@ -217,6 +217,7 @@ footer {
 .top_wrap {
   text-align: center;
   .top_title {
+    margin: 0 5%;
     h1 {
       strong {
         color: rgba(204, 80, 46, 0.8);
@@ -895,6 +896,28 @@ footer {
       text-align: center;
       padding: 5px;
       border: dashed 1px gray;
+    }
+  }
+}
+
+@media screen and (max-width: 630px) {
+  // トップページ
+  .service_item {
+    width: 43%;
+    margin: 1.8em auto;
+  }
+  .top_customer_information_nav {
+    width: 43% !important;
+    margin: 1.8em auto !important;
+  }
+
+  @media screen and (max-width: 500px) {
+    // トップページ
+    .service_item {
+      width: 70%;
+    }
+    .top_customer_information_nav {
+      width: 70% !important;
     }
   }
 }
