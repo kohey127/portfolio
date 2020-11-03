@@ -1,0 +1,12 @@
+<div class="my_favorite">
+  <h3 class="icon">お気に入り体験一覧</h3>
+  <% if @services.blank? %>
+    <p>お気に入りに追加されている体験はありません。</p>
+  <% else %>
+    <div class="service_flex_container">
+      <% @services.each do |service| %>
+        <%= render 'service', service: service %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

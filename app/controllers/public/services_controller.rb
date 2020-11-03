@@ -8,6 +8,11 @@ class Public::ServicesController < ApplicationController
       @customers = Customer.where.not(id: 1, is_active: false).order(exp_point: "desc").includes(services: :comments)
   end
 
+  def index
+    ids = current_customer.favorites.pluck(:service_id)
+    @services = Service.where(id: ids)
+  end
+
   def about
   end
 

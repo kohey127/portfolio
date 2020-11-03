@@ -8,9 +8,8 @@ class Customer < ApplicationRecord
   has_many :comments, dependent: :destroy
   # has_many :contacts, dependent: :destroy
   has_many :appointment_comments, dependent: :destroy
-  # has_many :favorites, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :point_histories, dependent: :destroy
-  
   has_many :exp_histories, dependent: :destroy
 
   validates :name, presence: true
