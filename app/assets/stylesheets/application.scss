@@ -217,6 +217,7 @@ footer {
 .top_wrap {
   text-align: center;
   .top_title {
+    margin: 0 5%;
     h1 {
       strong {
         color: rgba(204, 80, 46, 0.8);
@@ -690,6 +691,19 @@ footer {
 // 予約チャット画面
 .apppointment_comment_wrap {
   text-align: center;
+  .chat_lead_message {
+    text-align: left;
+    padding: 20px 30px;
+    margin: 40px auto;
+    width: 60%;
+    background-color: white;
+    border: dashed 1px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px gainsboro;
+  }
+  .img-circle:hover {
+    opacity: 0.9;
+  }
   .apppointment_comment_content {
     width: 60%;
     margin: 20px auto;
@@ -882,6 +896,28 @@ footer {
       text-align: center;
       padding: 5px;
       border: dashed 1px gray;
+    }
+  }
+}
+
+@media screen and (max-width: 630px) {
+  // トップページ
+  .service_item {
+    width: 43%;
+    margin: 1.8em auto;
+  }
+  .top_customer_information_nav {
+    width: 43% !important;
+    margin: 1.8em auto !important;
+  }
+
+  @media screen and (max-width: 500px) {
+    // トップページ
+    .service_item {
+      width: 70%;
+    }
+    .top_customer_information_nav {
+      width: 70% !important;
     }
   }
 }

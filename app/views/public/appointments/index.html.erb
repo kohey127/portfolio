@@ -20,7 +20,7 @@
         <div class="btn_green">
           <span>
             <i class="fa fa-check-circle"></i>
-            <%= link_to  "承認する", service_appointment_path(appointment.service.id, appointment.id, :update_param => "success"), method: :patch, data: { confirm: '本当に承諾しますか?' } %>
+            <%= link_to  "承認する", service_appointment_path(appointment.service.id, appointment.id, :update_param => "success"), method: :patch, data: { confirm: '本当に承認しますか?' } %>
           </span>
         </div>
         <div class="btn_red">
