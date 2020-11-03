@@ -9,7 +9,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= favicon_link_tag('favicon.ico') %>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <% if request.path == "/" %>
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+    <% end %>
   </head>
   <body>
     <header>
