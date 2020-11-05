@@ -7,7 +7,7 @@ class Service < ApplicationRecord
   validates :catchphrase, presence: true
   validates :place, presence: true
   validates :content, presence: true
-  validates :point, presence: true
+  validates :point, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
   
   attachment :image
   
@@ -18,4 +18,18 @@ class Service < ApplicationRecord
     favorites.where(customer_id: customer.id).exists?
   end
 
+  def Service.search(search, word)
+    target = Service.where(is_active: true)
+		if search == "forward"
+			target.where("catchphrase LIKE?", "#{word}%")
+		elsif search == "backward"
+			target.where("catchphrase LIKE?", "%#{word}")
+		elsif search == "perfect"
+			target.where("catchphrase LIKE?", "#{word}")
+		elsif search == "partial"
+			target.where("catchphrase LIKE?", "%#{word}%")
+		else
+			target.all
+		end
+	end
 end
