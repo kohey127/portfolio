@@ -45,7 +45,9 @@
         <span><%= @customer.based %></span>
       </div>
       <div>
-        <span><%= safe_join(@customer.introduction.split("\n"), tag(:br)) %></span>
+        <% if current_customer.introduction.present? %>
+          <span><%= safe_join(@customer.introduction.split("\n"), tag(:br)) %></span>
+        <% end %>
       </div>
     </div>
     <div class="flex-item customer_status">
