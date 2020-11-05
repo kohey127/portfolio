@@ -84,7 +84,12 @@
               <%= link_to  "申し込む／話を聞く", new_service_appointment_path(@service.id) %>
             </span>
           </div>
-          <p>話を聞くだけではポイントは必要ありません</p>
+          <p>
+            話を聞くだけではポイントは必要ありません。<br>
+            <small>
+              ※ 同時に2つ以上の体験を取引することはできません。<br>　 取引中の体験を完了してから進んでください。
+            </small>
+          </p>
         <!-- 非公開の時は申込ボタンを非表示 -->
         <% else %>
           <p>この体験は公開停止中です</p>
@@ -103,7 +108,13 @@
             <%= link_to  "申し込む／話を聞く", new_service_appointment_path(@service.id) %>
           </span>
         </div>
-        <p>話を聞くだけではポイントは必要ありません</p>
+        <p>
+          話を聞くだけではポイントは必要ありません。<br>
+          <small>
+            ※ 同時に2つ以上の体験を申し込むことはできません。<br>
+            　 取引中の体験を完了してから進んでください。
+          </small>
+        </p>
       <% end %>
     </div>
     <%= render 'public/customers/customer', customer: @customer %>

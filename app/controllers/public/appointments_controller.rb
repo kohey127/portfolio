@@ -41,6 +41,14 @@ class Public::AppointmentsController < ApplicationController
       error_flag = 1
     end
 
+    if error_flag != 1
+      # 申込進行中の体験があるときにエラーを表示
+      if current_customer.in_progress_appointments.present?
+        flash.now[:danger] = "現在、取引が進行中の体験があります。ポイントの不整合を防ぐため、現在の取引を完了してからお申し込みください。"
+        error_flag = 1
+      end
+    end
+
     # 初期メッセージが空の時にエラーを表示
     if params[:appointment][:first_message] == ""
       flash.now[:danger] = "メッセージが空です"
