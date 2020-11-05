@@ -53,6 +53,8 @@ GEM
       activemodel (= 5.2.4.4)
       activesupport (= 5.2.4.4)
       arel (>= 9.0)
+    activerecord-import (1.0.7)
+      activerecord (>= 3.2)
     activestorage (5.2.4.4)
       actionpack (= 5.2.4.4)
       activerecord (= 5.2.4.4)
@@ -366,6 +368,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  activerecord-import
   bcrypt_pbkdf
   bootsnap (>= 1.1.0)
   bootstrap-sass (~> 3.3.6)

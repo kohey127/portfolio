@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     get 'appointments' => 'appointments#index'
     resources :appointment_comments, only: [:show, :create]
     get 'search' => 'searches#search'
+    patch 'point_update' => 'point_histories#update'
 
   end
 end
