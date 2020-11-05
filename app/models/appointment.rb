@@ -33,7 +33,7 @@ class Appointment < ApplicationRecord
       else
         return "不正なチャットです。"
       end
-    when self.to_customer_id == id
+    when self.to_customer_id
       if self.applying?
         return "相手があなたの体験に申込んでいます。以下①～③を実施してください。\n① 相手の体験の利用意思を確認してください。\n② 利用したい意思が確認出来たら日程の調整をしてください。\n③ 申込状況の承認待ち一覧から対象の申込を、承認もしくは中断/拒否してください。\n（※③の操作は取り消せないため、必ず相手に許可をもらってから実施してください。③で申込を承認すると、相手はあなたにポイントを払わなければならなくなります。）"
       elsif self.success?
