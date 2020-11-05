@@ -20,7 +20,8 @@ class Appointment < ApplicationRecord
   end
 
   def chat_lead_message(id)
-    if self.from_customer_id == id
+    case id
+    when self.from_customer_id
       if self.applying?
         return "相手の体験を申込中です。相手に体験の利用意思を伝え、申込の承認もしくは中断を依頼してください。"
       elsif self.success?
@@ -29,12 +30,16 @@ class Appointment < ApplicationRecord
         return "相手に体験の申込を中断されました。\nこのチャットは中断から3日後に見れなくなります。\nなお、送信したメッセージは相手に表示されません。"
       elsif self.done?
         return "過去に利用した体験のチャットです。送信したメッセージは相手に表示されません。"
+      else
+        return "不正なチャットです。"
       end
-    elsif self.to_customer_id == id
+    when self.to_customer_id == id
       if self.applying?
         return "相手があなたの体験に申込んでいます。以下①～③を実施してください。\n① 相手の体験の利用意思を確認してください。\n② 利用したい意思が確認出来たら日程の調整をしてください。\n③ 申込状況の承認待ち一覧から対象の申込を、承認もしくは中断/拒否してください。\n（※③の操作は取り消せないため、必ず相手に許可をもらってから実施してください。③で申込を承認すると、相手はあなたにポイントを払わなければならなくなります。）"
       elsif self.success?
         return "相手の申込を承認しました。体験の提供が終わったら、ここで相手にレビューを依頼してください。\n相手がレビューを送信することで本取引は完了し、このチャットは閉じられます。"
+      else
+        return "不正なチャットです。"
       end
     end
   end

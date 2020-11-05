@@ -77,6 +77,10 @@ main {
   text-align: center;
 }
 
+textarea, input {
+  padding-left: 5px;
+}
+
 // ヘッダ
 header {
   background-color: rgba(204, 80, 46, 1);
@@ -84,7 +88,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 100;
   .header_content {
     display: flex;
     justify-content: space-between;
@@ -118,7 +122,7 @@ header {
   position: fixed;
   right: 20px;
   top: 11px;
-  z-index: 10;
+  z-index: 100;
   cursor: pointer;
   .menu-trigger {
     position: relative;
@@ -178,7 +182,7 @@ header {
   width: 20%;
   min-height: 100%;
   display: none;
-  z-index: 2;  
+  z-index: 80;  
   padding-top: 50px;
   .sp-link {
     li{
@@ -208,7 +212,6 @@ header {
   text-align: center;
   #word {
     border-radius: 5px;
-    padding-left: 5px;
     border: solid 1px;
   }
   #range, #search {
@@ -345,11 +348,24 @@ footer {
   }
 }
 
+// 固定タイトル
 .icon::before {
   content: "";
   padding-right: 10px;
   border-left: 7px solid rgba(204, 80, 46, 0.7);  
   margin-left: 5%;
+}
+.icon {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+  z-index: 50;
+  padding: 10px 0;
+  background-color: #FCFCF0;
+  small {
+    display: inline-block;
+    margin: 10px 6% 0;
+  }
 }
 
 .customer_flex_container {
@@ -784,6 +800,9 @@ footer {
   flex-wrap: wrap;
   width: 90%;
   margin: 0 auto;
+  border-bottom: 1px dashed;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
   .to_customer_service_information {
     .service_title {
       text-align: center;
@@ -802,6 +821,11 @@ footer {
   .btn_information {
     margin: auto 0;
   }
+}
+.flex_appointment_container:last-child {
+  border-bottom: none;
+  padding-bottom: none;
+  margin-bottom: none;
 }
 
 // 予約チャット画面
@@ -1035,6 +1059,7 @@ footer {
       margin: 0;
     }
   }
+  
   @media screen and (max-width: 900px) {
     // 申込状況一覧のあなたの承認待ち
     .comming_appointment {
@@ -1047,6 +1072,12 @@ footer {
             margin-right: 20px;
           }
         }
+      }
+    }
+    // チャットメッセージ横幅拡大
+    .apppointment_comment_wrap {
+      .apppointment_comment_content {
+        width: 90%;
       }
     }
     // プロフィール編集
@@ -1070,6 +1101,7 @@ footer {
           text-align: center;
         }
       }
+
       @media screen and (max-width: 700px) {
         // 申込状況一覧のあなたの承認待ち
         .flex_appointment_container {
@@ -1080,6 +1112,11 @@ footer {
             width: 90%;
           }
           #appointment_comment_content {
+            width: 90%;
+          }
+        }
+        .comment_form {
+          #comment_content {
             width: 90%;
           }
         }
