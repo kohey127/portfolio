@@ -15,7 +15,13 @@
         <dt><%= f.label :name, "名前" %></dt>
         <dd><%= f.text_field :name, :placeholder =>"#{@customer.name}" %></dd>
         <dt><%= f.label :introduction, "自己紹介" %></dt>
-        <dd><%= f.text_area :introduction, rows: 10, cols: 50 , :placeholder =>"#{safe_join(@customer.introduction.split("\n"), tag(:br))}" %></dd>
+        <dd>
+          <% if current_customer.introduction.present? %>
+            <%= f.text_area :introduction, rows: 10, cols: 50 , :placeholder =>"#{safe_join(@customer.introduction.split("\n"), tag(:br))}" %>
+          <% else %>
+            <%= f.text_area :introduction, rows: 10, cols: 50 %>
+          <% end %>
+        </dd>
         <dt><%= f.label :based, "拠点" %></dt>
         <dd><%= f.text_field :based, :placeholder =>"#{@customer.based}" %></dd>
       </dl>
