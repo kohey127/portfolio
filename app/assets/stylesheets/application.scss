@@ -206,6 +206,23 @@ header {
 // 検索窓
 .search_form {
   text-align: center;
+  #word {
+    border-radius: 5px;
+    padding-left: 5px;
+    border: solid 1px;
+  }
+  #range, #search {
+    border-radius: 5px;
+    height: 26px;
+  }
+  .search_btn {
+    border-radius: 5px;
+    width: 52px;
+    border: solid 1px;
+  }
+  .search_btn:hover {
+    opacity: 0.8;
+  }
 }
 
 .search_massage {

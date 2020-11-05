@@ -2,10 +2,10 @@
   <% if customer_signed_in? %>
     <div class="search_form">
       <%= form_tag(search_path, method: :get) do %>
-        <%= text_field_tag 'word' %>
+        <%= text_field_tag 'word', '',  :placeholder => "検索したい体験名/Shexper名" %>
         <%= select_tag 'range', options_for_select({ "体験" => "1" , "Shexper(ユーザ)" => "2"}) %>
         <%= select_tag 'search', options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial" }) %>
-        <%= submit_tag "検索" %>
+        <%= submit_tag "検索", :class=>"search_btn" %>
       <% end %>
     </div>
   <% end %>
