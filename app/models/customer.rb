@@ -47,4 +47,20 @@ class Customer < ApplicationRecord
       0
     end
   end
+
+  # Shexper(ユーザ)検索メソッド
+  def Customer.search(search, word)
+    target = Customer.where(is_active: true)
+		if search == "forward"
+			target.where("name LIKE?", "#{word}%")
+		elsif search == "backward"
+			target.where("name LIKE?", "%#{word}")
+		elsif search == "perfect"
+			target.where("name LIKE?", "#{word}")
+		elsif search == "partial"
+      target.where("name LIKE?", "%#{word}%")
+    else
+      target.all
+    end
+	end
 end
