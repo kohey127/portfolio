@@ -17,14 +17,17 @@
 //= require bootstrap-sprockets
 //= require_tree ./
 
-// ヘッダーナビゲーション
-$(function() {
-  $('.menu-trigger').on('click', function(event) {
-    $(this).toggleClass('active');
-    $('#nav-menu').fadeToggle();
-    event.preventDefault();
-  });
-});
+// ヘッダナビゲーション
+document.addEventListener("turbolinks:load"
+, function () {
+	$(function() {
+		$('.menu-trigger').on('click', function(event) {
+			$(this).toggleClass('active');
+			$('#nav-menu').fadeToggle();
+			event.preventDefault();
+		});
+	});
+})
 
 // 画像プレビュー
 $(document).on("turbolinks:load", function(){
