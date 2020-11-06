@@ -61,7 +61,7 @@
 // 全体
 body {
   background-color: #FCFCF0;
-  font-family: "Noto Sans Japanese";
+  font-family: "Noto Sans Japanese", "Noto Sans";
   font-size: 14px;
   color: #656565;
   letter-spacing: 0.05em;
@@ -219,12 +219,16 @@ header {
     height: 26px;
   }
   .search_btn {
-    border-radius: 5px;
-    width: 52px;
-    border: solid 1px;
+  width: 45px;
+  padding: 0;
+  border: none;
+  border-radius: 23px;
+  background-color: #2ECC71;
+  color: white;
+  border-bottom: 3px solid green;
   }
   .search_btn:hover {
-    opacity: 0.8;
+  opacity: 0.8;
   }
 }
 .search_massage {

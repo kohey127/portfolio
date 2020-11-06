@@ -31,18 +31,20 @@
     <% end %>
   <!-- トップページとユーザ詳細画面では体験の詳細画面へのリンクを表示 -->
   <% else %>
-    <div class="btn_gray">
-      <% if service.is_active == true %>
+    <% if service.is_active == true %>
+      <div class="btn_green">
         <span>
           <i class="fa fa-check-circle"></i>
           <%= link_to  "公開中", service_path(service.id) %>
         </span>
-      <% else %>
+      </div>
+    <% else %>
+      <div class="btn_gray">
         <span>
           <i class="fa fa-check-circle"></i>
           <%= link_to  "非公開中", service_path(service.id) %>
         </span>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
