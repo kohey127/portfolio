@@ -43,7 +43,7 @@ class Public::AppointmentsController < ApplicationController
 
     if error_flag != 1
       # 申込進行中の体験があるときにエラーを表示
-      if current_customer.in_progress_appointments.present?
+      if current_customer.be_applying.present?
         flash.now[:danger] = "現在、取引が進行中の体験があります。ポイントの不整合を防ぐため、現在の取引を完了してからお申し込みください。"
         error_flag = 1
       end

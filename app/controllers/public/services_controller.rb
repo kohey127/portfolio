@@ -51,6 +51,10 @@ class Public::ServicesController < ApplicationController
       service.update(is_active: true)
       flash[:success] = "体験の公開を再開しました"
     when "close"
+      if current_customer.have_been_applied.where(service_id: service.id).present?
+        flash[:danger] = "この体験は提供中のため非公開にできません。"
+        redirect_to mypage_path and return
+      end
       service.update(is_active: false)
       flash[:success] = "体験をの公開を停止しました"
     end
@@ -70,10 +74,14 @@ class Public::ServicesController < ApplicationController
 
   def destroy
     service = Service.find(params[:id])
+    if current_customer.have_been_applied.where(service_id: service.id).present?
+      flash[:danger] = "この体験は提供中のため削除できません。"
+      redirect_to mypage_path and return
+    end    
     if service.destroy
       flash[:success] = "体験を削除しました"
     end
-      redirect_to mypage_path
+    redirect_to mypage_path
   end
 
   private

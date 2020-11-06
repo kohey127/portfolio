@@ -8,8 +8,9 @@ class Customer < ApplicationRecord
   has_many :comments, dependent: :destroy
   # has_many :contacts, dependent: :destroy
   has_many :appointment_comments, dependent: :destroy
-  has_many :favorites, dependent: :destroy
+  # has_many :favorites, dependent: :destroy
   has_many :point_histories, dependent: :destroy
+  
   has_many :exp_histories, dependent: :destroy
 
   validates :name, presence: true
@@ -18,6 +19,11 @@ class Customer < ApplicationRecord
   scope :only_active, -> { where(is_active: true) }
   
   attachment :image
+
+  # def get_comments
+  #   test = self.services.pluck(:id)
+  #   Commnet.where(service_id: test)
+  # end
 
   # 顧客が受けたレビューを取得
   def get_comments
@@ -59,10 +65,21 @@ class Customer < ApplicationRecord
     end
   end
   
-  # 申込進行中の体験の件数を取得するメソッド
-  def in_progress_appointments
+  # 申込している体験の件数を取得するメソッド
+  def be_applying
     # 対象Shexperが申し込んだ体験のうち、申込ステータスが申込中、もしくは予約成立中のものを返す
     Appointment.where(status: "applying").or(Appointment.where(status: "success")).where(from_customer_id: self.id)
+  end
+  
+  # 申込進行中の体験の件数を取得するメソッド
+  def have_been_applied
+    # 対象Shexperが申し込んだ体験のうち、申込ステータスが申込中、もしくは予約成立中のものを返す
+    Appointment.where(status: "applying").or(Appointment.where(status: "success")).where(to_customer_id: self.id)
+  end
+
+  # 顧客が獲得したお気に入りの数を取得するメソッド
+  def get_favorites_count
+    Favorite.joins(service: :customer).where(customers: {id: self.id}).count
   end
 
 end
