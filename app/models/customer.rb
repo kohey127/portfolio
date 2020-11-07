@@ -12,6 +12,8 @@ class Customer < ApplicationRecord
   has_many :point_histories, dependent: :destroy
   
   has_many :exp_histories, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true

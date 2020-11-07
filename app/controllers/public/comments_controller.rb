@@ -14,6 +14,9 @@ class Public::CommentsController < ApplicationController
     
     # レビューの書き込み
     comment = Comment.new(comment_params)
+
+    # 通知
+
     # レビューの感情分析結果を取得
     comment.score = Language.get_data(comment_params[:content])
     if comment.save
@@ -25,6 +28,8 @@ class Public::CommentsController < ApplicationController
     
     # 予約ステータスを取引完了に更新
     appointment.done!
+
+    # 通知
 
     # ポイント更新処理
     from_customer.update(point: from_customer.point -= point)
