@@ -51,4 +51,5 @@ https://docs.google.com/spreadsheets/d/1YbZsmjkN7cMtPHdddeU21f3f6gl5_BrMRwpbEI0o
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL,Python
 - フレームワーク：Ruby on Rails
+- JSフレームワーク: jQuery
 - 仮想環境：Vagrant,VirtualBox
