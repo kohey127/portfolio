@@ -18,18 +18,8 @@ class Service < ApplicationRecord
     favorites.where(customer_id: customer.id).exists?
   end
 
-  def Service.search(search, word)
+  def Service.search(word)
     target = Service.where(is_active: true)
-		if search == "forward"
-			target.where("catchphrase LIKE?", "#{word}%")
-		elsif search == "backward"
-			target.where("catchphrase LIKE?", "%#{word}")
-		elsif search == "perfect"
-			target.where("catchphrase LIKE?", "#{word}")
-		elsif search == "partial"
-			target.where("catchphrase LIKE?", "%#{word}%")
-		else
-			target.all
-		end
+    target.where("catchphrase LIKE?", "%#{word}%")
 	end
 end
