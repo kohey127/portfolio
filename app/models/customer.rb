@@ -13,11 +13,9 @@ class Customer < ApplicationRecord
   
   has_many :exp_histories, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, length: {minimum: 1, maximum: 8}
   validates :email, presence: true, uniqueness: true
 
-  scope :only_active, -> { where(is_active: true) }
-  
   attachment :image
 
   # 顧客が受けたレビューを取得

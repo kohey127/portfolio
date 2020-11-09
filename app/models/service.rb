@@ -4,10 +4,10 @@ class Service < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  validates :catchphrase, presence: true
-  validates :place, presence: true
-  validates :content, presence: true
-  validates :point, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :catchphrase, presence: true, length: {minimum: 1, maximum: 20}
+  validates :place, presence: true, length: {minimum: 1, maximum: 20}
+  validates :content, presence: true, length: {minimum: 1, maximum: 400}
+  validates :point, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 200 }
   
   attachment :image
   
