@@ -17,7 +17,7 @@
         <dt><%= f.label :introduction, "自己紹介" %></dt>
         <dd>
           <% if current_customer.introduction.present? %>
-            <%= f.text_area :introduction, rows: 10, cols: 50 , :placeholder =>"#{safe_join(@customer.introduction.split("\n"), tag(:br))}", maxlength: 400 %>
+            <%= f.text_area :introduction, rows: 10, cols: 50 , :placeholder =>"#{safe_join(@customer.introduction.split("\n"), tag(:br))}" %>
           <% else %>
             <%= f.text_area :introduction, rows: 10, cols: 50 %>
           <% end %>

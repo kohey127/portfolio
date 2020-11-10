@@ -3,28 +3,29 @@ class Public::CommentsController < ApplicationController
   
   def create
     # ポイント更新事前準備
-    appointment = Appointment.find(params[:comment][:appointment_id])
-    from_customer = Customer.find(appointment.from_customer_id)
-    to_customer = Customer.find(appointment.to_customer_id)
-    point = appointment.service.point
+    @appointment = Appointment.find(params[:comment][:appointment_id])
+    from_customer = Customer.find(@appointment.from_customer_id)
+    to_customer = Customer.find(@appointment.to_customer_id)
+    point = @appointment.service.point
     point_history = PointHistory.new
     exp_history = ExpHistory.new
     latest_point = from_customer.point
     latest_exp = to_customer.exp_point
     
     # レビューの書き込み
-    comment = Comment.new(comment_params)
+    @comment = Comment.new(comment_params)
     # レビューの感情分析結果を取得
-    comment.score = Language.get_data(comment_params[:content])
-    if comment.save
+    @comment.score = Language.get_data(params[:comment][:content])
+    if @comment.save
       flash[:success] = "レビューを書いて体験を完了しました。"
     else
-      flash[:danger] = "レビューが空です。"
-      redirect_to appointment_comment_path(appointment.id) and return
+      @appointment_comments = AppointmentComment.where(appointment_id: params[:comment][:appointment_id]).includes(:customer)
+      @appointment_comment = AppointmentComment.new
+      render 'public/appointment_comments/show' and return
     end
     
     # 予約ステータスを取引完了に更新
-    appointment.done!
+    @appointment.done!
 
     # ポイント更新処理
     from_customer.update(point: from_customer.point -= point)
