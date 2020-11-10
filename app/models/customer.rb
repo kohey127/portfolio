@@ -13,11 +13,9 @@ class Customer < ApplicationRecord
   
   has_many :exp_histories, dependent: :destroy
 
-  validates :name, presence: true
+  validates :name, presence: true, length: {maximum: 8}
   validates :email, presence: true, uniqueness: true
 
-  scope :only_active, -> { where(is_active: true) }
-  
   attachment :image
 
   # 顧客が受けたレビューを取得
@@ -45,19 +43,10 @@ class Customer < ApplicationRecord
   end
 
   # Shexper(ユーザ)検索メソッド
-  def Customer.search(search, word)
-    target = Customer.where(is_active: true)
-		if search == "forward"
-			target.where("name LIKE?", "#{word}%")
-		elsif search == "backward"
-			target.where("name LIKE?", "%#{word}")
-		elsif search == "perfect"
-			target.where("name LIKE?", "#{word}")
-		elsif search == "partial"
-      target.where("name LIKE?", "%#{word}%")
-    else
-      target.all
-    end
+  def Customer.search(word)
+    # 有効会員のうち、管理者ユーザ以外を取得
+    target = Customer.where(is_active: true).where.not(id: 1)
+    target.where("name LIKE?", "%#{word}%")
   end
   
   # 申込している体験の件数を取得するメソッド
