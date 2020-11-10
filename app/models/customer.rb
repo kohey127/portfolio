@@ -13,7 +13,7 @@ class Customer < ApplicationRecord
   
   has_many :exp_histories, dependent: :destroy
 
-  validates :name, presence: true, length: {minimum: 1, maximum: 8}
+  validates :name, presence: true, length: {maximum: 8}
   validates :email, presence: true, uniqueness: true
 
   attachment :image

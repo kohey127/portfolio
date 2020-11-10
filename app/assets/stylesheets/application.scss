@@ -30,17 +30,26 @@
 
 // エラーメッセージ
 #error_explanation {
-  color: red;
-  padding-bottom: 20px;
+  color: white;
+  padding-top: 0.5px;
+  background-color: red;
   width: 75%;
-  margin: 0 auto;
+  border-radius: 5px;
+  margin: 30px auto;
   h2 {
     font-size: 20px;
     font-weight: bold;
+    margin: 0;
+    padding: 10px;
   }
   ul {
-    padding-left: 50px;
-    list-style: circle;
+    padding-left: 5%;
+    text-align: left;
+    color: black;
+    background-color: white;
+    display: inline-block;
+    width: 98%;
+    padding: 30px 70px;
   }
 }
 
@@ -1187,6 +1196,14 @@ footer {
                 width: 90%;
                 textarea {
                   width: 100%;
+                }
+              }
+              @media screen and (max-width: 400px) {
+                // エラーメッセージ
+                #error_explanation {
+                  ul {
+                    padding: 30px;
+                  }
                 }
               }
             }

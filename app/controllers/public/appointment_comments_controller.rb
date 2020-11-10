@@ -1,10 +1,5 @@
 class Public::AppointmentCommentsController < ApplicationController
   before_action :authenticate_customer!
-  
-  def index
-    target = Appointment.where(to_customer_id: current_customer.id).or(Appointment.where(from_customer_id: current_customer.id))
-    @appointment_comments = AppointmentComment.where(appointment_id: target.ids).group(:appointment_id).includes(:appointment)
-  end
 
   def show
     @appointment = Appointment.find(params[:id])
@@ -19,10 +14,15 @@ class Public::AppointmentCommentsController < ApplicationController
   end
 
   def create
-    appointment_comment = AppointmentComment.new(appointment_comment_params)
-    if appointment_comment.save
+    @appointment_comment = AppointmentComment.new(appointment_comment_params)
+    if @appointment_comment.save
       flash[:success] = "メッセージを送信しました"
       redirect_to appointment_comment_path(params[:appointment_comment][:appointment_id])
+    else
+      @appointment = Appointment.find(params[:appointment_comment][:appointment_id])
+      @appointment_comments = AppointmentComment.where(params[:appointment_comment][:appointment_id]).includes(:customer)
+      @comment = Comment.new
+      render :show
     end
   end
   
