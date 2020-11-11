@@ -52,10 +52,12 @@ class Public::AppointmentsController < ApplicationController
       end
     end
 
-    # 初期メッセージが空の時にエラーを表示
-    if params[:appointment][:first_message] == ""
-      flash.now[:danger] = "メッセージが空です"
-      error_flag = 1
+    if error_flag != 1
+      # 初期メッセージが空の時、もしくは400文字以上の時にエラーを表示(appointment_commentは、appointmentのidを格納するため、appointment作成後に作成する必要がある。そのためバリデーションチェックは事前に手動で実施している。)
+      if params[:appointment][:first_message] == "" || params[:appointment][:first_message].length >= 400
+        flash.now[:danger] = "メッセージは、1文字以上400文字以下で入力してください。"
+        error_flag = 1
+      end
     end
 
     if error_flag == 0 && @appointment.save

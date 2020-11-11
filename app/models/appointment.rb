@@ -10,9 +10,10 @@ class Appointment < ApplicationRecord
   validates :request_date, presence: true
   
   enum status:{ applying: 0, success: 1, failure: 2, done: 3 }
+  validates :status, presence: true
 
   enum request_format:{ online: 0, telephone: 1, message: 2, anything: 3 }
-  validates :request_format, inclusion: { in: Appointment.request_formats.keys }
+  validates :request_format, presence: true
   
   def partner_customer(id)
     return self.to_customer if self.from_customer_id == id    
