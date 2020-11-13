@@ -1175,9 +1175,34 @@ footer {
               }
             }
             @media screen and (max-width: 500px) {
+              // ヘッダの縮小
+              header {
+                .header_content{
+                  .logo a {
+                    background-size: 130px;
+                    width: 125px;
+                    height: 47px;
+                  }
+                }
+              }
+              .icon {
+                top: 47px;
+              }
+              main {
+                margin: 80px 0 50px;
+              }
+              
               // ナビゲーションの表示範囲拡大
               #nav-menu {
                 width: 100%;
+              }
+              // ナビゲーションのアイコン縮小
+              #nav-icon {
+                top: 9px;
+                .menu-trigger {
+                  width: 27px;
+                  height: 14px;
+                }
               }
               // ヘッダのWelcomeメッセージを非表示
               .welcome_header {
