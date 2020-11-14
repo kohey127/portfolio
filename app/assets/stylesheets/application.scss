@@ -224,7 +224,7 @@ header {
     border-radius: 5px;
     border: solid 1px;
   }
-  #range, #search {
+  #range {
     border-radius: 5px;
     height: 26px;
   }
@@ -1198,10 +1198,29 @@ footer {
               }
               // ナビゲーションのアイコン縮小
               #nav-icon {
-                top: 9px;
                 .menu-trigger {
                   width: 27px;
-                  height: 14px;
+                  span:nth-of-type(1) {
+                    top: 0px;
+                  }
+                  span:nth-of-type(2) {
+                    top: 10px;
+                  }
+                  span:nth-of-type(3) {
+                    top: 20px;
+                  }
+                }
+                .active {
+                  width: 27px;
+                  span:nth-of-type(1) {
+                    top: -9px;
+                  }
+                  span:nth-of-type(2) {
+                    top: 10px;
+                  }
+                  span:nth-of-type(3) {
+                    top: 30px;
+                  }
                 }
               }
               // ヘッダのWelcomeメッセージを非表示
